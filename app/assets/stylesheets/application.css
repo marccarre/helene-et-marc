@@ -11,3 +11,7 @@
  *= require_self
  *= require_tree .
  */
+body {
+  min-height: 2000px;
+  padding-top: 50px;
+}
