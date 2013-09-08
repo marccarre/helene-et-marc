@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130908183146) do
+ActiveRecord::Schema.define(version: 20130908185150) do
 
   create_table "guests", force: true do |t|
     t.string   "first_name"
@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 20130908183146) do
     t.string   "postcode"
     t.string   "country"
     t.boolean  "retour"
-    t.datetime "registered_on"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
