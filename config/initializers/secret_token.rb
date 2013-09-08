@@ -9,4 +9,4 @@
 
 # Make sure your secret_key_base is kept private
 # if you're sharing your code publicly.
-HeleneEtMarc::Application.config.secret_key_base = 'd32c954c47e70496b06442796d621047c6abef3fedd6e778aec884ac220b4cf9e2b2f1852e1389fcfef4e151bbed656b97c859865106eff7605e226b7be513e9'
+HeleneEtMarc::Application.config.secret_key_base = '4b133fa3af89233507765d903c7500209e3941964f1cf496685c588aaebbc066080aa17f4710438f632871b5e5e3ce523f3edc26d6c8d26db253549e8e9aa416'

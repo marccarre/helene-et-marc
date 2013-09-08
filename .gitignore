@@ -23,3 +23,5 @@ database.yml
 **.orig
 rerun.txt
 pickle-email-*.html
+/vendor/bundle
+.ruby-version
