@@ -1,0 +1,15 @@
+fr:
+  menu: 
+    program: "Déroulement"
+    story: "Histoire"
+    photos: "Photos"
+    transport: "Transport"
+    transports:
+      train: "Train"
+      plane: "Avion"
+      car: "Voiture"
+      carpooling: "Co-voiturage"
+      instructions: "Trajet"
+    stay: "Séjour"
+    list: "Liste de mariage"
+    contact: "Contact"

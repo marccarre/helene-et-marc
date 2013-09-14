@@ -20,4 +20,17 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+  menu: 
+    program: "Program"
+    story: "Story"
+    photos: "Photos"
+    transport: "Transport"
+    transports:
+      train: "Train"
+      plane: "Plane"
+      car: "Car"
+      carpooling: "Carpooling"
+      instructions: "Driving instructions"
+    stay: "Where to stay"
+    list: "Gift list"
+    contact: "Contact"

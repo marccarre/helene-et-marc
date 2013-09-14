@@ -15,3 +15,8 @@ body {
   min-height: 2000px;
   padding-top: 50px;
 }
+
+.navbar-nav > li.flag > a {
+  padding-left: 5px;
+  padding-right: 5px;
+}
