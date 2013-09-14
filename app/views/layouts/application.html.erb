@@ -43,8 +43,8 @@
                 <li><a href="#contact"><%= t('menu.contact') %></a></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
-                <li class="flag"><%= link_to image_tag("i18n/en.gif"), url_for(:locale => 'en') %></li>
-                <li class="flag"><%= link_to image_tag("i18n/fr.gif"), url_for(:locale => 'fr') %></li>
+                <li class="flag"><%= link_to image_tag("i18n/en.gif"), :controller => "locale", :action => "set", :locale => "en" %></li>
+                <li class="flag"><%= link_to image_tag("i18n/fr.gif"), :controller => "locale", :action => "set", :locale => "fr" %></li>
               </ul>
             </div><!--/.nav-collapse -->
           </div>
