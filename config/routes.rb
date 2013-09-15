@@ -1,5 +1,5 @@
 HeleneEtMarc::Application.routes.draw do
-  root to: "guests#index"
+  root to: "static_views#home"
   get 'locale/:locale' => 'locale#set'
   resources :guests
   # The priority is based upon order of creation: first created -> highest priority.

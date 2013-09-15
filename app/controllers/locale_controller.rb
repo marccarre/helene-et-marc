@@ -1,4 +1,4 @@
-class LocaleController < ActionController::Base
+class LocaleController < ApplicationController
   skip_before_filter :set_locale, :except => [:set]
   
   def set
