@@ -9,7 +9,6 @@ class CreateGuests < ActiveRecord::Migration
       t.string :postcode
       t.string :country
       t.boolean :retour
-      t.datetime :registered_on
 
       t.timestamps
     end

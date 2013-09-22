@@ -1,4 +1,73 @@
-<h1><%= t('home.save_the_date') %>28 juin 2014.</h1>
-<p class="text-center">
-  <%= image_tag "pre-wed/helene_and_marc_prewedding_19.jpg" %>
-</p>
+<div class="row text-center">
+  <h1><%= t('home.save_the_date') %>28 juin 2014.</h1>
+</div>
+
+<div class="row">
+  <div id="pre-wed-home-carousel" class="carousel slide pre-wed-carousel">
+    <!-- Indicators -->
+    <!-- <ol class="carousel-indicators">
+      <li data-target="#pre-wed-home-carousel" data-slide-to="0"></li>
+      <li data-target="#pre-wed-home-carousel" data-slide-to="1"></li>
+      <li data-target="#pre-wed-home-carousel" data-slide-to="2"></li>
+      <li data-target="#pre-wed-home-carousel" data-slide-to="3"></li>
+      <li data-target="#pre-wed-home-carousel" data-slide-to="4"></li>
+      <li data-target="#pre-wed-home-carousel" data-slide-to="5"></li>
+      <li data-target="#pre-wed-home-carousel" data-slide-to="6"></li>
+      <li data-target="#pre-wed-home-carousel" data-slide-to="7"></li>
+      <li data-target="#pre-wed-home-carousel" data-slide-to="8"></li>
+      <li data-target="#pre-wed-home-carousel" data-slide-to="9"></li>
+      <li data-target="#pre-wed-home-carousel" data-slide-to="10" class="active"></li>
+      <li data-target="#pre-wed-home-carousel" data-slide-to="11"></li>
+      <li data-target="#pre-wed-home-carousel" data-slide-to="12"></li>
+      <li data-target="#pre-wed-home-carousel" data-slide-to="13"></li>
+      <li data-target="#pre-wed-home-carousel" data-slide-to="14"></li>
+      <li data-target="#pre-wed-home-carousel" data-slide-to="15"></li>
+      <li data-target="#pre-wed-home-carousel" data-slide-to="16"></li>
+      <li data-target="#pre-wed-home-carousel" data-slide-to="17"></li>
+      <li data-target="#pre-wed-home-carousel" data-slide-to="18"></li>
+      <li data-target="#pre-wed-home-carousel" data-slide-to="19"></li>
+    </ol> -->
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item"><%= image_tag "pre-wed/helene_and_marc_prewedding_02.jpg", :class => "pre-wed-center pre-wed-landscape" %></div>
+      <div class="item"><%= image_tag "pre-wed/helene_and_marc_prewedding_03.jpg", :class => "pre-wed-center pre-wed-landscape" %></div>
+      <div class="item"><%= image_tag "pre-wed/helene_and_marc_prewedding_04.jpg", :class => "pre-wed-center pre-wed-landscape" %></div>
+      <div class="item"><%= image_tag "pre-wed/helene_and_marc_prewedding_06.jpg", :class => "pre-wed-center pre-wed-landscape" %></div>
+      <div class="item"><%= image_tag "pre-wed/helene_and_marc_prewedding_07.jpg", :class => "pre-wed-center pre-wed-landscape" %></div>
+      <div class="item"><%= image_tag "pre-wed/helene_and_marc_prewedding_11.jpg", :class => "pre-wed-center pre-wed-portrait" %></div>
+      <div class="item"><%= image_tag "pre-wed/helene_and_marc_prewedding_13.jpg", :class => "pre-wed-center pre-wed-landscape" %></div>
+      <div class="item"><%= image_tag "pre-wed/helene_and_marc_prewedding_14.jpg", :class => "pre-wed-center pre-wed-landscape" %></div>
+      <div class="item"><%= image_tag "pre-wed/helene_and_marc_prewedding_15.jpg", :class => "pre-wed-center pre-wed-landscape" %></div>
+      <div class="item"><%= image_tag "pre-wed/helene_and_marc_prewedding_18.jpg", :class => "pre-wed-center pre-wed-portrait" %></div>
+      <div class="item active"><%= image_tag "pre-wed/helene_and_marc_prewedding_19.jpg", :class => "pre-wed-center pre-wed-landscape" %></div>
+      <div class="item"><%= image_tag "pre-wed/helene_and_marc_prewedding_21.jpg", :class => "pre-wed-center pre-wed-portrait" %></div>
+      <div class="item"><%= image_tag "pre-wed/helene_and_marc_prewedding_22.jpg", :class => "pre-wed-center pre-wed-portrait" %></div>
+      <div class="item"><%= image_tag "pre-wed/helene_and_marc_prewedding_24.jpg", :class => "pre-wed-center pre-wed-portrait" %></div>
+      <div class="item"><%= image_tag "pre-wed/helene_and_marc_prewedding_25.jpg", :class => "pre-wed-center pre-wed-landscape" %></div>
+      <div class="item"><%= image_tag "pre-wed/helene_and_marc_prewedding_26.jpg", :class => "pre-wed-center pre-wed-landscape" %></div>
+      <div class="item"><%= image_tag "pre-wed/helene_and_marc_prewedding_27.jpg", :class => "pre-wed-center pre-wed-landscape" %></div>
+      <div class="item"><%= image_tag "pre-wed/helene_and_marc_prewedding_28.jpg", :class => "pre-wed-center pre-wed-landscape" %></div>
+      <div class="item"><%= image_tag "pre-wed/helene_and_marc_prewedding_29.jpg", :class => "pre-wed-center pre-wed-landscape" %></div>
+      <div class="item"><%= image_tag "pre-wed/helene_and_marc_prewedding_30.jpg", :class => "pre-wed-center pre-wed-landscape" %></div>
+    </div>
+
+    <!-- Controls -->
+    <a class="left carousel-control" href="#pre-wed-home-carousel" data-slide="prev">
+      <span class="icon-prev"></span>
+    </a>
+    <a class="right carousel-control" href="#pre-wed-home-carousel" data-slide="next">
+      <span class="icon-next"></span>
+    </a>
+  </div>
+  <div class="text-center">Photographe : <a href="http://www.maxzphotography.com/helene-marc-london-uk/" target="_blank">MAXZ Photography</a></div>
+  
+</div>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $("#pre-wed-home-carousel").carousel({
+    interval: 5000
+  });
+});
+</script>

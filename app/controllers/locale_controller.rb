@@ -10,6 +10,4 @@ class LocaleController < ApplicationController
   rescue ActionController::RedirectBackError
     redirect_to :root
   end
-
-
 end
