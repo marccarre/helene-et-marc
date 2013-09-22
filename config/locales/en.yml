@@ -20,6 +20,9 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  g: # General
+    colon: ":"
+    em: "!" # Exclamation mark
   menu: 
     program: "Program"
     story: "Story"
@@ -37,3 +40,4 @@ en:
     contact: "Contact"
   home:
     save_the_date: "Save the date: "
+    photographer: "Photographer: "

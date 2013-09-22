@@ -1,4 +1,7 @@
 fr:
+  g: # General
+    colon: " :"
+    em: " !" # Exclamation mark
   menu: 
     program: "Déroulement"
     story: "Histoire"
@@ -16,3 +19,4 @@ fr:
     contact: "Contact"
   home:
     save_the_date: "Retenez votre "
+    photographer: "Photographe : "
