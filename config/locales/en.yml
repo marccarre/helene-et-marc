@@ -24,10 +24,11 @@ en:
     colon: ":"
     em: "!" # Exclamation mark
   menu: 
-    program: "Program"
     story: "Story"
+    program: "Program"
+    rsvp: "RSVP"
     photos: "Photos"
-    transport: "Transport"
+    transport: "Transports"
     transports:
       train: "Train"
       plane: "Plane"
@@ -35,8 +36,8 @@ en:
       carpooling: "Carpooling"
       instructions: "Driving instructions"
     stay: "Where to stay"
-    bretagne: "Visit the area"
-    list: "Gift list"
+    area: "Visit the area"
+    gifts: "Gift list"
     contact: "Contact"
   home:
     save_the_date: "Save the date: "

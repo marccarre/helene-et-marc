@@ -1,6 +1,18 @@
 HeleneEtMarc::Application.routes.draw do
-  root to: "static_views#home"
-  get 'locale/:locale' => 'locale#set'
+  root to: redirect("/wedding")
+
+  get "wedding", to: "wedding#home"
+  get "wedding/story"
+  get "wedding/photos"
+  get "wedding/program"
+  get "wedding/rsvp"
+  get "wedding/transports"
+  get "wedding/stay"
+  get "wedding/area"
+  get "wedding/gifts"
+  get "wedding/contact"
+  
+  get "locale/:locale", to: "locale#set"
   resources :guests
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

@@ -23,13 +23,14 @@
         <div class="navbar navbar-default navbar-fixed-top">
           <div class="container">
             <div class="navbar-header">
-              <a class="navbar-brand" href="#">H&eacute;l&egrave;ne &amp; Marc</a>
+              <%= link_to "Hélène & Marc", wedding_path, class: "navbar-brand" %>
             </div>
             <div class="navbar-collapse collapse">
               <ul class="nav navbar-nav">
-                <li class="active"><a href="#"><%= t('menu.story') %></a></li>
-                <li><a href="#contact"><%= t('menu.photos') %></a></li>
-                <li><a href="#about"><%= t('menu.program') %></a></li>
+                <li class="<%= 'active' if current_page?(wedding_story_path) %>"><%= link_to t('menu.story'), wedding_story_path %></li>
+                <li class="<%= 'active' if current_page?(wedding_photos_path) %>"><%= link_to t('menu.photos'), wedding_photos_path %></li>
+                <li class="<%= 'active' if current_page?(wedding_program_path) %>"><%= link_to t('menu.program'), wedding_program_path %></li>
+                <li class="<%= 'active' if current_page?(wedding_rsvp_path) %>"><%= link_to t('menu.rsvp'), wedding_rsvp_path %></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('menu.transport') %> <b class="caret"></b></a>
                   <ul class="dropdown-menu">
@@ -42,9 +43,9 @@
                   </ul>
                 </li>
                 <li><a href="http://www.ot-erdeven.fr/pages/loger.php" target="_blank"><%= t('menu.stay') %></a></li>
-                <li><a href="#bretagne"><%= t('menu.bretagne') %></a></li>
-                <li><a href="#list"><%= t('menu.list') %></a></li>
-                <li><a href="#contact"><%= t('menu.contact') %></a></li>
+                <li class="<%= 'active' if current_page?(wedding_area_path) %>"><%= link_to t('menu.area'), wedding_area_path %></li>
+                <li class="<%= 'active' if current_page?(wedding_gifts_path) %>"><%= link_to t('menu.gifts'), wedding_gifts_path %></li>
+                <li class="<%= 'active' if current_page?(wedding_contact_path) %>"><%= link_to t('menu.contact'), wedding_contact_path %></li>
               </ul>
               <ul class="nav navbar-nav navbar-right">
                 <li class="flag"><%= link_to image_tag("i18n/en.gif"), :controller => "locale", :action => "set", :locale => "en" %></li>

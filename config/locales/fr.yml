@@ -3,10 +3,11 @@ fr:
     colon: " :"
     em: " !" # Exclamation mark
   menu: 
-    program: "Déroulement"
     story: "Histoire"
+    program: "Déroulement"
+    rsvp: "RSVP"
     photos: "Photos"
-    transport: "Transport"
+    transport: "Transports"
     transports:
       train: "Train"
       plane: "Avion"
@@ -14,8 +15,8 @@ fr:
       carpooling: "Co-voiturage"
       instructions: "Trajet"
     stay: "Hébergement"
-    bretagne: "Découvrez la region"
-    list: "Liste de mariage"
+    area: "Découvrez la region"
+    gifts: "Liste de mariage"
     contact: "Contact"
   home:
     save_the_date: "Retenez votre "
