@@ -12,8 +12,8 @@ HeleneEtMarc::Application.routes.draw do
   get "wedding/gifts"
   get "wedding/contact"
   
-  get "locale/:locale", to: "locale#set"
-  resources :guests
+  get "locale/:locale", to: "locale#set"  
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
