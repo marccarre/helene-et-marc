@@ -21,6 +21,19 @@ body {
   padding-right: 5px;
 }
 
+.navbar-nav > li.bold > a {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.navbar-nav > li.bold > a:hover {
+  font-weight: bold;
+  text-decoration: underline;
+}
+.navbar-nav > li.active.bold > a {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
 .pre-wed-carousel {
   margin: 0 auto;
   max-width: 900px;
