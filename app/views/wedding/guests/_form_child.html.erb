@@ -1,0 +1,22 @@
+<div class="child-guest-form guest-form">
+  <div class="field form-group">
+    <%= f.label :first_name, t("rsvp.first_name"), class: "sr-only" %>
+    <%= f.text_field :first_name, class: "form-control input-sm", "placeholder" => t("rsvp.first_name") %>
+  </div>
+  <div class="field form-group">
+    <%= f.label :family_name, t("rsvp.family_name"), class: "sr-only" %>
+    <%= f.text_field :family_name, class: "form-control input-sm", "placeholder" => t("rsvp.family_name") %>
+  </div>
+  <div class="field form-group">
+    <%= f.label :birth_date, t("rsvp.birth_date") %>
+    <%= f.date_select :birth_date, class: "form-control input-sm", "placeholder" => t("rsvp.birth_date") %>
+  </div>
+  <div class="field form-group">
+    <%= f.label :child_menu do %>
+      <%= t("rsvp.child_menu") %>
+      <%= f.check_box :child_menu %>
+    <% end %>
+  </div>
+
+  <%= f.link_to_remove "<span class='glyphicon glyphicon-remove'></span> ".html_safe, class: "btn btn-default btn-xs" %>
+</div>

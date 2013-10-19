@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Guests:</strong>
+  <%= render "wedding/guests/show_guests_details", guests: @booking.guests %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= render "wedding/addresses/show_address", address: @booking.address %>
+</p>
+
+<p>
+  <strong>Attendance:</strong>
+  <%= render "wedding/events/show_events", booked_events: @booking.events %>
+</p>
+
+<p>
+  <strong>Comments:</strong><br />
+  <%= @booking.comments %>
+</p>

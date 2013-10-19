@@ -1,0 +1,20 @@
+<ul>
+  <% Wedding::Event.all.group_by(&:date).each do |day, events| %>
+    <li class="wedding-event-day">
+      <%= l(day, format: :on_the_long) %><br />
+      <% events.each do |event| %>
+      <ul>
+        <li class="wedding-event"> 
+          <div class="checkbox">
+            <label>
+              <% text = t(event.locale_entry + ".form") + ", " + l(event.time.in_time_zone("Europe/Paris"), format: :at_short) %>
+              <%= check_box_tag "wedding_booking[event_ids][]", event.id, @booking.events.include?(event), { class: "wedding-event-checkbox", checked: true} %>
+              <%= label_tag(event.id, text) %>
+            </label>
+          </div>
+        </li>
+      </ul>
+      <% end %>    
+    </li>
+  <% end %>
+</ul>

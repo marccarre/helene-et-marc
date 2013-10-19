@@ -1,0 +1,85 @@
+<%= nested_form_for @booking, html: {"role" => "rsvp_form"} do |f| %>
+
+  <% if @booking.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+
+      <ul>
+      <% @booking.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul> 
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.fields_for :adults do |adult_guest_form| %>
+      <div id="adult_guest_forms" class="form-inline">
+        <%= render "wedding/guests/form_adult", :f => adult_guest_form %>
+      </div>
+    <% end %>
+    <%= f.link_to_add "<span class='glyphicon glyphicon-plus'></span> ".html_safe + t("rsvp.addAdult"), :adults, class: "btn btn-default btn-xs guest-form-btn" %>
+
+    <%= f.fields_for :children do |child_guest_form| %>
+      <div id="child_guest_forms" class="form-inline">
+        <%= render "wedding/guests/form_child", :f => child_guest_form %>
+      </div>
+    <% end %>
+    <%= f.link_to_add "<span class='glyphicon glyphicon-plus'></span> ".html_safe + t("rsvp.addChild"), :children, class: "btn btn-default btn-xs guest-form-btn" %>
+  </div>
+
+  <div class="form-group">
+    <h3><%= t("rsvp.contact") %></h3>
+    <%= f.fields_for :address do |address_form| %>
+      <%= render "wedding/addresses/form", :f => address_form %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <h3><%= t("rsvp.attendance") %></h3>
+
+    <select id="drop-down-attendance" class="form-control input-sm">
+      <option value=""></option>
+      <option value="yes"><%= t 'rsvp.y' %></option>
+      <option value="no"><%= t 'rsvp.n' %></option>
+    </select>
+
+    <div id="checkboxes-events-attended">
+      <span><%= t "rsvp.i_will_attend" %></span>
+      <%= f.fields_for :events do |events_form| %>
+        <%= render "wedding/events/form", :f => events_form %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <h3><%= t("rsvp.comments") %></h3>
+    <%= f.text_area :comments, class: "form-control", "placeholder" => t("rsvp.comments_description"), :rows => 5 %>
+  </div>
+ 
+  <div class="form-group">
+    <h3><%= t("rsvp.captcha") %></h3>
+    <%= recaptcha_tags :display => { :theme => "clean" } %>
+  </div>
+
+  <div class="form-group actions">
+    <%= f.submit t("rsvp.submit"), class: "btn btn-default btn-sm" %>
+  </div>
+<% end %>
+
+<script type="text/javascript">
+$(document).ready(function() {
+  $(".adult-guest-form > a").first().hide();
+  $("div#checkboxes-events-attended").hide();
+
+  $("select#drop-down-attendance").change(function() {
+    if ($("select#drop-down-attendance").val() == "yes") {
+      $("div#checkboxes-events-attended").show();
+      $("input.wedding-event-checkbox").prop("checked", true);
+    } else {
+      $("div#checkboxes-events-attended").hide();
+      $("input.wedding-event-checkbox").prop("checked", false);
+    }
+  });
+});
+</script>

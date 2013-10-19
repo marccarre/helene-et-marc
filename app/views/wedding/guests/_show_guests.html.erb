@@ -1,0 +1,30 @@
+<% events = Wedding::Event.all %>
+<table class="table table-striped table-condensed table-bordered">
+  <thead>
+    <tr>
+      <th>#</th>
+      <th>Family name</th>
+      <th>First name</th>
+      <% events.each do |event| %>
+        <th><%= t(event.locale_entry + ".name") %></th>
+      <% end %>
+      <th>Details</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <% @bookings.each do |booking| %>
+      <% booking.adults.each do |guest| %>
+        <tr>
+          <td><%= booking.id %></td>
+          <td><%= guest.family_name %></td>
+          <td><%= guest.first_name %></td>
+          <% events.each do |event| %>
+            <td><%= booking.events.include?(event) ? content_tag(:b, t("g.y").capitalize) : t("g.n").capitalize %></td>
+          <% end %>
+          <td><%= link_to 'Show', wedding_booking_path(booking) %></td>
+        </tr>
+      <% end %>
+    <% end %>
+  </tbody>
+</table>
