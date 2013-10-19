@@ -11,17 +11,59 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130908185150) do
+ActiveRecord::Schema.define(version: 20130926052112) do
 
-  create_table "guests", force: true do |t|
-    t.string   "first_name"
-    t.string   "family_name"
+  create_table "addresses", force: true do |t|
+    t.integer  "booking_id"
     t.string   "email"
     t.string   "phone"
     t.string   "address"
+    t.string   "city"
     t.string   "postcode"
     t.string   "country"
-    t.boolean  "retour"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "addresses", ["booking_id"], name: "index_addresses_on_booking_id"
+
+  create_table "bookings", force: true do |t|
+    t.string   "comments"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "bookings_events", force: true do |t|
+    t.integer "booking_id"
+    t.integer "event_id"
+  end
+
+  add_index "bookings_events", ["booking_id"], name: "index_bookings_events_on_booking_id"
+  add_index "bookings_events", ["event_id"], name: "index_bookings_events_on_event_id"
+
+  create_table "events", force: true do |t|
+    t.string   "locale_entry"
+    t.date     "date"
+    t.time     "time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "guests", force: true do |t|
+    t.integer  "booking_id"
+    t.string   "first_name"
+    t.string   "family_name"
+    t.date     "birth_date"
+    t.boolean  "child_menu"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "guests", ["booking_id"], name: "index_guests_on_booking_id"
+
+  create_table "parameters", force: true do |t|
+    t.string   "name"
+    t.integer  "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

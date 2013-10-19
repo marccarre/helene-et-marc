@@ -1,63 +1,60 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>H&eacute;l&egrave;ne &amp; Marc</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-    <link href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css" rel="stylesheet">
+  <title>H&eacute;l&egrave;ne &amp; Marc</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
+  <!-- <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet"> -->
+  <link href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-        <script src="../../assets/js/html5shiv.js"></script>
-        <script src="../../assets/js/respond.min.js"></script>
-    <![endif]-->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 
-    <%= csrf_meta_tags %>
-    </head>
-    <body>
+  <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-        <!-- Fixed navbar -->
-        <div class="navbar navbar-default navbar-fixed-top">
-          <div class="container">
-            <div class="navbar-header">
-              <%= link_to "Hélène & Marc", wedding_path, class: "navbar-brand" %>
-            </div>
-            <div class="navbar-collapse collapse">
-              <ul class="nav navbar-nav">
-                <li class="<%= 'active' if current_page?(wedding_story_path) %>"><%= link_to t('menu.story'), wedding_story_path %></li>
-                <li class="<%= 'active' if current_page?(wedding_photos_path) %>"><%= link_to t('menu.photos'), wedding_photos_path %></li>
-                <li class="<%= 'active' if current_page?(wedding_program_path) %>"><%= link_to t('menu.program'), wedding_program_path %></li>
-                <li class="bold <%= 'active' if current_page?(wedding_rsvp_path) %>"><%= link_to t('menu.rsvp'), wedding_rsvp_path %></li>
-                <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('menu.transport') %> <b class="caret"></b></a>
-                  <ul class="dropdown-menu">
-                    <li><a href="#"><%= t('menu.transports.train') %></a></li>
-                    <li><a href="#"><%= t('menu.transports.plane') %></a></li>
-                    <li class="divider"></li>
-                    <li class="dropdown-header"><%= t('menu.transports.car') %></li>
-                    <li><a href="#"><%= t('menu.transports.carpooling') %></a></li>
-                    <li><a href="#"><%= t('menu.transports.instructions') %></a></li>
-                  </ul>
-                </li>
-                <li><a href="http://www.ot-erdeven.fr/pages/loger.php" target="_blank"><%= t('menu.stay') %></a></li>
-                <li class="<%= 'active' if current_page?(wedding_area_path) %>"><%= link_to t('menu.area'), wedding_area_path %></li>
-                <li class="<%= 'active' if current_page?(wedding_gifts_path) %>"><%= link_to t('menu.gifts'), wedding_gifts_path %></li>
-                <li class="<%= 'active' if current_page?(wedding_contact_path) %>"><%= link_to t('menu.contact'), wedding_contact_path %></li>
-              </ul>
-              <ul class="nav navbar-nav navbar-right">
-                <li class="flag"><%= link_to image_tag("i18n/en.gif"), :controller => "locale", :action => "set", :locale => "en" %></li>
-                <li class="flag"><%= link_to image_tag("i18n/fr.gif"), :controller => "locale", :action => "set", :locale => "fr" %></li>
-              </ul>
-            </div><!--/.nav-collapse -->
-          </div>
-        </div>
+    <!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+      <div class="navbar-header">
+        <%= link_to "Hélène & Marc", wedding_path, class: "navbar-brand" %>
+      </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+        <li class="<%= 'active' if current_page?(wedding_story_path) %>"><%= link_to t('menu.story'), wedding_story_path %></li>
+        <!--<li class="<%= 'active' if current_page?(wedding_photos_path) %>"><%= link_to t('menu.photos'), wedding_photos_path %></li>-->
+        <li class="<%= 'active' if current_page?(wedding_program_path) %>"><%= link_to t('menu.program'), wedding_program_path %></li>
+        <li class="bold <%= 'active' if current_page?(wedding_rsvp_path) %>"><%= link_to t('menu.rsvp'), wedding_rsvp_path, "data-no-turbolink" => true %></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('menu.transport') %> <b class="caret"></b></a>
+          <ul class="dropdown-menu">
+          <li><a href="#"><%= t('menu.transports.train') %></a></li>
+          <li><a href="#"><%= t('menu.transports.plane') %></a></li>
+          <li class="divider"></li>
+          <li class="dropdown-header"><%= t('menu.transports.car') %></li>
+          <li><a href="#"><%= t('menu.transports.carpooling') %></a></li>
+          <li><a href="#"><%= t('menu.transports.instructions') %></a></li>
+          </ul>
+        </li>
+        <li class="<%= 'active' if current_page?(wedding_stay_path) %>"><%= link_to t('menu.stay'), wedding_stay_path %></li>
+        <li class="<%= 'active' if current_page?(wedding_area_path) %>"><%= link_to t('menu.area'), wedding_area_path %></li>
+        <li class="<%= 'active' if current_page?(wedding_gifts_path) %>"><%= link_to t('menu.gifts'), wedding_gifts_path %></li>
+        <li class="<%= 'active' if current_page?(wedding_contact_path) %>"><%= link_to t('menu.contact'), wedding_contact_path %></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+        <li class="flag"><%= link_to image_tag("i18n/en.gif"), url_for(:locale => "en"), "data-no-turbolink" => true %></li>
+        <li class="flag"><%= link_to image_tag("i18n/fr.gif"), url_for(:locale => "fr"), "data-no-turbolink" => true %></li>
+        </ul>
+      </div><!--/.nav-collapse -->
+      </div>
+    </div>
 
-        <!-- Content -->
-        <div class="container">
-            <%= yield %>
-        </div>
-    </body>
+    <!-- Content -->
+    <div class="container">      
+      <%= yield %>
+    </div>
+  </body>
 </html>

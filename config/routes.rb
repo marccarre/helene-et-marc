@@ -1,18 +1,23 @@
 HeleneEtMarc::Application.routes.draw do
+
   root to: redirect("/wedding")
 
-  get "wedding", to: "wedding#home"
-  get "wedding/story"
-  get "wedding/photos"
-  get "wedding/program"
-  get "wedding/rsvp"
-  get "wedding/transports"
-  get "wedding/stay"
-  get "wedding/area"
-  get "wedding/gifts"
-  get "wedding/contact"
-  
-  get "locale/:locale", to: "locale#set"  
+  scope "(:locale)" do
+    namespace :wedding do
+      resources :bookings, only: [:index, :new, :create, :show]
+
+      get "/", to: "wedding#home" 
+      get "story", to: "wedding#story"
+      get "photos", to: "wedding#photos"
+      get "program", to: "wedding#program"
+      get "rsvp", to: "bookings#new"
+      get "transports", to: "wedding#transports"
+      get "stay", to: "wedding#stay"
+      get "area", to: "wedding#area"
+      get "gifts", to: "wedding#gifts"
+      get "contact", to: "wedding#contact"
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

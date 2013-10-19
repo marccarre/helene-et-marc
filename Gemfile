@@ -8,6 +8,20 @@ gem 'rails', '4.0.0'
 group :development do
   gem 'sqlite3', '>= 1.3.8'
 end
+
+group :test do
+  gem 'shoulda'
+  gem 'mocha'
+  gem 'capybara'
+end
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'faker'
+  gem 'simplecov'
+end
+
 # Use postgresql as the databse for Active Record in production mode
 group :production do
   gem 'pg', '>= 0.16.0'
@@ -15,8 +29,8 @@ group :production do
 end
 
 
-# Use slim for views
-gem 'slim', '>= 2.0.1'
+gem "nested_form"
+gem "recaptcha", "~> 0.3.5"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'
