@@ -1,5 +1,8 @@
 class Wedding::Guest < ActiveRecord::Base
   belongs_to :booking
+  
+  validates :first_name, presence: true
+  validates :family_name, presence: true
 
   scope :coming, -> { where("booking_id IN (SELECT DISTINCT(booking_id) FROM bookings_events)") }
   scope :not_coming, -> { where("booking_id NOT IN (SELECT DISTINCT(booking_id) FROM bookings_events)") }
