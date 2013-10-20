@@ -45,6 +45,7 @@ class Wedding::BookingsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def booking_params
       params.require(:wedding_booking).permit!
+      # MAKE SURE WE CAN'T UPDATE BY REFUSING "id"
       # params.require(:wedding_booking).permit(
       #     :comments, 
       #     adults_attributes: [:first_name, :family_name, :_destroy], 
