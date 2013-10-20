@@ -5,8 +5,7 @@ require "wedding/booking"
 include Wedding
 
 describe Address do 
-  # let(:booking) { FactoryGirl.build(:booking) }
-  # subject(:address) { FactoryGirl.build(:address, booking: booking) }
+  # A booking is built automatically using a FactoryGirl callback, and associated to the below address:
   subject(:address) { FactoryGirl.build(:address) }
 
   it { should belong_to(:booking).class_name(Booking) }
@@ -19,7 +18,7 @@ describe Address do
   it { should validate_presence_of(:postcode) }
   it { should validate_presence_of(:country) }
 
-  it { should_not be_valid }
+  it { should be_valid }
 
   context "with an email address" do
     its(:phone) { should == "+44 789 0123 456" }
