@@ -48,11 +48,16 @@ describe Booking do
 
     it { should have(1).adults }
     it { should have(0).children }
-    it { should have(1).guests }
+    it { should have(0).guests }
     it { should be_valid }
 
     context "after save" do
       let(:mail) { double(:mail, deliver: true) }
+
+      it { 
+        booking.save
+        booking.should have(1).guests 
+      }
 
       it "calls 'rsvp_confirmation' on the RsvpMailer" do
         RsvpMailer.should_receive(:rsvp_confirmation).with(booking).and_return(mail)
