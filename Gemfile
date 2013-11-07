@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '4.0.0'
+gem 'rails', '4.0.1'
 
 # Use sqlite3 as the database for Active Record in development mode
 group :development do
@@ -24,7 +24,7 @@ end
 
 # Use postgresql as the databse for Active Record in production mode
 group :production do
-  gem 'pg', '>= 0.16.0'
+  gem 'pg', '>= 0.17.0'
   # gem 'rails_12factor', '0.0.2' # Uncomment is Heroku used for hosting (improve static files serving)
 end
 
@@ -33,13 +33,13 @@ gem "nested_form"
 gem "recaptcha", "~> 0.3.5"
 
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 4.0.0'
+gem 'sass-rails', '~> 4.0.1'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 
 # Use CoffeeScript for .js.coffee assets and views
-gem 'coffee-rails', '~> 4.0.0'
+gem 'coffee-rails', '~> 4.0.1'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
