@@ -3,6 +3,7 @@
   <thead>
     <tr>
       <th>#</th>
+      <th>Booking</th>
       <th>Family name</th>
       <th>First name</th>
       <% events.each do |event| %>
@@ -13,9 +14,11 @@
   </thead>
   <tbody>
 
+    <% guestNumber = 0 %>
     <% @bookings.each do |booking| %>
-      <% booking.adults.each do |guest| %>
+      <% booking.guests.each do |guest| %>
         <tr>
+          <td><%= guestNumber += 1 %></td>
           <td><%= booking.id %></td>
           <td><%= guest.family_name %></td>
           <td><%= guest.first_name %></td>

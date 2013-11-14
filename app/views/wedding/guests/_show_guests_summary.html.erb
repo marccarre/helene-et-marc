@@ -1,17 +1,21 @@
 <table class="table table-striped table-condensed table-bordered text-center">
   <thead>
     <tr>
-      <th colspan="2" class="text-center">Coming</th>
+      <th colspan="<%= Wedding::Guest::MENU.length + 1 %>" class="text-center">Coming</th>
       <th rowspan="2" class="text-center" style="vertical-align: middle;">Not coming</th>
     </tr>
     <tr>
-      <th class="text-center">Adults' menu</th>
-      <th class="text-center">Children's menu</th>
+      <% Wedding::Guest::MENU.keys.each do |menu| %>
+        <th class="text-center" style="vertical-align: middle;"><%= t("rsvp.menu."+menu.to_s) %></th>
+      <% end %>
+      <th class="text-center" style="vertical-align: middle;">Total</th>
     </tr>
   </thead>
   <tbody>
-    <td><strong><%= Wedding::Guest.with_adult_menu.count %></strong></td>
-    <td><strong><%= Wedding::Guest.with_child_menu.count %></strong></td>
+    <% Wedding::Guest::MENU.values.each do |menu| %>
+      <td><%= Wedding::Guest.coming.where(menu: menu).count %></td>
+    <% end %>
+    <td><strong><%= Wedding::Guest.coming.count %></strong></td>
     <td><strong><%= Wedding::Guest.not_coming.count %></strong></td>
   </tbody>
 </table>

@@ -30,5 +30,4 @@ class ApplicationController < ActionController::Base
         logger.error("Invalid locale trying to be set by %s: [%s]." % [request.remote_ip, params[:locale]])
       end
     end
-
 end

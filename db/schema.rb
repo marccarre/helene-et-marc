@@ -26,12 +26,16 @@ ActiveRecord::Schema.define(version: 20130926052112) do
   end
 
   add_index "addresses", ["booking_id"], name: "index_addresses_on_booking_id"
+  add_index "addresses", ["id"], name: "index_addresses_on_id"
 
   create_table "bookings", force: true do |t|
+    t.boolean  "coming"
     t.string   "comments"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "bookings", ["id"], name: "index_bookings_on_id"
 
   create_table "bookings_events", force: true do |t|
     t.integer "booking_id"
@@ -49,17 +53,20 @@ ActiveRecord::Schema.define(version: 20130926052112) do
     t.datetime "updated_at"
   end
 
+  add_index "events", ["id"], name: "index_events_on_id"
+
   create_table "guests", force: true do |t|
     t.integer  "booking_id"
     t.string   "first_name"
     t.string   "family_name"
-    t.date     "birth_date"
-    t.boolean  "child_menu"
+    t.integer  "category"
+    t.integer  "menu"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   add_index "guests", ["booking_id"], name: "index_guests_on_booking_id"
+  add_index "guests", ["id"], name: "index_guests_on_id"
 
   create_table "parameters", force: true do |t|
     t.string   "name"

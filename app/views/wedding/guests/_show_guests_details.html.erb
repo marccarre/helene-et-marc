@@ -4,8 +4,7 @@
       <tr>
         <th>First name</th>
         <th>Family name</th>
-        <th>Date of birth</th>
-        <th>Child menu</th>
+        <th>Menu</th>
       </tr>
     </thead>
     <tbody>
@@ -13,8 +12,7 @@
         <tr>
           <td><%= guest.first_name %></td>
           <td><%= guest.family_name %></td>
-          <td><%= guest.birth_date.presence || "/" %></td>
-          <td><%= guest.is_child? ? (guest.child_menu ? content_tag(:b, t("g.y").capitalize) : t("g.n").capitalize ) : t("g.n").capitalize %></td>
+          <td><%= t("rsvp.menu." + Wedding::Guest::MENU.select { |k, v| v == guest.menu }.map { |k,v| k.to_s }.first ) %></td>
         </tr>
       <% end %>
     </tbody>

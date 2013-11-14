@@ -1,4 +1,4 @@
-<%= nested_form_for @booking, html: {"role" => "rsvp_form"} do |f| %>
+<%= form_for @booking, html: {"role" => "rsvp_form"} do |f| %>
 
   <% if @booking.errors.any? %>
     <div id="error_explanation">
@@ -12,19 +12,12 @@
   <% end %>
 
   <div class="form-group">
-    <%= f.fields_for :adults do |adult_guest_form| %>
-      <div id="adult_guest_forms" class="form-inline">
-        <%= render "wedding/guests/form_adult", :f => adult_guest_form %>
-      </div>
+    <%= f.fields_for :guests do |guest_form| %>
+      <%= render "wedding/guests/form_guest", f: guest_form, guest: guest_form.object %>
     <% end %>
-    <%= f.link_to_add "<span class='glyphicon glyphicon-plus'></span> ".html_safe + t("rsvp.addAdult"), :adults, class: "btn btn-default btn-xs guest-form-btn" %>
+    <%= link_to_add glyphicon("glyphicon-plus", " " + t("rsvp.addAdult")).html_safe, f, :guests, "wedding/guests/form_adult", class: "btn btn-default btn-xs guest-form-btn" %>
+    <%= link_to_add glyphicon("glyphicon-plus", " " + t("rsvp.addChild")).html_safe, f, :guests, "wedding/guests/form_child", class: "btn btn-default btn-xs guest-form-btn" %>
 
-    <%= f.fields_for :children do |child_guest_form| %>
-      <div id="child_guest_forms" class="form-inline">
-        <%= render "wedding/guests/form_child", :f => child_guest_form %>
-      </div>
-    <% end %>
-    <%= f.link_to_add "<span class='glyphicon glyphicon-plus'></span> ".html_safe + t("rsvp.addChild"), :children, class: "btn btn-default btn-xs guest-form-btn" %>
   </div>
 
   <div class="form-group">
@@ -37,11 +30,7 @@
   <div class="form-group">
     <h3><%= t("rsvp.attendance") %></h3>
 
-    <select id="drop-down-attendance" class="form-control input-sm">
-      <option value=""></option>
-      <option value="yes"><%= t 'rsvp.y' %></option>
-      <option value="no"><%= t 'rsvp.n' %></option>
-    </select>
+    <%= f.select :coming, [["", nil], [t("rsvp.y"), true], [t("rsvp.n"), false]], class: "form-control input-sm" %>
 
     <div id="checkboxes-events-attended">
       <span><%= t "rsvp.i_will_attend" %></span>
@@ -62,7 +51,7 @@
   </div>
 
   <div class="form-group actions">
-    <%= f.submit t("rsvp.submit"), class: "btn btn-default btn-sm" %>
+    <%= f.submit t("rsvp.submit"), id: "btn-submit", class: "btn btn-default btn-sm" %>
   </div>
 <% end %>
 
@@ -70,14 +59,22 @@
 $(document).ready(function() {
   $(".adult-guest-form > a").first().hide();
   $("div#checkboxes-events-attended").hide();
+  $("input#btn-submit").prop("disabled", true);
 
-  $("select#drop-down-attendance").change(function() {
-    if ($("select#drop-down-attendance").val() == "yes") {
+  $("select#wedding_booking_coming").change(function() {
+    var isComing = $("select#wedding_booking_coming").val();
+    if (isComing == "true") {
       $("div#checkboxes-events-attended").show();
       $("input.wedding-event-checkbox").prop("checked", true);
+      $("input#btn-submit").prop("disabled", false);
+    } else if (isComing == "false") {
+      $("div#checkboxes-events-attended").hide();
+      $("input.wedding-event-checkbox").prop("checked", false);
+      $("input#btn-submit").prop("disabled", false);
     } else {
       $("div#checkboxes-events-attended").hide();
       $("input.wedding-event-checkbox").prop("checked", false);
+      $("input#btn-submit").prop("disabled", true);
     }
   });
 });

@@ -11,5 +11,7 @@ class CreateAddresses < ActiveRecord::Migration
 
       t.timestamps
     end
+
+    add_index :addresses, :id
   end
 end

@@ -4,10 +4,12 @@ class CreateGuests < ActiveRecord::Migration
       t.references :booking, index: true
       t.string :first_name
       t.string :family_name
-      t.date :birth_date
-      t.boolean :child_menu
+      t.integer :category
+      t.integer :menu
 
       t.timestamps
     end
+
+    add_index :guests, :id
   end
 end

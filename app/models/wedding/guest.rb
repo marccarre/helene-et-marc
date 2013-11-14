@@ -1,23 +1,48 @@
-class Wedding::Guest < ActiveRecord::Base
-  belongs_to :booking
-  
-  validates :first_name, presence: true
-  validates :family_name, presence: true
+module Wedding
+  class Guest < ActiveRecord::Base
+    belongs_to :booking
 
-  scope :coming, -> { where("booking_id IN (SELECT DISTINCT(booking_id) FROM bookings_events)") }
-  scope :not_coming, -> { where("booking_id NOT IN (SELECT DISTINCT(booking_id) FROM bookings_events)") }
+    CATEGORY = {
+      adult: 1,
+      child: 2
+    }
 
-  scope :adults, -> { where(birth_date: nil).where(child_menu: nil) }
-  scope :children, -> { where("birth_date IS NOT NULL").where("child_menu IS NOT NULL") }
+    MENU = {
+      adult: 1,
+      child: 2,
+      nothing: 3
+    }
 
-  scope :with_child_menu, -> { coming.where(child_menu: true) }
-  scope :with_adult_menu, -> { coming.where("(child_menu = 'FALSE') OR (child_menu IS NULL)") }
+    validates :first_name, presence: true
+    validates :family_name, presence: true
+    validates :category, presence: true, inclusion: { in: CATEGORY.values }
+    validates :menu, presence: true, inclusion: { in: MENU.values }
 
-  def is_adult?
-    birth_date.nil? && child_menu.nil?
-  end 
+    scope :coming, -> { where("booking_id IN (SELECT DISTINCT(booking_id) FROM bookings_events)") }
+    scope :not_coming, -> { where("booking_id NOT IN (SELECT DISTINCT(booking_id) FROM bookings_events)") }
 
-  def is_child?
-    !is_adult?
+    scope :adults, -> { coming.where(category: MENU[:adult]) }
+    scope :children, -> { coming.where(category: MENU[:child]) }
+    scope :babies, -> { coming.where(category: MENU[:nothing]) }
+
+    def is_adult?
+      category == CATEGORY[:adult]
+    end 
+
+    def is_child?
+      category == CATEGORY[:child]
+    end
+
+    def has_adult_menu?
+      menu == MENU[:adult]
+    end 
+
+    def has_child_menu?
+      menu == MENU[:child]
+    end
+
+    def has_nothing?
+      menu == MENU[:nothing]
+    end
   end
 end

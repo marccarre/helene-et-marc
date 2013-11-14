@@ -1,2 +1,4 @@
-class Wedding::Parameters < ActiveRecord::Base
+module Wedding
+  class Parameters < ActiveRecord::Base
+  end
 end

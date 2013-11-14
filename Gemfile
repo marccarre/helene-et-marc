@@ -29,7 +29,6 @@ group :production do
 end
 
 
-gem "nested_form"
 gem "recaptcha", "~> 0.3.5"
 
 # Use SCSS for stylesheets
