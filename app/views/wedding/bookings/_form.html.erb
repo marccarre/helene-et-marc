@@ -13,9 +13,11 @@
 
   <div class="form-group">
     <%= f.fields_for :guests do |guest_form| %>
-      <%= render "wedding/guests/form_guest", f: guest_form, guest: guest_form.object %>
+      <%= render "wedding/guests/form_guest", f: guest_form %>
     <% end %>
+    <div id="adult-guest-forms" class="inline"></div>
     <%= link_to_add glyphicon("glyphicon-plus", " " + t("rsvp.addAdult")).html_safe, f, :guests, "wedding/guests/form_adult", class: "btn btn-default btn-xs guest-form-btn" %>
+    <div id="child-guest-forms" class="inline"></div>
     <%= link_to_add glyphicon("glyphicon-plus", " " + t("rsvp.addChild")).html_safe, f, :guests, "wedding/guests/form_child", class: "btn btn-default btn-xs guest-form-btn" %>
 
   </div>

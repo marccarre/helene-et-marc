@@ -5,8 +5,8 @@ module Wedding
     # GET /bookings
     # GET /bookings.json
     def index
-      #@bookings = Wedding::Booking.all
-      @bookings = Wedding::Booking.includes(:guests).all
+      #@bookings = Booking.all
+      @bookings = Booking.includes(:guests).all
     end
 
     # GET /bookings/1
@@ -16,23 +16,24 @@ module Wedding
 
     # GET /bookings/new
     def new
-      @booking = Wedding::Booking.new
+      @booking = Booking.new
       @booking.build_address
       @booking.guests.build
+      @booking.guests << Guest.new(category: Guest::CATEGORY[:adult])
       @booking.events.build
     end
 
     # POST /bookings
     # POST /bookings.json
     def create
-      @booking = Wedding::Booking.new(booking_params)
+      @booking = Booking.new(booking_params)
 
       respond_to do |format|
         #if verify_recaptcha(:model => @booking, :message => "Oh! It's an error with reCAPTCHA!") && @booking.save
         if (@booking.save)
           format.html { redirect_to wedding_booking_url(@booking), notice: 'Booking was successfully created.' }
         else
-          @events = Wedding::Event.all
+          @events = Event.all
           format.html { render action: 'new' }
         end
       end
@@ -41,7 +42,7 @@ module Wedding
     private
       # Use callbacks to share common setup or constraints between actions.
       def set_booking
-        @booking = Wedding::Booking.find(params[:id])
+        @booking = Booking.find(params[:id])
       end
 
       # Never trust parameters from the scary internet, only allow the white list through.

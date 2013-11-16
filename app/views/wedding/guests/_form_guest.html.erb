@@ -1,7 +1,5 @@
-<% if guest.is_adult? %>
-	<%= render "wedding/guests/form_adult", f: f %>
-<% elsif guest.is_child? %>
-	<%= render "wedding/guests/form_child", f: f %>
-<% else  %>
-	<% flash[:notice] = "Invalid guest type. It should be either an adult or a child but was: #{guest}." %>
+<% if f.object.is_adult? %>
+  <%= render "wedding/guests/form_adult", f: f %>
+<% elsif f.object.is_child? %>
+  <%= render "wedding/guests/form_child", f: f %>
 <% end %>

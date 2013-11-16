@@ -41,7 +41,7 @@ module ApplicationHelper
     blueprint_body = f.fields_for(association, model_object) do |builder|
       render(partial, f: builder)
     end
-    content_tag(:div, blueprint_body, class: "fields").to_str
+    blueprint_body.to_str
   end 
 
   def generate_model_object(f, association, options)
