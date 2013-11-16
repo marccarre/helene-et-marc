@@ -242,8 +242,6 @@ en:
       train: "Train"
       plane: "Plane"
       car: "Car"
-      carpooling: "Carpooling"
-      instructions: "Driving instructions"
     stay: "Where to stay"
     area: "Visit the area"
     gifts: "Gift list"

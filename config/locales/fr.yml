@@ -226,8 +226,6 @@ fr:
       train: "Train"
       plane: "Avion"
       car: "Voiture"
-      carpooling: "Co-voiturage"
-      instructions: "Trajet"
     stay: "Hébergement"
     area: "Découvrez la region"
     gifts: "Liste de mariage"
