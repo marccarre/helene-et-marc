@@ -30,9 +30,9 @@
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= t('menu.transport') %> <b class="caret"></b></a>
           <ul class="dropdown-menu">
-            <li><a href="#"><%= link_to t('menu.transports.train'), wedding_transports_path(anchor: 'train') %></a></li>
-            <li><a href="#"><%= link_to t('menu.transports.plane'), wedding_transports_path(anchor: 'plane') %></a></li>
-            <li><a href="#"><%= link_to t('menu.transports.car'), wedding_transports_path(anchor: 'car') %></a></li>
+            <li><%= link_to t('menu.transports.train'), wedding_transports_path(anchor: 'train') %></li>
+            <li><%= link_to t('menu.transports.plane'), wedding_transports_path(anchor: 'plane') %></li>
+            <li><%= link_to t('menu.transports.car'), wedding_transports_path(anchor: 'car') %></li>
           </ul>
         </li>
         <li class="<%= 'active' if current_page?(wedding_stay_path) %>"><%= link_to t('menu.stay'), wedding_stay_path %></li>

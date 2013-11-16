@@ -16,6 +16,11 @@ body {
   padding-top: 50px;
 }
 
+section {
+  padding-top: 50px; // Must be equal to the padding in body.
+  margin-top: -50px;
+}
+
 .inline {
   display:inline;
 }
