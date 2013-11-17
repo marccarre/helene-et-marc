@@ -3,8 +3,8 @@ module ApplicationHelper
   #   <%= glyphicon('glyphicon-remove') %>
   #
   # See also: http://getbootstrap.com/components/
-  def glyphicon(name, text="")
-    return "<span class='glyphicon "+name+"'></span>" + text
+  def glyphicon(name, text="", options={})
+    content_tag(:span, "", class: "glyphicon "+name, options: options) + text
   end
   
   def link_to_add(body, f, association, partial, options={})
