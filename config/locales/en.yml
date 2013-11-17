@@ -289,3 +289,17 @@ en:
   rsvp_mailer:
     rsvp_submitted:
       subject: "Hélène & Marc - Wedding confirmation"
+  transports:
+    from: "From"
+    to: "To"
+    departure_time: "Departure time"
+    departure_time_format: "en-UK" # "yyyy/MM/dd HH:mm:ss PP"
+    seats: "Number of seats: "
+    first_name: "First name"
+    family_name: "Family name"
+    email: "Email"
+    phone: "Phone"
+    category:
+      share: "I want to share my car"
+      request: "I need a ride"
+    submit: "Submit"
