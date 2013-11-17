@@ -46,19 +46,15 @@ ActiveRecord::Schema.define(version: 20131117002437) do
   add_index "bookings_events", ["event_id"], name: "index_bookings_events_on_event_id"
 
   create_table "cars", force: true do |t|
-    t.integer  "driver_id"
-    t.integer  "car_poolers_id"
     t.string   "from"
     t.string   "to"
-    t.time     "leaving_time"
+    t.time     "departure_time"
     t.integer  "available_seats"
     t.integer  "category"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "cars", ["car_poolers_id"], name: "index_cars_on_car_poolers_id"
-  add_index "cars", ["driver_id"], name: "index_cars_on_driver_id"
   add_index "cars", ["id"], name: "index_cars_on_id"
 
   create_table "events", force: true do |t|
