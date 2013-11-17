@@ -4,7 +4,7 @@ module Wedding
     has_one :address, inverse_of: :booking, dependent: :destroy
     has_and_belongs_to_many :events
 
-    validates :guests, presence: true, :length => { :minimum => 1 }
+    validates :guests, presence: true, length: { minimum: 1 }
     validates :address, presence: true
     validates :coming, inclusion: { in: [true, false] }
     
