@@ -25,6 +25,14 @@ section {
   display:inline;
 }
 
+a.navbar-brand {
+  font-size: 22px;
+}
+
+.navbar-nav > li {
+  font-size: 18px;
+}
+
 .navbar-nav > li.flag > a {
   padding-left: 5px;
   padding-right: 5px;

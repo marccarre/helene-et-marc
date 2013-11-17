@@ -238,10 +238,6 @@ en:
     rsvp: "RSVP"
     photos: "Photos"
     transport: "Transports"
-    transports:
-      train: "Train"
-      plane: "Plane"
-      car: "Car"
     stay: "Where to stay"
     area: "Visit the area"
     gifts: "Gift list"

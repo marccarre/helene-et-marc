@@ -222,10 +222,6 @@ fr:
     rsvp: "RSVP"
     photos: "Photos"
     transport: "Transports"
-    transports:
-      train: "Train"
-      plane: "Avion"
-      car: "Voiture"
     stay: "Hébergement"
     area: "Découvrez la region"
     gifts: "Liste de mariage"
