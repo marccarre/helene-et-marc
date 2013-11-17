@@ -6,7 +6,7 @@ module Wedding
     # GET /bookings.json
     def index
       #@bookings = Booking.all
-      @bookings = Booking.includes(:guests).all
+      @bookings = Booking.includes(:guests).includes(:events).load
     end
 
     # GET /bookings/1
