@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130926052112) do
+ActiveRecord::Schema.define(version: 20131117002437) do
 
   create_table "addresses", force: true do |t|
     t.integer  "booking_id"
@@ -45,6 +45,22 @@ ActiveRecord::Schema.define(version: 20130926052112) do
   add_index "bookings_events", ["booking_id"], name: "index_bookings_events_on_booking_id"
   add_index "bookings_events", ["event_id"], name: "index_bookings_events_on_event_id"
 
+  create_table "cars", force: true do |t|
+    t.integer  "driver_id"
+    t.integer  "car_poolers_id"
+    t.string   "from"
+    t.string   "to"
+    t.time     "leaving_time"
+    t.integer  "available_seats"
+    t.integer  "category"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cars", ["car_poolers_id"], name: "index_cars_on_car_poolers_id"
+  add_index "cars", ["driver_id"], name: "index_cars_on_driver_id"
+  add_index "cars", ["id"], name: "index_cars_on_id"
+
   create_table "events", force: true do |t|
     t.string   "locale_entry"
     t.date     "date"
@@ -74,5 +90,18 @@ ActiveRecord::Schema.define(version: 20130926052112) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "passengers", force: true do |t|
+    t.integer  "car_id"
+    t.string   "first_name"
+    t.string   "family_name"
+    t.string   "email"
+    t.string   "phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "passengers", ["car_id"], name: "index_passengers_on_car_id"
+  add_index "passengers", ["id"], name: "index_passengers_on_id"
 
 end
