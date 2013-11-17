@@ -8,9 +8,9 @@ module Wedding
     validates :address, presence: true
     validates :coming, inclusion: { in: [true, false] }
     
-    accepts_nested_attributes_for :guests #, :reject_if -> { |a| a[:content].blank? }
-    accepts_nested_attributes_for :address #, :reject_if -> { |a| a[:content].blank? }
-    accepts_nested_attributes_for :events #, :reject_if -> { |a| a[:content].blank? }
+    accepts_nested_attributes_for :guests
+    accepts_nested_attributes_for :address
+    accepts_nested_attributes_for :events
 
     scope :not_coming, -> { where(coming: false) }
     scope :coming, -> { where(coming: true) }

@@ -2,19 +2,13 @@ module Wedding
   class BookingsController < ApplicationController
     before_action :set_booking, only: [:show]
 
-    # GET /bookings
-    # GET /bookings.json
     def index
-      #@bookings = Booking.all
       @bookings = Booking.includes(:guests).includes(:events).load
     end
 
-    # GET /bookings/1
-    # GET /bookings/1.json
     def show
     end
 
-    # GET /bookings/new
     def new
       @booking = Booking.new
       @booking.build_address
@@ -23,8 +17,6 @@ module Wedding
       @booking.events.build
     end
 
-    # POST /bookings
-    # POST /bookings.json
     def create
       @booking = Booking.new(booking_params)
 
@@ -33,7 +25,6 @@ module Wedding
         if (@booking.save)
           format.html { redirect_to wedding_booking_url(@booking), notice: 'Booking was successfully created.' }
         else
-          @events = Event.all
           format.html { render action: 'new' }
         end
       end
@@ -47,7 +38,7 @@ module Wedding
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def booking_params
-        params.require(:wedding_booking).permit!
+        params.require(:wedding_car).permit!
         # MAKE SURE WE CAN'T UPDATE BY REFUSING "id"
         # params.require(:wedding_booking).permit(
         #     :comments, 
