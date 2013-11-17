@@ -1,12 +1,11 @@
 module Wedding
   class BookingsController < ApplicationController
-    before_action :set_booking, only: [:show]
-
     def index
       @bookings = Booking.includes(:guests).includes(:events).load
     end
 
     def show
+      @booking = Booking.includes(:guests).includes(:events).includes(:address).find(params[:id])
     end
 
     def new
@@ -31,11 +30,6 @@ module Wedding
     end
 
     private
-      # Use callbacks to share common setup or constraints between actions.
-      def set_booking
-        @booking = Booking.find(params[:id])
-      end
-
       # Never trust parameters from the scary internet, only allow the white list through.
       def booking_params
         params.require(:wedding_booking).permit!
