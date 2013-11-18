@@ -6,6 +6,7 @@ class CreatePassengers < ActiveRecord::Migration
       t.string :family_name
       t.string :email
       t.string :phone
+      t.integer :category
 
       t.timestamps
     end

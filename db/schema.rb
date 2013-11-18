@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 20131117002437) do
     t.string   "family_name"
     t.string   "email"
     t.string   "phone"
+    t.integer  "category"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

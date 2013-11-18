@@ -1,10 +1,10 @@
 module Wedding
   class Car < ActiveRecord::Base
-    has_one :driver, class_name: "Passenger", inverse_of: :car, dependent: :destroy
-    has_many :car_poolers, class_name: "Passenger", inverse_of: :car, dependent: :destroy
+    has_one :driver, -> { where(category: Passenger::CATEGORY[:driver]) }, class_name: "Passenger", inverse_of: :car, dependent: :destroy
+    has_many :passengers, -> { where(category: Passenger::CATEGORY[:passenger]) }, class_name: "Passenger", inverse_of: :car, dependent: :destroy
 
     accepts_nested_attributes_for :driver
-    accepts_nested_attributes_for :car_poolers
+    accepts_nested_attributes_for :passengers
 
     CATEGORY = {
       share: 1,
@@ -15,7 +15,7 @@ module Wedding
     MAX_AVAILABLE_SEATS = 20
 
     validates :driver, presence: true
-    validates :car_poolers, length: { maximum: @available_seats || MAX_AVAILABLE_SEATS }
+    validates :passengers, length: { maximum: @available_seats || MAX_AVAILABLE_SEATS }
     validates :from, presence: true
     validates :to, presence: true
     validates :departure_time, presence: true
