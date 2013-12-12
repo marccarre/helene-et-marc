@@ -152,6 +152,8 @@ en:
       header:
         one: 1 error prohibited this %{model} from being saved
         other: ! "%{count} errors prohibited this %{model} from being saved"
+        any: ! "%{errors} prohibited this %{model} from being saved"
+    error: "error"
   helpers:
     select:
       prompt: Please select
@@ -225,6 +227,33 @@ en:
     errors:
       <<: *errors
   activerecord:
+    models:
+      wedding/car: "Car"
+      wedding/car/driver: "Contact"
+      wedding/car/passengers: "Passengers"
+    attributes:
+      wedding/car:
+        driver: "Contact"
+        passengers: "Passengers"
+        from: "Departure city ('From')"
+        to: "Arrival city ('To')"
+        departure_time: "Departure time"
+        available_seats: "Number of seats"
+        category: "Category"
+      wedding/car/driver:
+        first_name: "Contact's first name"
+        family_name: "Contact's family name"
+        email: "Contact's email address"
+        phone: "Contact's phone number"
+        category: "Contact's  category"
+        car: "Contact's car"
+      wedding/car/passengers:
+        first_name: "Passenger's first name"
+        family_name: "Passenger's family name"
+        email: "Passenger's email address"
+        phone: "Passenger's phone number"
+        category: "Passenger's  category"
+        car: "Passenger's car"
     errors:
       <<: *errors
   g: # General
@@ -280,9 +309,12 @@ en:
       religious_ceremony: 
         name: "Religious ceremony"
         form: "the religious ceremony"
-      reception: 
-        name: "Cocktail & diner"
-        form: "the cocktail & the diner"
+      cocktail: 
+        name: "Cocktail"
+        form: "the cocktail"
+      dinner: 
+        name: "Dinner"
+        form: "the dinner"
       retour: 
         name: "Brunch"
         form: "the brunch"
@@ -290,6 +322,7 @@ en:
     rsvp_submitted:
       subject: "Hélène & Marc - Wedding confirmation"
   transports:
+    carpooling_journey: "carpooling journey"
     from: "From"
     to: "To"
     departure_time: "Departure time"

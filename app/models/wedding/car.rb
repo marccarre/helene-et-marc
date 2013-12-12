@@ -21,5 +21,16 @@ module Wedding
     validates :departure_time, presence: true
     validates :available_seats, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: MIN_AVAILABLE_SEATS, less_than_or_equal_to: MAX_AVAILABLE_SEATS }
     validates :category, presence: true, inclusion: { in: CATEGORY.values }
+
+    scope :shared, -> { where(category: CATEGORY[:share]) }
+    scope :requested, -> { where(category: CATEGORY[:request]) }
+
+    def is_shared? 
+        category == CATEGORY[:share]
+    end
+
+    def is_requested? 
+        category == CATEGORY[:request]
+    end
   end
 end

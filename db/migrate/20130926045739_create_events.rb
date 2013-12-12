@@ -2,8 +2,8 @@ class CreateEvents < ActiveRecord::Migration
   def change
     create_table :events do |t|
       t.string :locale_entry
-      t.date :date
-      t.time :time
+      t.datetime :beginning
+      t.datetime :end
 
       t.timestamps
     end

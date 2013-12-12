@@ -1,0 +1,9 @@
+// Submission for shared car succeeded:
+$('#no-shared-car').removeClass('visible').addClass('hidden');
+$('#shared-cars').removeClass('hidden').addClass('visible');
+$('<%= escape_javascript(render "wedding/cars/shared_car", car: @car) %>').appendTo('#table-shared-cars > tbody');
+$('#table-shared-cars > tbody > tr#<%= dom_id(@car) %>').effect('highlight');
+
+// Remove potential errors from previous faulty submission:
+$('#error_explanation').empty();
+$('#error_explanation').removeClass('visible').addClass('hidden');

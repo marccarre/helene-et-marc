@@ -1,0 +1,15 @@
+<%= content_tag_for(:tr, car) do %>
+  <td><%= car.from %></td>
+  <td><%= car.to %></td>
+  <td><%= car.departure_time %></td>
+
+  <% remaining_seats = car.available_seats - car.passengers.count %>
+  <td><%= remaining_seats %></td>
+
+  <% driver = car.driver %>
+  <td><%= "#{driver.first_name} #{driver.family_name}" %></td>
+
+  <td><%= phone_to(driver.phone) + (driver.email.present? ? (" / ".html_safe + mail_to(driver.email)) : "") %></td>
+  <td>(+)</td>
+  <td><%= remaining_seats > 0 ? link_to("(+)", "#", method: :put, remote: true) : "FULL" %></td>
+<% end %>

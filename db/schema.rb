@@ -48,7 +48,8 @@ ActiveRecord::Schema.define(version: 20131117002437) do
   create_table "cars", force: true do |t|
     t.string   "from"
     t.string   "to"
-    t.time     "departure_time"
+    t.datetime "departure_time"
+    t.datetime "arrival_time"
     t.integer  "available_seats"
     t.integer  "category"
     t.datetime "created_at"
@@ -59,8 +60,8 @@ ActiveRecord::Schema.define(version: 20131117002437) do
 
   create_table "events", force: true do |t|
     t.string   "locale_entry"
-    t.date     "date"
-    t.time     "time"
+    t.datetime "beginning"
+    t.datetime "end"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -82,7 +83,7 @@ ActiveRecord::Schema.define(version: 20131117002437) do
 
   create_table "parameters", force: true do |t|
     t.string   "name"
-    t.integer  "value"
+    t.string   "value"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

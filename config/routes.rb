@@ -4,7 +4,7 @@ HeleneEtMarc::Application.routes.draw do
 
   scope "(:locale)" do
     namespace :wedding do
-      resources :bookings, only: [:index, :new, :create, :show]
+      resources :bookings, only: [:index, :new, :create, :show] #, defaults: { format: ["html", "js"] }
 
       get "/", to: "wedding#home" 
       get "story", to: "wedding#story"
@@ -13,8 +13,10 @@ HeleneEtMarc::Application.routes.draw do
       get "rsvp", to: "bookings#new"
 
       get "transports", to: "wedding#transports"
-      scope ":transports" do
-        resources :cars, only: [:index, :new, :create, :show]
+      scope "transports" do
+        resources :cars, only: [:create, :destroy] do
+          resources :passengers, only: [:index, :create, :show, :destroy] #, defaults: { format: ["html", "js"] }
+        end
       end
 
       get "stay", to: "wedding#stay"

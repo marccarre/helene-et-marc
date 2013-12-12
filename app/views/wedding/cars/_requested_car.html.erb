@@ -1,0 +1,12 @@
+<%= content_tag_for(:tr, car) do %>
+  <td><%= car.from %></td>
+  <td><%= car.to %></td>
+  <td><%= car.departure_time %></td>
+  <td><%= car.available_seats %></td>
+
+  <% driver = car.driver %>
+  <td><%= "#{driver.first_name} #{driver.family_name}" %></td>
+
+  <td><%= phone_to(driver.phone) + (driver.email.present? ? (" / ".html_safe + mail_to(driver.email)) : "") %></td>
+<% end %>
+

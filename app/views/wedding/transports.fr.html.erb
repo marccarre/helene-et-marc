@@ -11,8 +11,8 @@
 </section>
 
 <section id="train">
-  <h3>Train <a href="#train-details" data-toggle="collapse">(+)</a></h3> 
-  <div id="train-details" class="collapse">
+  <h3>Train <a id="link-trains-details" href="#train-details" data-toggle="collapse"></a></h3> 
+  <div id="train-details" class="collapsible">
     <div class="col-md-12 col-xs-12">
       <b>Lien utile</b> : <a href="http://www.voyages-sncf.fr" target="_blank">www.voyages-sncf.fr</a>
       <br />&nbsp;<br />
@@ -44,8 +44,8 @@
 </section>
 
 <section id="plane">
-  <h3>Avion <a href="#plane-details" data-toggle="collapse">(+)</a></h3> 
-  <div id="plane-details" class="collapse">
+  <h3>Avion <a href="#plane-details" data-toggle="collapse"></a></h3> 
+  <div id="plane-details" class="collapsible">
     <div class="col-md-12 col-xs-12">
     Vous pouvez également nous rejoindre "en volant" jusqu'à : <br />&nbsp;<br />
     <ul>
@@ -67,9 +67,10 @@
 </section>
 
 <section id="carpooling">
-  <h3>Co-voiturage <a href="#carpooling-details" data-toggle="collapse">(+)</a></h3> 
-  <div id="carpooling-details" class="">
+  <h3>Co-voiturage <a href="#carpooling-details" data-toggle="collapse"></a></h3> 
+  <div id="carpooling-details" class="collapsible">
     <div class="col-md-12 col-xs-12">
+      <%= render "wedding/cars/carpooling" %>
     </div>
   </div>
 </section>

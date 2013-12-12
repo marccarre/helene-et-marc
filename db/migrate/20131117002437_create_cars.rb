@@ -3,7 +3,8 @@ class CreateCars < ActiveRecord::Migration
     create_table :cars do |t|
       t.string :from
       t.string :to
-      t.time :departure_time
+      t.datetime :departure_time
+      t.datetime :arrival_time
       t.integer :available_seats
       t.integer :category
 

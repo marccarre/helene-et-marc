@@ -136,6 +136,8 @@ fr:
       header:
         one:   "Impossible d'enregistrer ce(tte) %{model} : 1 erreur"
         other: "Impossible d'enregistrer ce(tte) %{model} : %{count} erreurs"
+        any:   "Impossible d'enregistrer ce(tte) %{model} : %{errors}"
+    error: "erreur"
   helpers:
     select:
       prompt: "Veuillez sélectionner"
@@ -209,6 +211,33 @@ fr:
     errors:
       <<: *errors
   activerecord:
+    models:
+      wedding/car: "Voiture"
+      wedding/car/driver: "Contact"
+      wedding/car/passengers: "Passagers"
+    attributes:
+      wedding/car:
+        driver: "Contact"
+        passengers: "Passagers"
+        from: "Ville de départ"
+        to: "Ville d'arrivée"
+        departure_time: "Heure de départ"
+        available_seats: "Nombre de places"
+        category: "Catégorie"
+      wedding/car/driver:
+        first_name: "Prénom"
+        family_name: "Nom de famille"
+        email: "Addresse email"
+        phone: "Numéro de téléphone"
+        category: "Catégorie"
+        car: "Voiture"
+      wedding/car/passengers:
+        first_name: "Prénom"
+        family_name: "Nom de famille"
+        email: "Addresse email"
+        phone: "Numéro de téléphone"
+        category: "Catégorie"
+        car: "Voiture"
     errors:
       <<: *errors
   g: # General
@@ -264,9 +293,12 @@ fr:
       religious_ceremony: 
         name: "Cérémonie de mariage"
         form: "à la cérémonie de mariage"
-      reception: 
-        name: "Cocktail et diner "
-        form: "au cocktail et au diner (selon ce qui est présent sur mon invitation)"
+      cocktail: 
+        name: "Cocktail"
+        form: "au cocktail"
+      dinner: 
+        name: "Dîner"
+        form: "au diner (selon ce qui est inscrit dans mon invitation)"
       retour: 
         name: "Retour de noces"
         form: "au retour de noces"
@@ -274,6 +306,7 @@ fr:
     rsvp_submitted:
       subject: "Hélène & Marc - Confirmation de présence"
   transports:
+    carpooling_journey: "trajet"
     from: "Ville de départ"
     to: "Ville d'arrivée"
     departure_time: "Heure de départ"

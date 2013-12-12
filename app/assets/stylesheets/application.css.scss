@@ -22,7 +22,15 @@ section {
 }
 
 .inline {
-  display:inline;
+  display: inline;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.hidden {
+  visibility: hidden;
 }
 
 a.navbar-brand {
@@ -90,3 +98,6 @@ a.navbar-brand {
   padding-bottom: 2px;
 }
 
+.form-group {
+  margin-bottom: 5px;
+}
