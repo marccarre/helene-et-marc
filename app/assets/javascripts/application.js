@@ -16,3 +16,20 @@
 //= require turbolinks
 //= require jquery_nested_form
 //= require_tree .
+
+$(document).ready(function() {
+
+  // Progressively enhance 'collapsible' UI elements.
+  $('div.collapsible').addClass('collapse');
+
+  $("a[data-toggle='collapse']").append('(+)');
+
+  $("a[data-toggle='collapse']").click(function() {
+    if ($(this).text() == '(+)') {
+      $(this).text('(-)');
+    } else {
+      $(this).text('(+)');
+    }
+  });
+
+});
