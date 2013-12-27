@@ -26,11 +26,15 @@ module Wedding
     scope :requested, -> { where(category: CATEGORY[:request]) }
 
     def is_shared? 
-        category == CATEGORY[:share]
+      category == CATEGORY[:share]
     end
 
     def is_requested? 
-        category == CATEGORY[:request]
+      category == CATEGORY[:request]
+    end
+
+    def to_s
+      return to_json.to_s
     end
   end
 end

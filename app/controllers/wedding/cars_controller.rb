@@ -4,32 +4,24 @@ module Wedding
       @car = Car.new(carpooling_journey_params)
 
       respond_to do |format|
-        #if (verify_recaptcha(model: @car, message: "Oh! It's an error with reCAPTCHA!") && @car.save)
-        #if (@car.save)
-        #else
-        #end
-        
-        format.js {
-          logger.info("*** JS VIEW ***")
-          if (@car.save)
+        #if @car.is_passenger? && verify_recaptcha(:model => @car, :message => "Oh! It's an error with reCAPTCHA!") && @car.save
+        if @car.save
+          logger.info("#{format}: successfully saved car (requested: #{@car.is_requested?}, shared: #{@car.is_shared?}): #{@car}")
+          format.js { 
             if @car.is_shared?
               render "wedding/cars/create_shared_car"
             elsif @car.is_requested?
               render "wedding/cars/create_requested_car"
-            else 
+            else
               render "wedding/cars/create_car_error", status: :bad_request
             end
-          else 
-            render "wedding/cars/create_car_error", status: :unprocessable_entity
-          end
-        }
-
-        format.html { 
-          logger.info("*** HTML VIEW: render 'wedding/transports' ***")
-          #render "wedding/transports"
-          #redirect_to(wedding_transports_url)
-          render template: "wedding/transports" 
-        }
+          }
+          format.html { redirect_to wedding_transports_url, notice: 'Passenger was successfully added.' }
+        else
+          logger.info("Failed to save car: #{@car.to_s}. Accept's formats: [#{request.accepts.join('], [')}]")
+          format.js { render "wedding/cars/create_car_error", status: :unprocessable_entity }
+          format.html { render template: "wedding/transports" }
+        end
       end
     end
 

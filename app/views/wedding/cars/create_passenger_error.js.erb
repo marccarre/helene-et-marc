@@ -1,0 +1,9 @@
+<% if @passenger.errors.any? %>
+  var id = "#passenger-error-explanation-"+dom_id(@passenger.car)
+  $(id).empty();
+  $('<%= escape_javascript(render "wedding/cars/form_passenger_errors") %>').appendTo(id);
+  $(id).removeClass('hidden').addClass('visible');
+  // $('#form-shared-or-requested-car').effect('highlight', { color: 'red' });
+<% else %> 
+  alert('Failed to add passenger. \nError lors de l\'ajout du passager.')
+<% end %>

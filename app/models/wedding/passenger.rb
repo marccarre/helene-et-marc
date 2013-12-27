@@ -13,5 +13,17 @@ module Wedding
     validates :email, allow_blank: true, format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, message: "should be a valid email address" }
     validates :phone, presence: true
     validates :category, presence: true, inclusion: { in: CATEGORY.values }
+
+    def is_driver? 
+      category == CATEGORY[:driver]
+    end
+
+    def is_passenger? 
+      category == CATEGORY[:passenger]
+    end
+
+    def to_s
+      return to_json.to_s
+    end
   end
 end

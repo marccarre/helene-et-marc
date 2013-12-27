@@ -29,7 +29,71 @@ module ApplicationHelper
       end
     end
   end
-  
+
+
+  def mail_to_or_default(email, options={})
+    options[:prefix] = options[:prefix] || ""
+    options[:default] = options[:default] || "N/A"
+
+    if email.present?
+      options[:prefix].html_safe + mail_to(email)
+    else
+      options[:default].html_safe
+    end
+  end
+
+
+  def tbs3_inline_text_field(f, field, name, options={})
+    options[:class] = [options[:class], "form-control input-sm"].compact.join(" ")
+    options[:placeholder] = name
+
+    content_tag(:div, class: "form-group") do
+      f.label(field, name, class: "sr-only") +
+      f.text_field(field, options)
+    end 
+  end
+
+  def tbs3_inline_email_field(f, field, name, options={})
+    options[:class] = [options[:class], "form-control input-sm"].compact.join(" ")
+    options[:placeholder] = name
+
+    content_tag(:div, class: "form-group") do
+      f.label(field, name, class: "sr-only") +
+      f.email_field(field, options)
+    end 
+  end
+
+  def tbs3_inline_telephone_field(f, field, name, options={})
+    options[:class] = [options[:class], "form-control input-sm"].compact.join(" ")
+    options[:placeholder] = name
+
+    content_tag(:div, class: "form-group") do
+      f.label(field, name, class: "sr-only") +
+      f.telephone_field(field, options)
+    end 
+  end
+
+  def tbs3_inline_select(f, field, name, datasource, options={})
+    options[:class] = [options[:class], "form-control input-sm"].compact.join(" ")
+    options[:placeholder] = name
+
+    content_tag(:div, class: "form-group") do
+      if options[:hide_label]
+        f.select(field, datasource, options)
+      else
+        f.label(field, name) +
+        f.select(field, datasource, options)
+      end
+    end 
+  end
+
+  def tbs3_inline_submit(f, name, options={})
+    options[:class] = [options[:class], "btn btn-default btn-sm"].compact.join(" ")
+    content_tag(:div, class: "form-group actions") do
+      f.submit name, options
+    end
+  end
+
 
   def link_to_add(body, f, association, partial, options={})
     unless f.object.respond_to?("#{association}_attributes=")

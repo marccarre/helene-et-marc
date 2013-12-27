@@ -1,24 +1,19 @@
 module Wedding
   class PassengersController < ApplicationController
-    respond_to :json
-
-    def index
-      respond_with passengers
-    end
-
-    def show
-      respond_with passenger
-    end
-
     def create
       @passenger = Passenger.new(passengers_param)
+      @car ||= parent
 
       respond_to do |format|
-        #if verify_recaptcha(:model => @passenger, :message => "Oh! It's an error with reCAPTCHA!") && @passenger.save
-        if (@passenger.save)
-          format.html { redirect_to wedding_transports_url, notice: 'Carpooling journey was successfully saved.' }
+        #if @passenger.is_passenger? && verify_recaptcha(:model => @passenger, :message => "Oh! It's an error with reCAPTCHA!") && @passenger.save
+        if @passenger.is_passenger? && @passenger.save
+          logger.info("#{format}: successfully saved passenger: #{@passenger}")
+          format.js { render "wedding/cars/create_passenger" }
+          format.html { redirect_to wedding_transports_url, notice: 'Passenger was successfully added.' }
         else
-          format.html { render action: 'new' }
+          logger.info("#{format}: failed to save passenger: #{@passenger}")
+          format.js { render "wedding/cars/create_passenger_error", status: :unprocessable_entity }
+          format.html { render template: "wedding/transports" }
         end
       end
     end

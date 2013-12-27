@@ -323,6 +323,7 @@ en:
       subject: "Hélène & Marc - Wedding confirmation"
   transports:
     carpooling_journey: "carpooling journey"
+    passenger: "passenger"
     from: "From"
     to: "To"
     departure_time: "Departure time"

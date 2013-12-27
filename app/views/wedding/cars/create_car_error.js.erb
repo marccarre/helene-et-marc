@@ -1,7 +1,8 @@
 <% if @car.errors.any? %>
-  $('#error_explanation').empty();
-  $('<%= escape_javascript(render "wedding/cars/form_errors") %>').appendTo('#error_explanation');
-  $('#error_explanation').removeClass('hidden').addClass('visible');
+  var id = '#car-error-explanation';
+  $(id).empty();
+  $('<%= escape_javascript(render "wedding/cars/form_car_errors") %>').appendTo(id);
+  $(id).removeClass('hidden').addClass('visible');
   // $('#form-shared-or-requested-car').effect('highlight', { color: 'red' });
 <% else %> 
   alert('Failed to share / request car. \nError lors du partage / de la recherche d\'une voiture.')

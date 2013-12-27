@@ -307,6 +307,7 @@ fr:
       subject: "Hélène & Marc - Confirmation de présence"
   transports:
     carpooling_journey: "trajet"
+    passenger: "passager"
     from: "Ville de départ"
     to: "Ville d'arrivée"
     departure_time: "Heure de départ"

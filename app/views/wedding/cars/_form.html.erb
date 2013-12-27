@@ -1,77 +1,38 @@
 <div id="shared-or-requested-car">
   <h4>Share your car / Request a ride :</h4>
 
-  <% @car = Wedding::Car.new(driver: Wedding::Passenger.new) %>
-  <%= form_for(@car, url: wedding_cars_path(@car), remote: true, authenticity_token: true, id: "form-shared-or-requested-car", html: { "role" => "carpooling-journey-form" }) do |f| %>
+  <% @car ||= Wedding::Car.new(driver: Wedding::Passenger.new) %>
+  <%= form_for(@car, url: wedding_cars_path(@car), remote: true, authenticity_token: true, id: "form-shared-or-requested-car", html: { "role" => "form" }) do |f| %>
 
-  <%= content_tag("div", id: "error_explanation", class: (@car.errors.any?) ? "visible" : "hidden") do -%>
-    <% if @car.errors.any? %>
-      <%= render "wedding/cars/form_errors" %>
-    <% end %>
-  <% end -%>
+    <%= content_tag("div", id: "car-error-explanation", class: ["alert alert-danger", @car.errors.any? ? "visible" : "hidden"].compact.join(" ")) do -%>
+      <%= render "wedding/cars/form_car_errors" %>
+    <% end -%>
 
     <div class="car-form form-group form-inline">
-      <div class="form-group">
-        <%= f.label :from, t("transports.from"), class: "sr-only" %>
-        <%= f.text_field :from, class: "form-control input-sm", "placeholder" => t("transports.from") %>
-      </div>
-      
-      <div class="form-group">
-        <%= f.label :to, t("transports.to"), class: "sr-only" %>
-        <%= f.text_field :to, class: "form-control input-sm", "placeholder" => t("transports.to") %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :departure_time, t("transports.departure_time"), class: "sr-only" %>
-        <%= f.text_field :departure_time, class: "form-control input-sm departure-time-datetime-picker", "placeholder" => t("transports.departure_time") %>
-      </div>
-
-      <div class="form-group">
-        <%= f.label :available_seats, t("transports.seats") %>
-        <%= f.select :available_seats, (Wedding::Car::MIN_AVAILABLE_SEATS..Wedding::Car::MAX_AVAILABLE_SEATS).map{|i| [i, i]}, class: "form-control input-sm", "placeholder" => t("transports.seats") %>
-        <%= f.select :category, Wedding::Car::CATEGORY.map{|k,v| [t("transports.category."+k.to_s),v]}, class: "form-control input-sm" %>
-      </div>
+      <%= tbs3_inline_text_field(f, :from, t("transports.from")) %>
+      <%= tbs3_inline_text_field(f, :to, t("transports.to")) %>
+      <%= tbs3_inline_text_field(f, :departure_time, t("transports.departure_time"), class: "departure-time-datetime-picker") %>
+      <%= tbs3_inline_select(f, :available_seats, t("transports.seats"), (Wedding::Car::MIN_AVAILABLE_SEATS..Wedding::Car::MAX_AVAILABLE_SEATS).map{|i| [i, i]}) %>
+      <%= tbs3_inline_select(f, :category, "", Wedding::Car::CATEGORY.map{|k,v| [t("transports.category."+k.to_s),v]}, hide_label: true) %>
     </div>
 
     <div class="form-group form-inline">
-      <%= f.fields_for :driver do |driver_form| %>
-        <div class="form-group">
-          <%= driver_form.label :first_name, t("transports.first_name"), class: "sr-only" %>
-          <%= driver_form.text_field :first_name, class: "form-control input-sm", "placeholder" => t("transports.first_name") %>
-        </div>
-        
-        <div class="form-group">
-          <%= driver_form.label :family_name, t("transports.family_name"), class: "sr-only" %>
-          <%= driver_form.text_field :family_name, class: "form-control input-sm", "placeholder" => t("transports.family_name") %>
-        </div>
-
-        <div class="field form-group">
-          <%= driver_form.label :email, t("transports.email"), class: "sr-only" %>
-          <%= driver_form.email_field :email, class: "form-control input-sm", "placeholder" => t("transports.email") %>
-        </div>
-
-        <div class="field form-group">
-          <%= driver_form.label :phone, t("transports.phone"), class: "sr-only" %>
-          <%= driver_form.telephone_field :phone, class: "form-control input-sm", "placeholder" => t("transports.phone") %>
-        </div>
-
+      <%= f.fields_for :driver do |driver_f| %>
+        <%= tbs3_inline_text_field(driver_f, :first_name, t("transports.first_name")) %>
+        <%= tbs3_inline_text_field(driver_f, :family_name, t("transports.family_name")) %>
+        <%= tbs3_inline_email_field(driver_f, :email, t("transports.email")) %>
+        <%= tbs3_inline_telephone_field(driver_f, :phone, t("transports.phone")) %>
       <% end %>
 
-      <div class="form-group actions">
-        <%= f.submit t("transports.submit"), id: "btn-submit", class: "btn btn-default btn-sm" %>
-      </div>
+      <%= tbs3_inline_submit(f, t("transports.submit"), id: "btn-submit") %>
     </div>
-    
   <% end %>
-
 </div>
 
 <script type="text/javascript">
-
   $(document).ready(function() {
     $('.departure-time-datetime-picker').datetimepicker({
-      language: "<%= t("transports.departure_time_format") %>"
+      language: '<%= t("transports.departure_time_format") %>'
     });
   });
-
 </script>
