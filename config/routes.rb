@@ -14,7 +14,7 @@ HeleneEtMarc::Application.routes.draw do
 
       get "transports", to: "wedding#transports"
       scope "transports" do
-        resources :cars, only: [:create, :destroy] do
+        resources :cars, only: [:index, :create, :destroy] do
           resources :passengers, only: [:create, :destroy] #, defaults: { format: ["html", "js"] }
         end
       end

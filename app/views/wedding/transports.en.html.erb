@@ -10,6 +10,10 @@
   </div>
 </section>
 
+<section id='carpooling'>
+  <h3><%= link_to 'Carpooling', wedding_cars_path %></h3> 
+</section>
+
 <section id="train">
   <h3>Train <a id="link-trains-details" href="#train-details" data-toggle="collapse"></a></h3> 
   <div id="train-details" class="collapsible">
@@ -60,21 +64,12 @@
           <li>Dinard - Pleurtuit - Saint-Malo (DNR), via <u>direct flights from Stansted</u>: <a href="http://www.dinard.aeroport.fr/uk/" target="_blank">www.dinard.aeroport.fr</a></li>
         </ul><br />
       </li>
-      <li><b>Saint Philibert</b> / <b>Erdeven</b>, via the following airports: 
+      <li><b>Saint Philibert</b> / <b>Erdeven</b>, via the following airport: 
         <ul>
           <li>Lorient - Bretagne Sud (LRT): <a href="http://www.lorient.aeroport.fr/?lang=en" target="_blank">www.lorient.aeroport.fr</a></li>
         </ul>
       </li>
     </ul>
-    </div>
-  </div>
-</section>
-
-<section id="carpooling">
-  <h3>Carpooling <a href="#carpooling-details" data-toggle="collapse"></a></h3> 
-  <div id="carpooling-details" class="collapsible">
-    <div class="col-md-12 col-xs-12">
-      <%= render "wedding/cars/carpooling" %>
     </div>
   </div>
 </section>
