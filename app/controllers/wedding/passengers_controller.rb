@@ -1,19 +1,19 @@
 module Wedding
   class PassengersController < ApplicationController
     def create
-      @passenger = Passenger.new(passengers_param)
+      @passenger = Passenger.new(passenger_params)
       @car ||= parent
 
       respond_to do |format|
         #if @passenger.is_passenger? && verify_recaptcha(:model => @passenger, :message => "Oh! It's an error with reCAPTCHA!") && @passenger.save
         if @passenger.is_passenger? && @passenger.save
-          logger.info("#{format}: successfully saved passenger: #{@passenger}")
-          format.js { render "wedding/cars/create_passenger" }
+          logger.info("Successfully saved passenger: #{@passenger}. #{acceptable_formats}")
+          format.js   { render 'wedding/cars/create_passenger' }
           format.html { redirect_to wedding_transports_url, notice: 'Passenger was successfully added.' }
         else
-          logger.info("#{format}: failed to save passenger: #{@passenger}")
-          format.js { render "wedding/cars/create_passenger_error", status: :unprocessable_entity }
-          format.html { render template: "wedding/cars/index" }
+          logger.info("Failed to save passenger: #{@passenger}. #{acceptable_formats}")
+          format.js   { render 'wedding/cars/create_passenger_error', status: :unprocessable_entity }
+          format.html { render template: 'wedding/cars/index' }
         end
       end
     end
@@ -43,7 +43,7 @@ module Wedding
       end
 
       # Never trust parameters from the scary internet, only allow the white list through.
-      def passengers_param
+      def passenger_params
         params.require(:wedding_passenger).permit! # TODO: add whitelist to check parameters.
       end
   end
