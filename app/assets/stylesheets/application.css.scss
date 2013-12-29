@@ -98,6 +98,14 @@ a.navbar-brand {
   padding-bottom: 2px;
 }
 
-.form-group {
-  margin-bottom: 5px;
+  
+/* From Twitter Bootstrap's documentation:
+ *   "Inputs, selects, and textareas are 100% wide by default in Bootstrap. 
+ *    To use the inline form, you'll have to set a width on the form controls 
+ *    used within."
+ * This fixes styling issues like having labels not inlined.
+ */
+.form-inline .form-group input,
+.form-inline .form-group select {
+    // width: 140px;
 }
