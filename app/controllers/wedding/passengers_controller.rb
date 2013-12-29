@@ -1,19 +1,24 @@
 module Wedding
-  class PassengersController < ApplicationController
+  class PassengersController < CarpoolingController
     def create
       @passenger = Passenger.new(passenger_params)
-      @car ||= parent
 
       respond_to do |format|
         #if @passenger.is_passenger? && verify_recaptcha(:model => @passenger, :message => "Oh! It's an error with reCAPTCHA!") && @passenger.save
         if @passenger.is_passenger? && @passenger.save
           logger.info("Successfully saved passenger: #{@passenger}. #{acceptable_formats}")
           format.js   { render 'wedding/cars/create_passenger' }
-          format.html { redirect_to wedding_transports_url, notice: 'Passenger was successfully added.' }
+          format.html { 
+            get_or_load_all
+            redirect_to wedding_cars_url, notice: 'Passenger was successfully added.' 
+          }
         else
           logger.info("Failed to save passenger: #{@passenger}. #{acceptable_formats}")
           format.js   { render 'wedding/cars/create_passenger_error', status: :unprocessable_entity }
-          format.html { render template: 'wedding/cars/index' }
+          format.html { 
+            get_or_load_all
+            render template: 'wedding/cars/index' 
+          }
         end
       end
     end

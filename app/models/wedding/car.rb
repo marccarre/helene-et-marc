@@ -11,15 +11,15 @@ module Wedding
       request: 2
     }
 
-    MIN_AVAILABLE_SEATS = 1
-    MAX_AVAILABLE_SEATS = 20
+    MIN_SEATS = 1
+    MAX_SEATS = 20
 
     validates :driver, presence: true
-    validates :passengers, length: { maximum: @available_seats || MAX_AVAILABLE_SEATS }
+    validates :passengers, length: { maximum: @available_seats || MAX_SEATS }
     validates :from, presence: true
     validates :to, presence: true
     validates :departure_time, presence: true
-    validates :available_seats, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: MIN_AVAILABLE_SEATS, less_than_or_equal_to: MAX_AVAILABLE_SEATS }
+    validates :available_seats, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: MIN_SEATS, less_than_or_equal_to: MAX_SEATS }
     validates :category, presence: true, inclusion: { in: CATEGORY.values }
 
     scope :shared, -> { where(category: CATEGORY[:share]) }

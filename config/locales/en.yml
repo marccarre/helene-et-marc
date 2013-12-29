@@ -321,19 +321,31 @@ en:
   rsvp_mailer:
     rsvp_submitted:
       subject: "Hélène & Marc - Wedding confirmation"
-  transports:
-    carpooling_journey: "carpooling journey"
+  carpooling:
+    form_title: "Share your car / Request a ride:"
+    journey: "carpooling journey"
+    category:
+      share: "I can share my car"
+      request: "I need a ride"
+    seat: "seat"
     passenger: "passenger"
     from: "From"
     to: "To"
     departure_time: "Departure time"
     departure_time_format: "en-UK" # "yyyy/MM/dd HH:mm:ss PP"
-    seat: "seat"
     first_name: "First name"
     family_name: "Family name"
     email: "Email"
     phone: "Phone"
-    category:
-      share: "I can share my car"
-      request: "I need a ride"
     submit: "Submit"
+    no_shared_car: "No car available for carpooling."
+    available_cars: "Available cars:"
+    table:
+      from: "From:"
+      to: "To:"
+      departure_time: "Departure time:"
+      available_seats: "Available seats:"
+      driver: "Driver:"
+      contact: "Contact:"
+      details_and_join: "Details / Join"
+      full: "FULL"

@@ -1,27 +1,25 @@
-<% @shared_cars = Wedding::Car.shared.includes(:driver).includes(:passengers).load %>
+<%= content_tag('div', id: 'no-shared-car', class: (@shared_cars.count == 0) ? 'visible' : 'hidden') do %>
+  <h4><%= t('carpooling.no_shared_car') %></h4>
+<% end %>
 
-<%= content_tag("div", id: "no-shared-car", class: (@shared_cars.count == 0) ? "visible" : "hidden") do -%>
-  <h4>No car available for carpooling.</h4>
-<% end -%>
-
-<%= content_tag("div", id: "shared-cars", class: (@shared_cars.count == 0) ? "hidden" : "visible") do -%>
-  <h4>Available cars:</h4>
-  <table id="table-shared-cars" class="table table-striped table-condensed table-bordered text-center">
+<%= content_tag('div', id: 'shared-cars', class: (@shared_cars.count == 0) ? 'hidden' : 'visible') do %>
+  <h4><%= t('carpooling.available_cars') %></h4>
+  <table id='table-shared-cars' class='table table-striped table-condensed table-bordered text-center'>
     <thead>
       <tr>
-        <th>From:</th>
-        <th>To:</th>
-        <th>Departure time:</th>
-        <th>Available seats: </th>
-        <th>Driver: </th>
-        <th>Contact: </th>
-        <th>Details / Join</th>
+        <th><%= t('carpooling.table.from') %></th>
+        <th><%= t('carpooling.table.to') %></th>
+        <th><%= t('carpooling.table.departure_time') %></th>
+        <th><%= t('carpooling.table.available_seats') %></th>
+        <th><%= t('carpooling.table.driver') %></th>
+        <th><%= t('carpooling.table.contact') %></th>
+        <th><%= t('carpooling.table.details_and_join') %></th>
       </tr>
     </thead>
     <tbody>
       <% @shared_cars.each do |car| %>
-        <%= render "wedding/cars/shared_car", car: car %>
+        <%= render 'wedding/cars/shared_car', car: car %>
       <% end %>
     </tbody>
   </table>
-<% end -%>
+<% end %>

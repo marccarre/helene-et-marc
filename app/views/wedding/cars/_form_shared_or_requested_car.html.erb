@@ -1,28 +1,27 @@
 <div id='shared-or-requested-car'>
-  <h4>Share your car / Request a ride :</h4>
+  <h4><%= t('carpooling.form_title') %></h4>
 
-  <% @car ||= Wedding::Car.new(driver: Wedding::Passenger.new) %>
-  <%= form_for(@car, url: wedding_cars_path(@car), remote: true, authenticity_token: true, html: {id: 'form-shared-or-requested-car', class: 'form-inline', 'role' => 'form'}) do |f| %>
+  <%= form_for(@car, url: wedding_cars_path, remote: true, authenticity_token: true, html: {id: 'form-car', class: 'form-inline', 'role' => 'form'}) do |f| %>
 
-    <%= errors_for @car, t('transports.carpooling_journey'), id: 'car-error-explanation' %>
+    <%= errors_for(@car, t('carpooling.journey'), id: 'car-errors') %>
 
     <div>
-      <%= tbs3_inline_select(f, :category, nil, Wedding::Car::CATEGORY.map{|k,v| [t('transports.category.'+k.to_s),v]}) %>
-      <%= tbs3_inline_select(f, :available_seats, nil, (Wedding::Car::MIN_AVAILABLE_SEATS..Wedding::Car::MAX_AVAILABLE_SEATS).map{|i| [pluralize(i, t('transports.seat')), i]}) %>
-      <%= tbs3_inline_text_field(f, :from, t('transports.from')) %>
-      <%= tbs3_inline_text_field(f, :to, t('transports.to')) %>
-      <%= tbs3_inline_text_field(f, :departure_time, t('transports.departure_time'), class: 'departure-time-datetime-picker') %>
+      <%= tbs3_inline_select(f, :category, nil, Wedding::Car::CATEGORY.map{ |k,v| [t('carpooling.category.'+k.to_s),v] }) %>
+      <%= tbs3_inline_select(f, :available_seats, nil, (Wedding::Car::MIN_SEATS..Wedding::Car::MAX_SEATS).map{ |i| [pluralize(i, t('carpooling.seat')), i] }) %>
+      <%= tbs3_inline_text_field(f, :from, t('carpooling.from')) %>
+      <%= tbs3_inline_text_field(f, :to, t('carpooling.to')) %>
+      <%= tbs3_inline_text_field(f, :departure_time, t('carpooling.departure_time'), class: 'departure-time-datetime-picker') %>
     </div>
 
     <div>
       <%= f.fields_for :driver do |driver_f| %>
-        <%= tbs3_inline_text_field(driver_f, :first_name, t('transports.first_name')) %>
-        <%= tbs3_inline_text_field(driver_f, :family_name, t('transports.family_name')) %>
-        <%= tbs3_inline_email_field(driver_f, :email, t('transports.email')) %>
-        <%= tbs3_inline_telephone_field(driver_f, :phone, t('transports.phone')) %>
+        <%= tbs3_inline_text_field(driver_f, :first_name, t('carpooling.first_name')) %>
+        <%= tbs3_inline_text_field(driver_f, :family_name, t('carpooling.family_name')) %>
+        <%= tbs3_inline_email_field(driver_f, :email, t('carpooling.email')) %>
+        <%= tbs3_inline_telephone_field(driver_f, :phone, t('carpooling.phone')) %>
       <% end %>
 
-      <%= tbs3_inline_submit(f, t('transports.submit'), id: 'btn-submit') %>
+      <%= tbs3_inline_submit(f, t('carpooling.submit'), id: 'btn-submit') %>
     </div>
   
   <% end %>
@@ -31,7 +30,7 @@
 <script type='text/javascript'>
   $(document).ready(function() {
     $('.departure-time-datetime-picker').datetimepicker({
-      language: "<%= t('transports.departure_time_format') %>"
+      language: "<%= t('carpooling.departure_time_format') %>"
     });
   });
 </script>

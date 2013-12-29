@@ -305,19 +305,31 @@ fr:
   rsvp_mailer:
     rsvp_submitted:
       subject: "Hélène & Marc - Confirmation de présence"
-  transports:
-    carpooling_journey: "trajet"
+  carpooling:
+    form_title: "Partager mon véhicule / Demande de co-voiturage :"
+    journey: "trajet"
+    category:
+      share: "Je peux prendre des passagers supplémentaires"
+      request: "Je recherche une voiture disponible"
+    seat: "place"
     passenger: "passager"
     from: "Ville de départ"
     to: "Ville d'arrivée"
     departure_time: "Heure de départ"
     departure_time_format: "fr-FR" #"dd/MM/yyyy hh:mm:ss"
-    seat: "place"
     first_name: "Prénom"
     family_name: "Nom de famille"
     email: "Email"
     phone: "Téléphone"
-    category:
-      share: "Je peux prendre des passagers supplémentaires"
-      request: "Je recherche une voiture disponible"
     submit: "Ajouter"
+    no_shared_car: "Pas de voiture disponible en co-voiturage."
+    available_cars: "Voitures disponibles :"
+    table:
+      from: "Départ :"
+      to: "Arrivée :"
+      departure_time: "Heure de départ :"
+      available_seats: "Places disponibles :"
+      driver: "Conducteur :"
+      contact: "Coordonnées :"
+      details_and_join: "Détails / S'ajouter"
+      full: "COMPLET"

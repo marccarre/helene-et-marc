@@ -1,5 +1,9 @@
 module Wedding
-  class CarsController < ApplicationController
+  class CarsController < CarpoolingController
+    def index
+      get_or_load_all
+    end
+
     def create
       @car = Car.new(car_params)
 
@@ -16,20 +20,22 @@ module Wedding
               render 'wedding/cars/create_car_error', status: :bad_request
             end
           }
-          format.html { redirect_to wedding_cars_url, notice: 'Passenger was successfully added.' }
+          format.html { 
+            get_or_load_all
+            redirect_to wedding_cars_url, notice: 'Car was successfully added.' 
+          }
         else
           logger.info("Failed to save car: #{@car}. #{acceptable_formats}")
           format.js   { render 'wedding/cars/create_car_error', status: :unprocessable_entity }
-          format.html { render template: 'wedding/cars/index' }
+          format.html { 
+            get_or_load_all
+            render action: 'index' 
+          }
         end
       end
     end
 
     private
-      def car
-        @car ||= Car.includes(:driver).includes(:passengers).find(params[:id])
-      end
-
       # Never trust parameters from the scary internet, only allow the white list through.
       def car_params
         params.require(:wedding_car).permit! # TODO: add whitelist to check parameters.
