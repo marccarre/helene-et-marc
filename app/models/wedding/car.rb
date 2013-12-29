@@ -34,7 +34,7 @@ module Wedding
     end
 
     def to_s
-      return to_json.to_s
+      return to_json(include: :driver).to_s
     end
   end
 end

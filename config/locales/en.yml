@@ -328,7 +328,7 @@ en:
     to: "To"
     departure_time: "Departure time"
     departure_time_format: "en-UK" # "yyyy/MM/dd HH:mm:ss PP"
-    seats: "Number of seats: "
+    seat: "seat"
     first_name: "First name"
     family_name: "Family name"
     email: "Email"

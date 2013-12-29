@@ -8,6 +8,18 @@ module ApplicationHelper
   end
 
 
+  def errors_for(model, model_name, options={})
+    content_tag(:div, id: options[:id], class: "alert alert-danger text-left #{model.errors.any? ? 'visible' : 'hidden'}") do
+      content_tag(:p, t('errors.template.header.any') % {errors: pluralize(model.errors.count, t('errors.error')), model: model_name} ) +
+      content_tag(:ul) do
+        model.errors.full_messages.each { |msg| 
+          concat(content_tag(:li, msg)) 
+        }
+      end
+    end
+  end
+
+
   def phone_to(text)
     if text.include? '+'
       link_to text, 'tel:#{text}'
@@ -44,7 +56,7 @@ module ApplicationHelper
 
 
   def tbs3_inline_text_field(f, field, name, options={})
-    options[:class] = [options[:class], 'form-control input-sm'].compact.join(' ')
+    options[:class] = [options[:class], 'form-control'].compact.join(' ')
     options[:placeholder] = name
 
     content_tag(:div, class: 'form-group') do
@@ -54,7 +66,7 @@ module ApplicationHelper
   end
 
   def tbs3_inline_email_field(f, field, name, options={})
-    options[:class] = [options[:class], 'form-control input-sm'].compact.join(' ')
+    options[:class] = [options[:class], 'form-control'].compact.join(' ')
     options[:placeholder] = name
 
     content_tag(:div, class: 'form-group') do
@@ -64,7 +76,7 @@ module ApplicationHelper
   end
 
   def tbs3_inline_telephone_field(f, field, name, options={})
-    options[:class] = [options[:class], 'form-control input-sm'].compact.join(' ')
+    options[:class] = [options[:class], 'form-control'].compact.join(' ')
     options[:placeholder] = name
 
     content_tag(:div, class: 'form-group') do
@@ -73,25 +85,22 @@ module ApplicationHelper
     end 
   end
 
-  def tbs3_inline_select(f, field, name, datasource, options={})
-    options[:class] = [options[:class], 'form-control input-sm'].compact.join(' ')
-    options[:placeholder] = name
-    hide_label = options[:hide_label]
-    options.delete(:hide_label)
+  def tbs3_inline_select(f, field, name, datasource, html_options={})
+    html_options[:class] = [html_options[:class], 'form-control'].compact.join(' ')
 
     content_tag(:div, class: 'form-group') do
-      if hide_label
-        f.select(field, datasource, options)
-      else
+      if name.present?
         f.label(field, name) +
-        f.select(field, datasource, options)
+        f.select(field, datasource, options={}, html_options)
+      else
+        f.select(field, datasource, options={}, html_options)
       end
     end 
   end
 
   def tbs3_inline_submit(f, name, options={})
-    options[:class] = [options[:class], 'btn btn-default btn-sm'].compact.join(' ')
-    content_tag(:div, class: 'form-group actions') do
+    options[:class] = [options[:class], 'btn btn-default'].compact.join(' ')
+    content_tag(:div, class: 'form-group') do
       f.submit name, options
     end
   end

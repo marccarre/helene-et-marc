@@ -2,21 +2,19 @@
   <h4>Share your car / Request a ride :</h4>
 
   <% @car ||= Wedding::Car.new(driver: Wedding::Passenger.new) %>
-  <%= form_for(@car, url: wedding_cars_path(@car), remote: true, authenticity_token: true, id: 'form-shared-or-requested-car', html: { 'role' => 'form' }) do |f| %>
+  <%= form_for(@car, url: wedding_cars_path(@car), remote: true, authenticity_token: true, html: {id: 'form-shared-or-requested-car', class: 'form-inline', 'role' => 'form'}) do |f| %>
 
-    <%= content_tag('div', id: 'car-error-explanation', class: ['alert alert-danger', @car.errors.any? ? 'visible' : 'hidden'].compact.join(' ')) do -%>
-      <%= render 'wedding/cars/form_car_errors' %>
-    <% end -%>
+    <%= errors_for @car, t('transports.carpooling_journey'), id: 'car-error-explanation' %>
 
-    <div class='car-form form-group form-inline'>
+    <div>
+      <%= tbs3_inline_select(f, :category, nil, Wedding::Car::CATEGORY.map{|k,v| [t('transports.category.'+k.to_s),v]}) %>
+      <%= tbs3_inline_select(f, :available_seats, nil, (Wedding::Car::MIN_AVAILABLE_SEATS..Wedding::Car::MAX_AVAILABLE_SEATS).map{|i| [pluralize(i, t('transports.seat')), i]}) %>
       <%= tbs3_inline_text_field(f, :from, t('transports.from')) %>
       <%= tbs3_inline_text_field(f, :to, t('transports.to')) %>
       <%= tbs3_inline_text_field(f, :departure_time, t('transports.departure_time'), class: 'departure-time-datetime-picker') %>
-      <%= tbs3_inline_select(f, :available_seats, t('transports.seats'), (Wedding::Car::MIN_AVAILABLE_SEATS..Wedding::Car::MAX_AVAILABLE_SEATS).map{|i| [i, i]}) %>
-      <%= tbs3_inline_select(f, :category, '', Wedding::Car::CATEGORY.map{|k,v| [t('transports.category.'+k.to_s),v]}, hide_label: true) %>
     </div>
 
-    <div class='form-group form-inline'>
+    <div>
       <%= f.fields_for :driver do |driver_f| %>
         <%= tbs3_inline_text_field(driver_f, :first_name, t('transports.first_name')) %>
         <%= tbs3_inline_text_field(driver_f, :family_name, t('transports.family_name')) %>
@@ -26,13 +24,14 @@
 
       <%= tbs3_inline_submit(f, t('transports.submit'), id: 'btn-submit') %>
     </div>
+  
   <% end %>
 </div>
 
 <script type='text/javascript'>
   $(document).ready(function() {
     $('.departure-time-datetime-picker').datetimepicker({
-      language: '<%= t("transports.departure_time_format") %>'
+      language: "<%= t('transports.departure_time_format') %>"
     });
   });
 </script>

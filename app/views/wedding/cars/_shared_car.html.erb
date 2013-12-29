@@ -19,25 +19,23 @@
 <% end %>
 
 
-<% @passenger = @passenger || Wedding::Passenger.new(car: car) %>
-<%= content_tag_for(:tr, @passenger, dom_id(car), class: (remaining_seats > 0) ? "visible" : "hidden") do %>
+<% passenger ||= Wedding::Passenger.new(car: car) %>
+<%= content_tag_for(:tr, passenger, dom_id(car), class: (remaining_seats > 0) ? "visible" : "hidden") do %>
   <td colspan="7">
-    <%= form_for(@passenger, url: wedding_car_passengers_path(car), remote: true, authenticity_token: true, html: {"role" => "form", id: "form-add-passenger-to-"+dom_id(car)}) do |f| %>
+    <%= form_for([car, passenger], url: wedding_car_passengers_path(car), remote: true, authenticity_token: true, html: {id: "form-add-passenger-to-car-#{car.id}", 'role' => 'form'}) do |f| %>
 
-      <%= content_tag("div", id: "passenger-error-explanation-"+dom_id(car), class: @passenger.errors.any? ? "visible" : "hidden") do -%>
-        <% if @passenger.errors.any? %>
-          <%= render "wedding/cars/form_passenger_errors" %>
-        <% end %>
-      <% end -%>
+      <% if car.id == passenger.car.id %>
+        <%= errors_for passenger, t('transports.passenger'), id: "passenger-errors-for-car-#{car.id}" %>
+      <% end %>
 
       <div class="form-group form-inline">
         <%= f.hidden_field :car_id, value: car.id %>
         <%= f.hidden_field :category, value: Wedding::Passenger::CATEGORY[:passenger] %>
-        <%= tbs3_inline_text_field(f, :first_name, t("transports.first_name")) %>
-        <%= tbs3_inline_text_field(f, :family_name, t("transports.family_name")) %>
-        <%= tbs3_inline_email_field(f, :email, t("transports.email")) %>
-        <%= tbs3_inline_telephone_field(f, :phone, t("transports.phone")) %>
-        <%= tbs3_inline_submit(f, t("transports.submit"), id: "btn-add-passenger-to-"+dom_id(car)) %>
+        <%= tbs3_inline_text_field(f, :first_name, t("transports.first_name"), class: 'input-sm') %>
+        <%= tbs3_inline_text_field(f, :family_name, t("transports.family_name"), class: 'input-sm') %>
+        <%= tbs3_inline_email_field(f, :email, t("transports.email"), class: 'input-sm') %>
+        <%= tbs3_inline_telephone_field(f, :phone, t("transports.phone"), class: 'input-sm') %>
+        <%= tbs3_inline_submit(f, t("transports.submit"), id: "btn-add-passenger-to-"+dom_id(car), class: 'btn-sm') %>
       </div>
     <% end %>
   </td>

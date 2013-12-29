@@ -13,7 +13,7 @@ module Wedding
         else
           logger.info("#{format}: failed to save passenger: #{@passenger}")
           format.js { render "wedding/cars/create_passenger_error", status: :unprocessable_entity }
-          format.html { render template: "wedding/transports" }
+          format.html { render template: "wedding/cars/index" }
         end
       end
     end

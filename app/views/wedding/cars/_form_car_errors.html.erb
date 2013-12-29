@@ -1,9 +1,0 @@
-<% if @car.errors.any? %>
-  <p><%= t('errors.template.header.any') % { errors: pluralize(@car.errors.count, t('errors.error')), model: t('transports.carpooling_journey') } %>
-    <ul>
-      <% @car.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-    </ul> 
-  </p>
-<% end %>

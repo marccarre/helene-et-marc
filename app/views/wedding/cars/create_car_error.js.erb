@@ -1,7 +1,7 @@
 <% if @car.errors.any? %>
   var id = '#car-error-explanation';
   $(id).empty();
-  $('<%= escape_javascript(render "wedding/cars/form_car_errors") %>').appendTo(id);
+  $('<%= escape_javascript(render "wedding/cars/errors_for_car") %>').appendTo(id);
   $(id).removeClass('hidden').addClass('visible');
   // $('#form-shared-or-requested-car').effect('highlight', { color: 'red' });
 <% else %> 

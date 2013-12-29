@@ -1,5 +1,5 @@
 <% if @passenger.errors.any? %>
-  var id = "#passenger-error-explanation-"+dom_id(@passenger.car)
+  var id = <%= "passenger-errors-for-car-#{passenger.car.id}" %>;
   $(id).empty();
   $('<%= escape_javascript(render "wedding/cars/form_passenger_errors") %>').appendTo(id);
   $(id).removeClass('hidden').addClass('visible');

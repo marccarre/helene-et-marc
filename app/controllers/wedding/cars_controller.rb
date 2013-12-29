@@ -16,11 +16,11 @@ module Wedding
               render "wedding/cars/create_car_error", status: :bad_request
             end
           }
-          format.html { redirect_to wedding_transports_url, notice: 'Passenger was successfully added.' }
+          format.html { redirect_to wedding_cars_url, notice: 'Passenger was successfully added.' }
         else
           logger.info("Failed to save car: #{@car.to_s}. Accept's formats: [#{request.accepts.join('], [')}]")
           format.js { render "wedding/cars/create_car_error", status: :unprocessable_entity }
-          format.html { render template: "wedding/transports" }
+          format.html { render action: 'index' }
         end
       end
     end

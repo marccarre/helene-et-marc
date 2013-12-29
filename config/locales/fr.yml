@@ -312,7 +312,7 @@ fr:
     to: "Ville d'arrivée"
     departure_time: "Heure de départ"
     departure_time_format: "fr-FR" #"dd/MM/yyyy hh:mm:ss"
-    seats: "Nombre de places : "
+    seat: "place"
     first_name: "Prénom"
     family_name: "Nom de famille"
     email: "Email"
