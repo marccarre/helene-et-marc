@@ -33,6 +33,14 @@ module Wedding
       category == CATEGORY[:request]
     end
 
+    def remaining_seats
+      available_seats - passengers.count
+    end
+
+    def is_full?
+      remaining_seats == 0
+    end
+
     def to_s
       return to_json(include: :driver).to_s
     end

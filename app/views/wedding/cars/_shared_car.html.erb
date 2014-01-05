@@ -1,9 +1,9 @@
-<% remaining_seats = car.available_seats - car.passengers.count %>
+<% remaining_seats = car.remaining_seats %>
 
 
 <%= content_tag(:tr, id: "car-#{car.id}") do %>
-  <td><%= car.from %></td>
-  <td><%= car.to %></td>
+  <td><b><%= car.from %></b></td>
+  <td><b><%= car.to %></b></td>
   <td><%= car.departure_time %></td>
   <td><%= (remaining_seats > 0) ? remaining_seats : t('carpooling.table.full') %></td>
 
@@ -19,10 +19,10 @@
 <% end %>
 
 
-<% passenger = Wedding::Passenger.new(car: car) %>
+<% passenger = instance_variable_get("@passenger_#{car.id}") %>
 <%= content_tag(:tr, id: "car-#{car.id}-form", class: (remaining_seats > 0) ? 'visible' : 'hidden') do %>
   <td colspan='7'>
-    <%= form_for(passenger, url: wedding_car_passengers_path(car), remote: true, authenticity_token: true, html: {id: "form-car-#{car.id}", 'role' => 'form'}) do |f| %>
+    <%= form_for([car, passenger], url: wedding_car_passengers_path(car), remote: true, authenticity_token: true, html: {id: "form-car-#{car.id}", 'role' => 'form'}) do |f| %>
 
       <%= errors_for(passenger, t('carpooling.passenger'), id: "car-#{car.id}-errors") %>
 

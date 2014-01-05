@@ -13,23 +13,20 @@ module Wedding
           logger.info("Successfully saved car: #{@car} (requested: #{@car.is_requested?}, shared: #{@car.is_shared?}). #{acceptable_formats}")
           format.js { 
             if @car.is_shared?
-              render 'wedding/cars/create_shared_car'
+              render 'wedding/cars/create_shared_car', status: :created
             elsif @car.is_requested?
-              render 'wedding/cars/create_requested_car'
+              render 'wedding/cars/create_requested_car', status: :created
             else
               render 'wedding/cars/create_car_error', status: :bad_request
             end
           }
-          format.html { 
-            get_or_load_all
-            redirect_to wedding_cars_url, notice: 'Car was successfully added.' 
-          }
+          format.html { redirect_to wedding_cars_url, status: :created, notice: 'Car was successfully added.' }
         else
           logger.info("Failed to save car: #{@car}. #{acceptable_formats}")
           format.js   { render 'wedding/cars/create_car_error', status: :unprocessable_entity }
           format.html { 
             get_or_load_all
-            render action: 'index' 
+            render action: 'index', status: :unprocessable_entity 
           }
         end
       end

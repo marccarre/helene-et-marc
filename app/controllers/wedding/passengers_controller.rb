@@ -1,23 +1,25 @@
 module Wedding
   class PassengersController < CarpoolingController
+    def index
+      get_or_load_all
+      render template: 'wedding/cars/index'
+    end
+
     def create
-      @passenger = Passenger.new(passenger_params)
+      passenger = instance_variable_set("@passenger_#{params[:car_id]}", Passenger.new(passenger_params))
 
       respond_to do |format|
-        #if @passenger.is_passenger? && verify_recaptcha(:model => @passenger, :message => "Oh! It's an error with reCAPTCHA!") && @passenger.save
-        if @passenger.is_passenger? && @passenger.save
-          logger.info("Successfully saved passenger: #{@passenger}. #{acceptable_formats}")
-          format.js   { render 'wedding/cars/create_passenger' }
-          format.html { 
-            get_or_load_all
-            redirect_to wedding_cars_url, notice: 'Passenger was successfully added.' 
-          }
+        #if passenger.is_passenger? && verify_recaptcha(:model => passenger, :message => "Oh! It's an error with reCAPTCHA!") && passenger.save
+        if passenger.is_passenger? && passenger.save
+          logger.info("Successfully saved passenger: #{passenger}. #{acceptable_formats}")
+          format.js   { render 'wedding/cars/create_passenger', status: :created }
+          format.html { redirect_to wedding_cars_url, status: :created, notice: 'Passenger was successfully added.' }
         else
-          logger.info("Failed to save passenger: #{@passenger}. #{acceptable_formats}")
+          logger.info("Failed to save passenger: #{passenger}. #{acceptable_formats}")
           format.js   { render 'wedding/cars/create_passenger_error', status: :unprocessable_entity }
           format.html { 
             get_or_load_all
-            render template: 'wedding/cars/index' 
+            render template: 'wedding/cars/index', status: :unprocessable_entity 
           }
         end
       end
