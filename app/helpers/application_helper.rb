@@ -22,22 +22,22 @@ module ApplicationHelper
 
   def phone_to(text)
     if text.include? '+'
-      link_to text, 'tel:#{text}'
+      link_to text, "tel:#{text}"
 
     else
       sets_of_numbers = text.scan(/[0-9]+/)
       length = sets_of_numbers.join.length
 
       if length == 10 # French number
-        number = '+33-#{sets_of_numbers.join("-")}'
-        link_to text, 'tel:#{number}'
+        number = "+33-#{sets_of_numbers.join("-")}"
+        link_to text, "tel:#{number}"
 
       elsif length == 11 # British number
-        number = '+44-#{sets_of_numbers.join("-")}'
-        link_to text, 'tel:#{number}'
+        number = "+44-#{sets_of_numbers.join("-")}"
+        link_to text, "tel:#{number}"
 
       else # Unknown, print as it is
-        link_to text, 'tel:#{text}'
+        link_to text, "tel:#{text}"
       end
     end
   end
