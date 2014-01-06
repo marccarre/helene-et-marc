@@ -111,7 +111,7 @@ module ApplicationHelper
 
 
   def link_to_add(body, f, association, partial, options={})
-    unless f.object.respond_to?('#{association}_attributes=')
+    unless f.object.respond_to?("#{association}_attributes=")
       raise ArgumentError, 'Invalid association. Make sure that accepts_nested_attributes_for is used for #{association.inspect} association.'
     end
 
