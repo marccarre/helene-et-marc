@@ -18,17 +18,27 @@
 //= require_tree .
 
 $(document).ready(function() {
-
   // Progressively enhance 'collapsible' UI elements.
   $('div.collapsible').addClass('collapse');
+  $('tbody.collapsible').addClass('collapse');
 
-  $("a[data-toggle='collapse']").append('(+)');
+  $("a[data-toggle='collapse']")
+    .data('collapsed', true)
+    .html("<button type='button' class='btn btn-link' style='border: 0px; padding: 0px;'><span class='glyphicon glyphicon-plus-sign'></span></button>");
 
   $("a[data-toggle='collapse']").click(function() {
-    if ($(this).text() == '(+)') {
-      $(this).text('(-)');
+    if ($(this).data('collapsed')) {
+      $(this)
+        .data('collapsed', false)
+        .find('button > span')
+        .removeClass('glyphicon-plus-sign')
+        .addClass('glyphicon-minus-sign');
     } else {
-      $(this).text('(+)');
+      $(this)
+        .data('collapsed', true)
+        .find('button > span')
+        .removeClass('glyphicon-minus-sign')
+        .addClass('glyphicon-plus-sign');
     }
   });
 
