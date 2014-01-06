@@ -10,12 +10,16 @@ module ApplicationHelper
 
   def errors_for(model, model_name, options={})
     content_tag(:div, id: options[:id], class: "alert alert-danger text-left #{model.errors.any? ? 'visible' : 'hidden'}") do
-      content_tag(:p, t('errors.template.header.any') % {errors: pluralize(model.errors.count, t('errors.error')), model: model_name} ) +
-      content_tag(:ul) do
-        model.errors.full_messages.each { |msg| 
-          concat(content_tag(:li, msg)) 
-        }
-      end
+      error_messages_for(model, model_name)
+    end
+  end
+
+  def error_messages_for(model, model_name)
+    content_tag(:p, t('errors.template.header.any') % {errors: pluralize(model.errors.count, t('errors.error')), model: model_name} ) +
+    content_tag(:ul) do
+      model.errors.full_messages.each { |msg| 
+        concat(content_tag(:li, msg)) 
+      }
     end
   end
 

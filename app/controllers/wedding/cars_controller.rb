@@ -17,13 +17,13 @@ module Wedding
             elsif @car.is_requested?
               render 'wedding/cars/create_requested_car', status: :created
             else
-              render 'wedding/cars/create_car_error', status: :bad_request
+              render 'wedding/cars/car_errors', status: :bad_request
             end
           }
           format.html { redirect_to wedding_cars_url, status: :created, notice: 'Car was successfully added.' }
         else
           logger.info("Failed to save car: #{@car}. #{acceptable_formats}")
-          format.js   { render 'wedding/cars/create_car_error', status: :unprocessable_entity }
+          format.js   { render 'wedding/cars/car_errors', status: :unprocessable_entity }
           format.html { 
             get_or_load_all
             render action: 'index', status: :unprocessable_entity 

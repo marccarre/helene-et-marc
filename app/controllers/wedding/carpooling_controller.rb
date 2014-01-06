@@ -13,6 +13,8 @@ module Wedding
           end
           instance_variable_get(name)
         }
+
+        @requested_cars ||= Wedding::Car.requested.includes(:driver).includes(:passengers).load
       end
   end
 end

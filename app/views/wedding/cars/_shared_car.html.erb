@@ -1,41 +1,48 @@
 <% remaining_seats = car.remaining_seats %>
+<% car_details_id = "car-#{car.id}-details" %>
+
+<tbody>
+  <%= content_tag(:tr, id: "car-#{car.id}") do %>
+    <td><b><%= car.from %></b></td>
+    <td><b><%= car.to %></b></td>
+    <td><%= car.departure_time %></td>
+    <td><%= (remaining_seats > 0) ? remaining_seats : t('carpooling.table.full') %></td>
+
+    <% driver = car.driver %>
+    <td><%= "#{driver.first_name} #{driver.family_name}" %></td>
+    <td><%= phone_to(driver.phone) + mail_to_or_default(driver.email, default: '', prefix: ' / ') %></td>
+    <td class='hidden'><a href='#<%= car_details_id %>' data-toggle='collapse'></a></td>
+  <% end %>
+</tbody>
 
 
-<%= content_tag(:tr, id: "car-#{car.id}") do %>
-  <td><b><%= car.from %></b></td>
-  <td><b><%= car.to %></b></td>
-  <td><%= car.departure_time %></td>
-  <td><%= (remaining_seats > 0) ? remaining_seats : t('carpooling.table.full') %></td>
-
-  <% driver = car.driver %>
-  <td><%= "#{driver.first_name} #{driver.family_name}" %></td>
-  <td><%= phone_to(driver.phone) + mail_to_or_default(driver.email, default: '', prefix: ' / ') %></td>
-  <td>(+)</td>
-<% end %>
+<tbody class='collapsible' id='<%= car_details_id %>'>
+  <% car.passengers.select{ |passenger| passenger.is_passenger? }.each_with_index do |passenger, i| %>
+    <%= render 'wedding/cars/passenger', car: car, passenger: passenger, i: i %>
+  <% end %>
 
 
-<% car.passengers.select{ |passenger| passenger.is_passenger? }.each_with_index do |passenger, i| %>
-  <%= render 'wedding/cars/passenger', car: car, passenger: passenger, i: i %>
-<% end %>
+  <% passenger = instance_variable_get("@passenger_#{car.id}") %>
+  <%= content_tag(:tr, id: "car-#{car.id}-form", class: (remaining_seats > 0) ? 'visible' : 'hidden') do %>
+    <td colspan='7'>
+      <%= form_for([car, passenger], url: wedding_car_passengers_path(car), remote: true, authenticity_token: true, html: {id: "form-car-#{car.id}", 'role' => 'form'}) do |f| %>
+        <%= errors_for(passenger, t('carpooling.passenger'), id: "car-#{car.id}-errors") %>
+        <div class='form-group form-inline'>
+          <%= f.hidden_field :car_id, value: car.id %>
+          <%= f.hidden_field :category, value: Wedding::Passenger::CATEGORY[:passenger] %>
+          <%= tbs3_inline_text_field(f, :first_name, t('carpooling.first_name'), class: 'input-sm') %>
+          <%= tbs3_inline_text_field(f, :family_name, t('carpooling.family_name'), class: 'input-sm') %>
+          <%= tbs3_inline_email_field(f, :email, t('carpooling.email'), class: 'input-sm') %>
+          <%= tbs3_inline_telephone_field(f, :phone, t('carpooling.phone'), class: 'input-sm') %>
+          <%= tbs3_inline_submit(f, t('carpooling.submit'), id: "btn-add-passenger-to-car-#{car.id}", class: 'btn-sm') %>
+        </div>
+      <% end %>
+    </td>
+  <% end %>
 
 
-<% passenger = instance_variable_get("@passenger_#{car.id}") %>
-<%= content_tag(:tr, id: "car-#{car.id}-form", class: (remaining_seats > 0) ? 'visible' : 'hidden') do %>
-  <td colspan='7'>
-    <%= form_for([car, passenger], url: wedding_car_passengers_path(car), remote: true, authenticity_token: true, html: {id: "form-car-#{car.id}", 'role' => 'form'}) do |f| %>
+  <%= content_tag(:tr, id: "car-#{car.id}-spacer", class: (remaining_seats > 0) ? 'hidden' : 'visible') do %>
+    <td colspan='7'>&nbsp;</td>
+  <% end %>
 
-      <%= errors_for(passenger, t('carpooling.passenger'), id: "car-#{car.id}-errors") %>
-
-      <div class='form-group form-inline'>
-        <%= f.hidden_field :car_id, value: car.id %>
-        <%= f.hidden_field :category, value: Wedding::Passenger::CATEGORY[:passenger] %>
-        <%= tbs3_inline_text_field(f, :first_name, t('carpooling.first_name'), class: 'input-sm') %>
-        <%= tbs3_inline_text_field(f, :family_name, t('carpooling.family_name'), class: 'input-sm') %>
-        <%= tbs3_inline_email_field(f, :email, t('carpooling.email'), class: 'input-sm') %>
-        <%= tbs3_inline_telephone_field(f, :phone, t('carpooling.phone'), class: 'input-sm') %>
-        <%= tbs3_inline_submit(f, t('carpooling.submit'), id: "btn-add-passenger-to-car-#{car.id}", class: 'btn-sm') %>
-      </div>
-    <% end %>
-  </td>
-<% end %>
-    
+</tbody>

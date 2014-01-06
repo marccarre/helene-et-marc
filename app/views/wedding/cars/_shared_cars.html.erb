@@ -15,13 +15,13 @@
         <th><%= t('carpooling.table.available_seats') %></th>
         <th><%= t('carpooling.table.driver') %></th>
         <th><%= t('carpooling.table.contact') %></th>
-        <th><%= t('carpooling.table.details_and_join') %></th>
+        <th class='hidden'><%= t('carpooling.table.details_and_join') %></th>
       </tr>
     </thead>
-    <tbody>
-      <% @shared_cars.each do |car| %>
-        <%= render 'wedding/cars/shared_car', car: car %>
-      <% end %>
-    </tbody>
+    
+    <% @shared_cars.each do |car| %>
+      <%= render 'wedding/cars/shared_car', car: car %>
+    <% end %>
+
   </table>
 <% end %>

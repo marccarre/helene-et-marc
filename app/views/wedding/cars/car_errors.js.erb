@@ -1,0 +1,46 @@
+<% if @car.errors.any? %>
+  // Render list of errors in #car-errors div:
+  var id = '#car-errors';
+  $(id).empty();
+  $("<%= escape_javascript(error_messages_for(@car, t('carpooling.journey'))) %>").appendTo(id);
+  $(id).removeClass('hidden').addClass('visible');
+
+
+
+  // Highlight error fields:
+  function is_error_field(name, error_fields) {
+    for (var i=0; i < error_fields.length; i++) {
+      if (error_fields[i].length == 1) { 
+        var re = new RegExp("\\w+\\["+error_fields[i][0]+"\\]"); // e.g. : ["departure_time"] to match with "wedding_car[departure_time]"
+        if (name.match(re)) {
+          return true;
+        }
+      } else if (error_fields[i].length == 2) { 
+        var re = new RegExp("\\w+\\["+error_fields[i][0]+"_attributes\\]\\["+error_fields[i][1]+"\\]"); // e.g. : ["driver", "first_name"] to match with "wedding_car[driver_attributes][first_name]"
+        if (name.match(re)) {
+          return true;
+        }
+      }
+    }
+    return false;
+  }
+
+  var error_fields = <%= raw @car.errors.keys.map { |field| field.to_s.split('.') }.as_json %>;
+
+  $('#form-car :input, #form-car select').each(function() {
+    // Systematically remove wrapping inside error div:
+    if ($(this).parent().is('div.has-error')) {
+      $(this).unwrap();
+    }
+
+    var name = $(this).attr('name');
+    if (name && is_error_field(name, error_fields)) {
+      $(this).wrap("<div class='has-error'></div>");
+      // $(this).effect('highlight', { color: 'red' });
+    }
+  });
+
+
+<% else %> 
+  alert('Failed to share / request car. \nError lors du partage / de la recherche d\'une voiture.')
+<% end %>
