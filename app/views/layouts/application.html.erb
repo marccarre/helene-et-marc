@@ -4,13 +4,13 @@
   <title>H&eacute;l&egrave;ne &amp; Marc</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <link href="//netdna.bootstrapcdn.com/bootswatch/3.0.0/simplex/bootstrap.min.css" rel="stylesheet">
+  <link href="//netdna.bootstrapcdn.com/bootswatch/3.0.3/simplex/bootstrap.min.css" rel="stylesheet">
   <link href="//eonasdan.github.io/bootstrap-datetimepicker/styles/bootstrap-datetimepicker.min.css" rel="stylesheet">
   <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
 
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.4.0/moment.min.js"></script>
   <script src="//eonasdan.github.io/bootstrap-datetimepicker/scripts/moment.js"></script>
   <script src="//eonasdan.github.io/bootstrap-datetimepicker/scripts/bootstrap-datetimepicker.js"></script>
@@ -84,26 +84,27 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
-        <li class="<%= 'active' if current_page?(wedding_story_path) %>"><%= link_to t('menu.story'), wedding_story_path %></li>
-        <!--<li class="<%= 'active' if current_page?(wedding_photos_path) %>"><%= link_to t('menu.photos'), wedding_photos_path %></li>-->
-        <li class="<%= 'active' if current_page?(wedding_program_path) %>"><%= link_to t('menu.program'), wedding_program_path %></li>
-        <li class="bold <%= 'active' if current_page?(wedding_rsvp_path) %>"><%= link_to t('menu.rsvp'), wedding_rsvp_path, "data-no-turbolink" => true %></li>
-        <li class="<%= 'active' if current_page?(wedding_transports_path) %>"><%= link_to t('menu.transports'), wedding_transports_path %></li>
-        <li class="<%= 'active' if current_page?(wedding_stay_path) %>"><%= link_to t('menu.stay'), wedding_stay_path %></li>
-        <li class="<%= 'active' if current_page?(wedding_area_path) %>"><%= link_to t('menu.area'), wedding_area_path %></li>
-        <li class="<%= 'active' if current_page?(wedding_gifts_path) %>"><%= link_to t('menu.gifts'), wedding_gifts_path %></li>
-        <li class="<%= 'active' if current_page?(wedding_contact_path) %>"><%= link_to t('menu.contact'), wedding_contact_path %></li>
+        <% prefix = params.has_key?(:locale) ? '/'+params[:locale] : '' %>
+        <li class="<%= 'active' if current_page?(prefix+wedding_story_path) %>"><%= link_to t('menu.story'), wedding_story_path %></li>
+        <!--<li class="<%= 'active' if current_page?(prefix+wedding_photos_path) %>"><%= link_to t('menu.photos'), wedding_photos_path %></li>-->
+        <li class="<%= 'active' if current_page?(prefix+wedding_program_path) %>"><%= link_to t('menu.program'), wedding_program_path %></li>
+        <li class="bold <%= 'active' if current_page?(prefix+wedding_rsvp_path) %>"><%= link_to t('menu.rsvp'), wedding_rsvp_path, "data-no-turbolink" => true %></li>
+        <li class="<%= 'active' if current_page?(prefix+wedding_transports_path) %>"><%= link_to t('menu.transports'), wedding_transports_path %></li>
+        <li class="<%= 'active' if current_page?(prefix+wedding_stay_path) %>"><%= link_to t('menu.stay'), wedding_stay_path %></li>
+        <li class="<%= 'active' if current_page?(prefix+wedding_area_path) %>"><%= link_to t('menu.area'), wedding_area_path %></li>
+        <li class="<%= 'active' if current_page?(prefix+wedding_gifts_path) %>"><%= link_to t('menu.gifts'), wedding_gifts_path %></li>
+        <li class="<%= 'active' if current_page?(prefix+wedding_contact_path) %>"><%= link_to t('menu.contact'), wedding_contact_path %></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-        <li class="flag"><%= link_to image_tag("i18n/en.gif"), url_for(:locale => "en"), "data-no-turbolink" => true %></li>
-        <li class="flag"><%= link_to image_tag("i18n/fr.gif"), url_for(:locale => "fr"), "data-no-turbolink" => true %></li>
+        <li class="flag"><%= link_to image_tag('i18n/en.gif'), url_for(locale: :en), title: 'English version', 'data-no-turbolink' => true %></li>
+        <li class="flag"><%= link_to image_tag('i18n/fr.gif'), url_for(locale: :fr), title: 'Version française', 'data-no-turbolink' => true %></li>
         </ul>
       </div><!--/.nav-collapse -->
       </div>
     </div>
 
     <!-- Content -->
-    <div class="container">      
+    <div class="container">   
       <%= yield %>
     </div>
   </body>
