@@ -1,6 +1,6 @@
 require "spec_helper"
 require "wedding/address"
-require "wedding/adult_guest"
+require "wedding/guest"
 require "wedding/booking"
 include Wedding
 

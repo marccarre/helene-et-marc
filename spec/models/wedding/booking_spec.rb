@@ -1,8 +1,7 @@
 require "spec_helper"
 require "wedding/rsvp_mailer"
 require "wedding/booking"
-require "wedding/adult_guest"
-require "wedding/child_guest"
+require "wedding/guest"
 require "wedding/address"
 require "wedding/event"
 include Wedding
