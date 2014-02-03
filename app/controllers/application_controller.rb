@@ -1,3 +1,5 @@
+require 'http_accept_language'
+
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -8,30 +10,34 @@ class ApplicationController < ActionController::Base
   private
     def set_locale
       if (params[:locale])
-        set_locale_from_params
+        save_locale_in_session
       end
-    	user_saved = session[:locale].presence
-      user_preferred = http_accept_language.user_preferred_languages.presence
-      user_compatible = http_accept_language.compatible_language_from(I18n.available_locales).presence
+
+      user_saved = session[:locale].presence
+      user_preferred = validate_or_recreate(http_accept_language).user_preferred_languages.presence
+      user_compatible = validate_or_recreate(http_accept_language).compatible_language_from(I18n.available_locales).presence
       I18n.locale = user_saved || user_compatible || I18n.default_locale
-      logger.info("Resolving locale: available: [%s], default: [%s], user preferred: [%s], user compatible: [%s], saved: [%s] => selected: [%s]." % [I18n.available_locales.join(","), I18n.default_locale, user_preferred.present? ? user_preferred.join(",") : "none", user_compatible || "none", session[:locale] || "none", I18n.locale])
+      logger.info("Selected locale '%s' for %s (available: '%s'; default: '%s'; preferred: '%s'; compatible: '%s'; saved: '%s')." % [I18n.locale, request.remote_ip, I18n.available_locales.join("','"), I18n.default_locale, user_preferred.present? ? user_preferred.join("','"): "''", user_compatible, session[:locale]])
     end
 
-    def set_locale_from_params
+    def save_locale_in_session
       if (I18n.available_locales.include? params[:locale].to_sym)
         new_locale = params[:locale]
         old_locale = session[:locale]
         session[:locale] = new_locale || old_locale
-        logger.info("Locale saved for user: old: [%s], new: [%s] => current: [%s]." % [old_locale || "", new_locale || "", session[:locale] || ""])
+        logger.info("Saved locale '%s' in %s's session (old: '%s'; new: '%s')." % [session[:locale], request.remote_ip, old_locale, new_locale])
       else
-        session.delete(:locale)
-        logger.info("[%s]'s locale has been removed from session." % [request.remote_ip])
-        flash.now[:notice] = "#{params[:locale]} translation not available."
-        logger.error("Invalid locale trying to be set by %s: [%s]." % [request.remote_ip, params[:locale]])
+        logger.warn("Invalid locale '%s' requested by %s." % [params[:locale], request.remote_ip])
       end
     end
 
-    def acceptable_formats
-      "Accept's formats: [#{request.accepts.join('], [')}]"
+    def validate_or_recreate(http_accept_language)
+      if http_accept_language.nil? || http_accept_language.header.blank?
+        new_http_accept_language = HttpAcceptLanguage::Parser.new(request.headers['HTTP_ACCEPT_LANGUAGE'])
+        logger.info("Created new parser for Accept-Language header: #{new_http_accept_language.as_json} (previously was: #{http_accept_language.as_json}")
+        new_http_accept_language
+      else 
+        http_accept_language
+      end
     end
 end
