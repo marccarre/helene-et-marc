@@ -8,6 +8,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
 
   private
+    # Set and/or save locale:
     def set_locale
       if (params[:locale])
         save_locale_in_session
@@ -39,5 +40,10 @@ class ApplicationController < ActionController::Base
       else 
         http_accept_language
       end
+    end
+
+    # Helper methods:
+    def acceptable_formats
+      "Accept's formats: [#{request.accepts.join('], [')}]"
     end
 end
