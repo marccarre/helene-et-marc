@@ -11,26 +11,41 @@
  *= require_tree .
  *= require_self
  */
+
+/* -------------------------------------------- Sticky header and footer --- */
+
+html,
 body {
-  padding-top: 50px;
+  // To have the footer, the html and body elements cannot have any padding or margin.
+  height: 100%; 
 }
 
-section {
-  padding-top: 50px; // Must be equal to the padding in body.
-  margin-top: -50px;
+// Wrapper for page content to push down footer:
+#wrap {
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -40px;   // Negative indent footer by its height.
+  padding: 0 0 40px;      // Pad bottom by footer height.
+  > .container {
+    padding: 50px 15px 0; // Pad top by header height, plus some peanuts.
+  }
 }
 
-.inline {
-  display: inline;
+#footer {
+  height: 40px; // Set the fixed height of the footer here.
+  border-top: 1px solid #dfdfdf;
+  background-color: #ffffff;
+  > .container {
+    padding-left: 15px;
+    padding-right: 15px;
+    .text-muted {
+      margin: 10px 0;
+    }
+  }
 }
 
-.visible {
-  visibility: visible;
-}
 
-.hidden {
-  visibility: hidden;
-}
+/* -------------------------------------------------------------- Navbar --- */
 
 a.navbar-brand {
   font-size: 22px;
@@ -61,6 +76,22 @@ a.navbar-brand {
   text-decoration: underline;
 }
 
+
+/* -------------------------------------------------------------- Others --- */
+
+.inline {
+  display: inline;
+}
+
+.visible {
+  visibility: visible;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+
 .pre-wed-carousel {
   margin: 0 auto;
   max-width: 900px;
@@ -87,6 +118,7 @@ a.navbar-brand {
 .carousel-inner > .item > a > img.pre-wed-center {
   margin: 0 auto;
 }
+
 
 .guest-form {
   padding-top: 2px;
