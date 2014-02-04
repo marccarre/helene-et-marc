@@ -24,10 +24,10 @@ body {
 #wrap {
   min-height: 100%;
   height: auto;
-  margin: 0 auto -40px;   // Negative indent footer by its height.
-  padding: 0 0 40px;      // Pad bottom by footer height.
+  margin: 0 auto -30px;   // Negative indent footer by its height, minus 10px.
+  padding: 0 0 50px;      // Pad bottom by footer height, plus 10px.
   > .container {
-    padding: 50px 15px 0; // Pad top by header height, plus some peanuts.
+    padding: 50px 15px 0; // Pad top by header height, plus 10px.
   }
 }
 
