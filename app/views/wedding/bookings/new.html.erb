@@ -1,3 +1,77 @@
-<div class="row">
-  <%= render "wedding/bookings/form" %>
-</div>
+<%= form_for @booking, html: {id: 'form-rsvp', 'role' => 'rsvp'} do |f| %>
+
+  <% if @booking.errors.any? %>
+    <div class="row">
+      <div id="error_explanation" class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <h2><%= pluralize(@booking.errors.count, "error") %> prohibited this booking from being saved:</h2>
+        <ul>
+          <% @booking.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul> 
+      </div>
+    </div>
+  <% end %>
+  
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <div class="form-group">
+        <%= f.fields_for :guests do |guest_form| %>
+          <%= render 'wedding/guests/form_guest', f: guest_form %>
+        <% end %>
+
+        <div id="adult-guest-forms" class="inline"></div>
+        <%= link_to_add glyphicon('glyphicon-plus', ' '+t('rsvp.addAdult')).html_safe, f, :guests, "wedding/guests/form_adult", class: "btn btn-default btn-xs guest-form-btn" %>
+        <div id="child-guest-forms" class="inline"></div>
+        <%= link_to_add glyphicon('glyphicon-plus', ' '+t('rsvp.addChild')).html_safe, f, :guests, "wedding/guests/form_child", class: "btn btn-default btn-xs guest-form-btn" %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      <h3><%= t("rsvp.contact") %></h3>
+      <%= f.fields_for :address do |address_form| %>
+        <%= tbs3_inline_email_field(f, :email, t('rsvp.contact_field.email')) %>
+        <%= tbs3_inline_telephone_field(f, :phone, t('rsvp.contact_field.phone')) %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <h3><%= t("rsvp.attendance") %></h3>
+
+      <%= tbs3_inline_select(f, :coming, nil, [["", nil], [t("rsvp.y"), true], [t("rsvp.n"), false]], id: 'dropdown-booking-is-coming') %>
+
+      <div id="checkboxes-events-attended">
+        <span><%= t('rsvp.i_will_attend') %></span>
+        <%= f.fields_for :events do |events_form| %>
+          <%= render "wedding/events/form", f: events_form %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <h3><%= t("rsvp.comments") %></h3>
+      <div class="form-group">
+        <%= f.text_area :comments, class: "form-control", "placeholder" => t("rsvp.comments_description"), rows: 5 %>
+      </div>
+    </div>
+
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <h3><%= t("rsvp.captcha") %></h3>
+      <div class="form-group">
+        <%= recaptcha_tags display: { theme: "clean" } %>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+      <%= tbs3_inline_submit(f, t('rsvp.submit'), id: 'btn-rsvp-submit') %>
+    </div>
+  </div>
+<% end %>

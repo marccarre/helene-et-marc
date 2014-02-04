@@ -1,6 +1,8 @@
 class CreateBookings < ActiveRecord::Migration
   def change
     create_table :bookings do |t|
+      t.string :email
+      t.string :phone
       t.boolean :coming
       t.string :comments
       

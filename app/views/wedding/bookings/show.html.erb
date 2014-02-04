@@ -7,7 +7,12 @@
 
 <p>
   <strong>Address:</strong>
-  <%= render "wedding/addresses/show_address", address: @booking.address %>
+  <div class="wedding-address">
+    <address>
+      <span class="glyphicon glyphicon-earphone"></span> : <%= @booking.phone %><br/>
+      <span class="glyphicon glyphicon-send"></span> : <%= @booking.email.blank? ? "/" : mail_to(@booking.email.downcase, @booking.email.downcase) %>
+    </address>
+  </div>
 </p>
 
 <p>

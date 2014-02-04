@@ -1,23 +1,23 @@
 $(document).ready(function() {
 
-  $(".adult-guest-form > a").first().hide();
-  $("div#checkboxes-events-attended").hide();
-  $("input#btn-rsvp-submit").prop("disabled", true);
+  $('.adult-guest-form > a').first().hide();
+  $('div#checkboxes-events-attended').hide();
+  $('input#btn-rsvp-submit').prop('disabled', true);
 
-  $("select#wedding_booking_coming").change(function() {
-    var isComing = $("select#wedding_booking_coming").val();
-    if (isComing == "true") {
-      $("div#checkboxes-events-attended").show();
-      $("input.wedding-event-checkbox").prop("checked", true);
-      $("input#btn-submit").prop("disabled", false);
-    } else if (isComing == "false") {
-      $("div#checkboxes-events-attended").hide();
-      $("input.wedding-event-checkbox").prop("checked", false);
-      $("input#btn-submit").prop("disabled", false);
+  $('select#dropdown-booking-is-coming').change(function() {
+    var isComing = $('select#dropdown-booking-is-coming').val();
+    if (isComing == 'true') {
+      $('div#checkboxes-events-attended').show();
+      $('input.wedding-event-checkbox').prop('checked', true);
+      $('input#btn-rsvp-submit').prop('disabled', false);
+    } else if (isComing == 'false') {
+      $('div#checkboxes-events-attended').hide();
+      $('input.wedding-event-checkbox').prop('checked', false);
+      $('input#btn-rsvp-submit').prop('disabled', false);
     } else {
-      $("div#checkboxes-events-attended").hide();
-      $("input.wedding-event-checkbox").prop("checked", false);
-      $("input#btn-submit").prop("disabled", true);
+      $('div#checkboxes-events-attended').hide();
+      $('input.wedding-event-checkbox').prop('checked', false);
+      $('input#btn-rsvp-submit').prop('disabled', true);
     }
   });
 

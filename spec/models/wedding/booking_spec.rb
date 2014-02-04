@@ -9,6 +9,22 @@ include Wedding
 describe Booking do 
   subject(:booking) { FactoryGirl.build(:booking) }
 
+  it { should_not validate_presence_of(:email) }
+  it { should validate_presence_of(:phone) }
+  it { should be_valid }
+
+  context "with an email address" do
+    its(:phone) { should == "+44 789 0123 456" }
+    its(:email) { should == "john.smith@hotmail.com" }
+  end
+
+  context "without an email address" do
+    subject(:address) { FactoryGirl.build(:address, email: nil) }
+    its(:phone) { should == "+44 789 0123 456" }
+    its(:email) { should be_nil }
+  end
+
+
   context "associations" do
     it { should have_many(:adults).class_name(AdultGuest).dependent(:destroy) }
     it { should validate_presence_of(:adults) }

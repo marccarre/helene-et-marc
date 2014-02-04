@@ -1,19 +1,8 @@
 <div class="child-guest-form guest-form form-inline fields">
-  <div class="form-group">
-    <%= f.label :first_name, t("rsvp.first_name"), class: "sr-only" %>
-    <%= f.text_field :first_name, class: "form-control input-sm", "placeholder" => t("rsvp.first_name") %>
-  </div>
-
-  <div class="form-group">
-    <%= f.label :family_name, t("rsvp.family_name"), class: "sr-only" %>
-    <%= f.text_field :family_name, class: "form-control input-sm", "placeholder" => t("rsvp.family_name") %>
-  </div>
-
+  <%= tbs3_inline_text_field(f, :first_name, t('rsvp.first_name')) %>
+  <%= tbs3_inline_text_field(f, :family_name, t('rsvp.family_name')) %>
   <%= f.hidden_field :category, value: Wedding::Guest::CATEGORY[:child] %>
-
-  <div class="form-group">
-    <%= f.select :menu, Wedding::Guest::MENU.map{|k,v| [t("rsvp.menu."+k.to_s),v]}, class: "form-control input-sm" %>
-  </div>
+  <%= tbs3_inline_select(f, :menu, nil, Wedding::Guest::MENU.map{ |k,v| [t('rsvp.menu.'+k.to_s),v] }) %>
 
   <%= link_to_remove glyphicon("glyphicon-remove").html_safe, f, class: "btn btn-default btn-xs" %>
 </div>

@@ -1,7 +1,7 @@
 <div id='shared-or-requested-car'>
   <h4><%= t('carpooling.form_title') %></h4>
 
-  <%= form_for(@car, url: wedding_cars_path, remote: true, authenticity_token: true, html: {id: 'form-car', class: 'form-inline', 'role' => 'form'}) do |f| %>
+  <%= form_for(@car, url: wedding_cars_path, remote: true, authenticity_token: true, html: {id: 'form-car', class: 'form-inline', 'role' => 'carpooling'}) do |f| %>
 
     <%= errors_for(@car, t('carpooling.journey'), id: 'car-errors') %>
 
@@ -21,7 +21,7 @@
         <%= tbs3_inline_telephone_field(driver_f, :phone, t('carpooling.phone')) %>
       <% end %>
 
-      <%= tbs3_inline_submit(f, t('carpooling.submit'), id: 'btn-submit') %>
+      <%= tbs3_inline_submit(f, t('carpooling.submit'), id: 'btn-carpooling-submit') %>
     </div>
   
   <% end %>

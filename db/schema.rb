@@ -13,22 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20131117002437) do
 
-  create_table "addresses", force: true do |t|
-    t.integer  "booking_id"
+  create_table "bookings", force: true do |t|
     t.string   "email"
     t.string   "phone"
-    t.string   "address"
-    t.string   "city"
-    t.string   "postcode"
-    t.string   "country"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "addresses", ["booking_id"], name: "index_addresses_on_booking_id"
-  add_index "addresses", ["id"], name: "index_addresses_on_id"
-
-  create_table "bookings", force: true do |t|
     t.boolean  "coming"
     t.string   "comments"
     t.datetime "created_at"

@@ -1,15 +1,14 @@
 module Wedding
   class Booking < ActiveRecord::Base
     has_many :guests, inverse_of: :booking, dependent: :destroy
-    has_one :address, inverse_of: :booking, dependent: :destroy
     has_and_belongs_to_many :events
 
     validates :guests, presence: true, length: { minimum: 1 }
-    validates :address, presence: true
     validates :coming, inclusion: { in: [true, false] }
+    validates :email, allow_blank: true, format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, message: "should be a valid email address" }
+    validates :phone, presence: true
     
     accepts_nested_attributes_for :guests
-    accepts_nested_attributes_for :address
     accepts_nested_attributes_for :events
 
     scope :not_coming, -> { where(coming: false) }

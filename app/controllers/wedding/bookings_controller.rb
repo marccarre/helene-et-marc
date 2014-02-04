@@ -10,7 +10,6 @@ module Wedding
 
     def new
       @booking = Booking.new
-      @booking.build_address
       @booking.guests.build
       @booking.guests << Guest.new(category: Guest::CATEGORY[:adult])
       @booking.events.build
