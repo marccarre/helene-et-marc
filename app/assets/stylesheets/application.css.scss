@@ -30,10 +30,11 @@ body {
 #wrap {
   min-height: 100%;
   height: auto;
-  margin: 0 auto -30px;   // Negative indent footer by its height, minus 10px.
-  padding: 0 0 50px;      // Pad bottom by footer height, plus 10px.
+  margin: 0 auto -40px;   // Negative indent footer by its height.
+  padding: 0 0 40px;      // Pad bottom by footer height.
+
   > .container {
-    padding: 50px 15px 0; // Pad top by header height, plus 10px.
+    padding: 40px 15px 0; // Pad top by header height.
   }
 }
 
@@ -41,11 +42,13 @@ body {
   height: 40px; // Set the fixed height of the footer here.
   border-top: 1px solid #dfdfdf;
   background-color: #ffffff;
+
   > .container {
     padding-left: 15px;
     padding-right: 15px;
-    .text-muted {
-      margin: 10px 0;
+
+    > .text-muted {
+      margin: 11px 0;
     }
   }
 }
