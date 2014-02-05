@@ -10,7 +10,7 @@
       <%= tbs3_inline_select(f, :available_seats, nil, (Wedding::Car::MIN_SEATS..Wedding::Car::MAX_SEATS).map{ |i| [pluralize(i, t('carpooling.seat')), i] }) %>
       <%= tbs3_inline_text_field(f, :from, t('carpooling.from')) %>
       <%= tbs3_inline_text_field(f, :to, t('carpooling.to')) %>
-      <%= tbs3_inline_datetime_field(f, :departure_time, t('carpooling.departure_time'), class: 'departure-time-datetime-picker') %>
+      <%= tbs3_inline_datetime_field(f, :departure_time, t('carpooling.departure_time'), @car.departure_time, 'data-datetime-format' => t('carpooling.departure_time_format')) %>
     </div>
 
     <div>
@@ -26,11 +26,3 @@
   
   <% end %>
 </div>
-
-<script type='text/javascript'>
-  $(document).ready(function() {
-    $('.departure-time-datetime-picker').datetimepicker({
-      language: "<%= t('carpooling.departure_time_format') %>"
-    });
-  });
-</script>

@@ -69,14 +69,27 @@ module ApplicationHelper
     end 
   end
 
-  def tbs3_inline_datetime_field(f, field, name, options={})
+  def tbs3_inline_datetime_field(f, field, name, value, options={})
     options[:class] = [options[:class], 'form-control'].compact.join(' ')
-    options[:placeholder] = name
+    options[:placeholder] = DateTime.now().strftime(t('datetime.formats.default'))
+    options[:value] = try_format_datetime(value)
 
     content_tag(:div, class: 'form-group') do
-      f.label(field, name, class: 'sr-only') +
+      f.label(field, name+t('g.colon')) +
       f.datetime_field(field, options)
     end 
+  end
+
+  def try_format_datetime(value)
+    if value.blank?
+      return value
+    else 
+      begin
+        return value.strftime(t('datetime.formats.default'))
+      rescue ArgumentError
+        return value
+      end
+    end
   end
 
   def tbs3_inline_email_field(f, field, name, options={})
