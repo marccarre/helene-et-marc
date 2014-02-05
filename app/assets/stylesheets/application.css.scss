@@ -14,6 +14,7 @@
 @import 'bootstrap';
 @import 'bootstrap-datetimepicker';
 @import 'bootstrap-fixed.css.scss';
+@import 'home.css.scss';
 @import 'cars.css.scss';
 @import 'events.css.scss';
 @import 'rsvp.css.scss';
@@ -99,35 +100,6 @@ a.navbar-brand {
 .hidden {
   visibility: hidden;
 }
-
-
-.pre-wed-carousel {
-  margin: 0 auto;
-  max-width: 900px;
-  max-height: 900px;
-}
-
-.carousel-inner > .item > img.pre-wed-landscape,
-.carousel-inner > .item > a > img.pre-wed-landscape {
-  width: 900px;
-  height: 600px;
-  max-width: 900px;
-  max-height: 600px;
-}
-
-.carousel-inner > .item > img.pre-wed-portrait,
-.carousel-inner > .item > a > img.pre-wed-portrait {
-  width: 600px;
-  height: 900px;
-  max-width: 600px;
-  max-height: 900px;
-}
-
-.carousel-inner > .item > img.pre-wed-center,
-.carousel-inner > .item > a > img.pre-wed-center {
-  margin: 0 auto;
-}
-
   
 /* From Twitter Bootstrap's documentation:
  *   "Inputs, selects, and textareas are 100% wide by default in Bootstrap. 
