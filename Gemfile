@@ -29,7 +29,7 @@ group :production do
 end
 
 
-gem "recaptcha", "~> 0.3.5"
+gem "recaptcha", "~> 0.3.6"
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.1'
@@ -44,8 +44,11 @@ gem 'coffee-rails', '~> 4.0.1'
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
-gem 'jquery-rails', '>= 3.0.4'
-gem 'jquery-ui-rails', '~> 4.1.0'
+gem 'jquery-rails', '>= 3.1.0'    # Provides jQuery 1.10.2, the jQuery UJS adapter, and assert_select_jquery to test jQuery responses in Ruby tests.
+gem 'jquery-ui-rails', '>= 4.1.1' # Provides jQuery UI 1.10.0 assets (JavaScripts, stylesheets, and images)
+
+# Use Twitter Bootstrap as additional JavaScript library
+# gem 'bootstrap-sass', '>=3.1.0.1'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
