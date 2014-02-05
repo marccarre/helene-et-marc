@@ -275,6 +275,7 @@ en:
     save_the_date: "Save the date: June 28th, 2014!"
     photographer: "Photographer: "
   rsvp:
+    guest_list: "Who?"
     first_name: "First name"
     family_name: "Family name"
     contact: "Contact"
