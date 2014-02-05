@@ -9,7 +9,7 @@ module Wedding
 
     def rsvp_confirmation(booking)
       @booking = booking
-      to = @booking.address.email || (FROM + CC)
+      to = @booking.email || (FROM + CC)
       mail to: to, subject: t("rsvp_mailer.rsvp_submitted.subject")
     end
   end
