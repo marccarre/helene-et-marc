@@ -23,6 +23,12 @@ module HeleneEtMarc
     config.i18n.available_locales = [:fr, :en]
     config.i18n.default_locale = :fr
 
+    # Avoid error message: 
+    # [deprecated] I18n.enforce_available_locales will default to true in the future. 
+    # If you really want to skip validation of your locale you can set 
+    # I18n.enforce_available_locales = false to avoid this message.
+    I18n.enforce_available_locales = true
+
     # Uses Twitter Bootstrap input validation "has-error" instead of Rails' built-in "field_with_errors":
     config.action_view.field_error_proc = Proc.new { |html_tag, instance| 
       "<div class=\"has-error\">#{html_tag}</div>".html_safe
