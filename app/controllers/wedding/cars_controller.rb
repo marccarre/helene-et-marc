@@ -8,13 +8,15 @@ module Wedding
       @car = Car.new(car_params)
 
       respond_to do |format|
-        #if @car.is_passenger? && verify_recaptcha(:model => @car, :message => "Oh! It's an error with reCAPTCHA!") && @car.save
+        #if verify_recaptcha(:model => @car, :message => "Oh! It's an error with reCAPTCHA!") && @car.save
         if @car.save
           logger.info("Successfully saved car: #{@car} (requested: #{@car.is_requested?}, shared: #{@car.is_shared?}). #{acceptable_formats}")
           format.js { 
             if @car.is_shared?
+              get_or_load_all
               render 'wedding/cars/create_shared_car', status: :created
             elsif @car.is_requested?
+              get_or_load_all
               render 'wedding/cars/create_requested_car', status: :created
             else
               render 'wedding/cars/car_errors', status: :bad_request
