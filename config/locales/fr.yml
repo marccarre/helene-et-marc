@@ -31,10 +31,10 @@ fr:
       - vendredi
       - samedi
     formats:
-      default: "%"
+      default: ! "%d/%m/%Y"
       on_the_long: ! "le %A %e %B %Y :"
-      short: "%e %b"
-      long: "%e %B %Y"
+      short: ! "%e %b"
+      long: ! "%e %B %Y"
     month_names:
       - ~
       - janvier
@@ -54,6 +54,8 @@ fr:
       - :month
       - :year
   datetime:
+    formats:
+      default: ! "%d/%m/%Y %H:%M"
     distance_in_words:
       about_x_hours:
         one:   "environ une heure"
@@ -200,9 +202,9 @@ fr:
   time:
     am: 'am'
     formats:
-      default: "%d %B %Y %H:%M:%S"
-      long: "%A %d %B %Y %H:%M"
-      short: "%d %b %H:%M"
+      default: ! "%d/%m/%Y %H:%M" #"%d %B %Y %H:%M:%S"
+      long: ! "%A %d %B %Y %H:%M"
+      short: ! "%d %b %H:%M"
       at_short: ! "à %Hh%M"
       very_short: ! "%Hh%M"
     pm: 'pm'

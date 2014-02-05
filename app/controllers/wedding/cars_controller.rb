@@ -37,7 +37,19 @@ module Wedding
     private
       # Never trust parameters from the scary internet, only allow the white list through.
       def car_params
-        params.require(:wedding_car).permit! # TODO: add whitelist to check parameters.
+        sanitized = params.require(:wedding_car).permit(:category, :available_seats, :from, :to, :departure_time, driver_attributes: [:first_name, :family_name, :email, :phone])
+        try_parse_datetime(sanitized, :departure_time)
+      end
+
+      def try_parse_datetime(params, key)
+        if !params.blank? && params.has_key?(key) && !params[key].blank?
+          begin
+            params[key] = DateTime::strptime(params[key], t('datetime.formats.default'))
+          rescue ArgumentError
+            logger.warn("Failed to parse #{key} '#{params[key]}' using format '#{t('datetime.formats.default')}'.")
+          end
+        end
+        params
       end
   end
 end

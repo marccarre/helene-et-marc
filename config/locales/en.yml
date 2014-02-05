@@ -52,7 +52,7 @@ en:
     - Friday
     - Saturday
     formats:
-      default: ! "%d-%m-%Y"
+      default: ! "%d/%m/%Y"
       on_the_long: ! "on %A %d %B, %Y:"
       long: ! "%d %B, %Y"
       short: ! "%d %b"
@@ -75,6 +75,8 @@ en:
     - :month
     - :year
   datetime:
+    formats:
+      default: ! "%m/%d/%Y %l:%M %p"
     distance_in_words:
       about_x_hours:
         one: about 1 hour
@@ -216,7 +218,7 @@ en:
   time:
     am: am
     formats:
-      default: ! "%a, %d %b %Y %H:%M:%S %z"
+      default: ! "%m/%d/%Y %l:%M %p" #"%a, %d %b %Y %H:%M:%S %z"
       long: ! "%d %B, %Y %H:%M"
       short: ! "%d %b %H:%M"
       at_short: ! "at %H:%M"
