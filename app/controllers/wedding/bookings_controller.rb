@@ -5,7 +5,7 @@ module Wedding
     end
 
     def show
-      @booking = Booking.includes(:guests).includes(:events).includes(:address).find(params[:id])
+      @booking = Booking.includes(:guests).includes(:events).find(params[:id])
     end
 
     def new
