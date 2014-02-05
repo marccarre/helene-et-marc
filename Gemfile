@@ -48,7 +48,11 @@ gem 'jquery-rails', '>= 3.1.0'    # Provides jQuery 1.10.2, the jQuery UJS adapt
 gem 'jquery-ui-rails', '>= 4.1.1' # Provides jQuery UI 1.10.0 assets (JavaScripts, stylesheets, and images)
 
 # Use Twitter Bootstrap as additional JavaScript library
-# gem 'bootstrap-sass', '>=3.1.0.1'
+gem 'bootstrap-sass', '>=3.1.0.1'
+
+# Use momentJS as additional JavaScript library -- for time, date, datetime, etc.
+gem 'momentjs-rails', '>= 2.5.1'
+gem 'bootstrap3-datetimepicker-rails', '>= 2.1.30'
 
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'

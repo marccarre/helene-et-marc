@@ -15,6 +15,16 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require jquery_nested_form
+
+//= require bootstrap
+
+//= require moment
+//= require bootstrap-datetimepicker
+//= require moment/en-gb
+//= require moment/fr
+//= require locales/bootstrap-datetimepicker.en-gb
+//= require locales/bootstrap-datetimepicker.fr
+
 //= require_tree .
 
 $(document).ready(function() {
