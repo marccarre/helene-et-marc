@@ -69,6 +69,16 @@ module ApplicationHelper
     end 
   end
 
+  def tbs3_inline_datetime_field(f, field, name, options={})
+    options[:class] = [options[:class], 'form-control'].compact.join(' ')
+    options[:placeholder] = name
+
+    content_tag(:div, class: 'form-group') do
+      f.label(field, name, class: 'sr-only') +
+      f.datetime_field(field, options)
+    end 
+  end
+
   def tbs3_inline_email_field(f, field, name, options={})
     options[:class] = [options[:class], 'form-control'].compact.join(' ')
     options[:placeholder] = name
