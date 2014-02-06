@@ -1,7 +1,4 @@
-<%= content_tag(:tr, id: "car-#{car.id}-passenger-#{passenger.id}") do %>
-  <td colspan='3'></td>
-  <td><%= "Passenger \##{i+1}" %></td>
-  <td><%= "#{passenger.first_name} #{passenger.family_name}" %></td>
-  <td><%= phone_to(passenger.phone) + mail_to_or_default(passenger.email, default: '', prefix: ' / ') %></td>
-  <td class='hidden'></td>
+<%= content_tag(:li, id: "car-#{car.id}-passenger-#{passenger.id}") do %>
+  <%= "#{passenger.first_name} #{passenger.family_name}" %>
+  (<%= phone_to(passenger.phone) + mail_to_or_default(passenger.email, default: '', prefix: ' / ') %>)
 <% end %>

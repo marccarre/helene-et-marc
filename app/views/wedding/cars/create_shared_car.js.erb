@@ -1,10 +1,17 @@
 // Remove potential errors from previous faulty submission:
-var id = '#car-errors';
-$(id).empty();
-$(id).removeClass('visible').addClass('hidden');
+$('#car-errors')
+  .empty()
+  .removeClass('visible')
+  .addClass('hidden');
 
 // Submission for shared car succeeded:
 $('#no-shared-car').removeClass('visible').addClass('hidden');
 $('#shared-cars').removeClass('hidden').addClass('visible');
-$('<%= escape_javascript(render "wedding/cars/shared_car", car: @car) %>').appendTo('#table-shared-cars > tbody');
+
+// Add new shared car to the DOM:
+$("<%= escape_javascript(render 'wedding/cars/shared_car', car: @car) %>")
+  .find('.td-collapsible').removeClass('hidden')
+  .find('.collapsible').addClass('collapse')
+  .appendTo('#table-shared-cars > tbody');
+
 $('#table-shared-cars > tbody > tr#<%= dom_id(@car) %>').effect('highlight');

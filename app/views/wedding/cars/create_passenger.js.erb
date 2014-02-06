@@ -1,9 +1,18 @@
-// Submission for shared car succeeded:
-$('#no-shared-car').removeClass('visible').addClass('hidden');
-$('#shared-cars').removeClass('hidden').addClass('visible');
-$('<%= escape_javascript(render "wedding/cars/shared_car", car: @car) %>').appendTo('#table-shared-cars > tbody');
-$('#table-shared-cars > tbody > tr#<%= dom_id(@car) %>').effect('highlight');
+// Submission for passenger succeeded:
 
 // Remove potential errors from previous faulty submission:
-$('#error_explanation').empty();
-$('#error_explanation').removeClass('visible').addClass('hidden');
+$('#<%= "car-#{passenger.car.id}-errors" %>')
+  .empty()
+  .removeClass('visible')
+  .addClass('hidden');
+
+// Show list of passengers if hidden:
+$('#<%= "car-#{passenger.car.id}-passengers" %>').removeClass('hidden').addClass('visible');
+
+// Add new passenger to the list:
+$('<%= escape_javascript(render "wedding/cars/passenger", car: passenger.car, passenger: passenger) %>')
+  .appendTo('#<%= "car-#{passenger.car.id}-passengers-list" %>')
+  .effect('highlight');
+
+// Hide form if car is full:
+// TODO

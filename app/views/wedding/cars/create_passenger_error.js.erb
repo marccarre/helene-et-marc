@@ -1,9 +1,29 @@
-<% if @passenger.errors.any? %>
-  var id = <%= "car-#{car.id}-errors" %>;
-  $(id).empty();
-  $('<%= escape_javascript(render "wedding/cars/form_passenger_errors") %>').appendTo(id);
-  $(id).removeClass('hidden').addClass('visible');
-  // $('#form-cars').effect('highlight', { color: 'red' });
+<% if passenger.errors.any? %>
+  // Render list of errors in #car-#{passenger.car.id}-errors div:
+  var id = $('#<%= "car-#{passenger.car.id}-errors" %>');
+  id.empty();
+  $("<%= escape_javascript(error_messages_for(passenger, t('carpooling.passenger'))) %>").appendTo(id);
+  id.removeClass('hidden').addClass('visible'); //.effect('highlight', { color: 'red' });
+
+
+  // Highlight erroneous input / select fields:
+  var error_fields = <%= raw passenger.errors.keys.map { |field| field.to_s.split('.') }.as_json %>;
+
+  var form_id = '<%= "form-car-#{passenger.car.id}" %>';
+  $('#'+form_id+' :input, '+form_id+' select').each(function() {
+    // Systematically remove wrapping inside error div:
+    if ($(this).parent().is('div.has-error')) {
+      $(this).unwrap();
+    }
+
+    // Wrap erroneous field inside a div with class 'has-error' to highlight it:
+    var name = $(this).attr('name');
+    if (name && is_error_field(name, error_fields)) {
+      $(this).wrap("<div class='has-error'></div>");
+      // $(this).effect('highlight', { color: 'red' });
+    }
+  });
+
 <% else %> 
   alert('Failed to add passenger. \nError lors de l\'ajout du passager.')
 <% end %>

@@ -1,30 +1,37 @@
 <% remaining_seats = car.remaining_seats %>
 <% car_details_id = "car-#{car.id}-details" %>
 
-<tbody>
-  <%= content_tag(:tr, id: "car-#{car.id}") do %>
-    <td><b><%= car.from %></b></td>
-    <td><b><%= car.to %></b></td>
-    <td><%= car.departure_time %></td>
-    <td><%= (remaining_seats > 0) ? remaining_seats : t('carpooling.table.full') %></td>
+<%= content_tag(:tr, id: "car-#{car.id}") do %>
+  <td><b><%= car.from %></b></td>
+  <td><b><%= car.to %></b></td>
+  <td><%= car.departure_time %></td>
+  <td><%= (remaining_seats > 0) ? remaining_seats : t('carpooling.table.full') %></td>
 
-    <% driver = car.driver %>
-    <td><%= "#{driver.first_name} #{driver.family_name}" %></td>
-    <td><%= phone_to(driver.phone) + mail_to_or_default(driver.email, default: '', prefix: ' / ') %></td>
-    <td class='hidden'><a href='#<%= car_details_id %>' data-toggle='collapse'></a></td>
-  <% end %>
-</tbody>
+  <% driver = car.driver %>
+  <td><%= "#{driver.first_name} #{driver.family_name}" %></td>
+  <td><%= phone_to(driver.phone) + mail_to_or_default(driver.email, default: '', prefix: ' / ') %></td>
+  <td class="td-collapsible hidden">
+    <a href="#<%= car_details_id %>" data-toggle="collapse">
+      <button type='button' class='btn btn-link btn-collapsible'><span class='glyphicon glyphicon-plus-sign'></span></button>
+    </a>
+  </td>
+<% end %>
 
+<%= content_tag(:tr, id: car_details_id, class: "collapsible text-left car-details") do %>
+  <td colspan="2">&nbsp;</td>
+  <td colspan="5">
 
-<tbody class='collapsible' id='<%= car_details_id %>'>
-  <% car.passengers.select{ |passenger| passenger.is_passenger? }.each_with_index do |passenger, i| %>
-    <%= render 'wedding/cars/passenger', car: car, passenger: passenger, i: i %>
-  <% end %>
+    <%= content_tag(:div, id: "car-#{car.id}-passengers", class: (car.passengers.count > 0) ? "visible" : "hidden") do %>
+      <b>Passengers:</b>
+      <%= content_tag(:ol, id: "car-#{car.id}-passengers-list") do %>
+        <% car.passengers.select{ |passenger| passenger.is_passenger? }.each do |passenger| %>
+          <%= render 'wedding/cars/passenger', car: car, passenger: passenger %>
+        <% end %>
+      <% end %>
+    <% end %>
 
-
-  <% passenger = instance_variable_get("@passenger_#{car.id}") %>
-  <%= content_tag(:tr, id: "car-#{car.id}-form", class: (remaining_seats > 0) ? 'visible' : 'hidden') do %>
-    <td colspan='7'>
+    <% passenger = instance_variable_get("@passenger_#{car.id}") %>
+    <%= content_tag(:div, id: "car-#{car.id}-form", class: (remaining_seats > 0) ? "visible" : "hidden") do %>
       <%= form_for([car, passenger], url: wedding_car_passengers_path(car), remote: true, authenticity_token: true, html: {id: "form-car-#{car.id}", 'role' => 'form'}) do |f| %>
         <%= errors_for(passenger, t('carpooling.passenger'), id: "car-#{car.id}-errors") %>
         <div class='form-group form-inline'>
@@ -37,12 +44,12 @@
           <%= tbs3_inline_submit(f, t('carpooling.submit'), id: "btn-add-passenger-to-car-#{car.id}", class: 'btn-sm') %>
         </div>
       <% end %>
-    </td>
-  <% end %>
+    <% end %>
 
+  </td>
+<% end %>
 
-  <%= content_tag(:tr, id: "car-#{car.id}-spacer", class: (remaining_seats > 0) ? 'hidden' : 'visible') do %>
-    <td colspan='7'>&nbsp;</td>
-  <% end %>
-
-</tbody>
+<!-- Add invisible line to keep alternating colors between rows in the table -->
+<%= content_tag(:tr, class: "hidden") do %>
+  <td colspan="7">&nbsp;</td>
+<% end %>

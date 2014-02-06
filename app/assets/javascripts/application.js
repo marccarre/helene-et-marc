@@ -27,6 +27,24 @@
 
 //= require_tree .
 
+// Highlight error fields:
+function is_error_field(name, error_fields) {
+  for (var i=0; i < error_fields.length; i++) {
+    if (error_fields[i].length == 1) { 
+      var re = new RegExp("\\w+\\["+error_fields[i][0]+"\\]"); // e.g. : ["departure_time"] to match with "wedding_car[departure_time]"
+      if (name.match(re)) {
+        return true;
+      }
+    } else if (error_fields[i].length == 2) { 
+      var re = new RegExp("\\w+\\["+error_fields[i][0]+"_attributes\\]\\["+error_fields[i][1]+"\\]"); // e.g. : ["driver", "first_name"] to match with "wedding_car[driver_attributes][first_name]"
+      if (name.match(re)) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
 $(document).ready(function() {
   // Progressively enhance 'collapsible' UI elements.
 
