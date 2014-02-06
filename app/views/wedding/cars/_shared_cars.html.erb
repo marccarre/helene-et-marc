@@ -19,7 +19,7 @@
       </tr>
     </thead>
     
-    <% @shared_cars.each do |car| %>
+    <% @shared_cars.sort_by { |car| [car.from, car.departure_time, car.to] }.each do |car| %>
       <%= render 'wedding/cars/shared_car', car: car %>
     <% end %>
 

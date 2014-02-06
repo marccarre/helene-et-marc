@@ -14,7 +14,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @requested_cars.each do |car| %>
+      <% @requested_cars.sort_by { |car| [car.from, car.departure_time, car.to] }.each do |car| %>
         <%= render "wedding/cars/requested_car", car: car %>
       <% end %>
     </tbody>
