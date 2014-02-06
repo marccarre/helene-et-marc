@@ -29,14 +29,17 @@
 
 $(document).ready(function() {
   // Progressively enhance 'collapsible' UI elements.
-  $('div.collapsible').addClass('collapse');
-  $('tbody.collapsible').addClass('collapse');
 
+  // Collapsibles are initially collapsed:
+  $('.collapsible').addClass('collapse');
+
+  // Create toggle buttons in data-toggle links, and initialized as collapsed:
   $("a[data-toggle='collapse']")
     .data('collapsed', true)
-    .html("<button type='button' class='btn btn-link' style='border: 0px; padding: 0px;'><span class='glyphicon glyphicon-plus-sign'></span></button>");
+    .html("<button type='button' class='btn btn-link btn-collapsible'><span class='glyphicon glyphicon-plus-sign'></span></button>");
 
-  $("a[data-toggle='collapse']").click(function() {
+  // On click: change look of toggle and state (collapsed set to true/false):
+  $("a[data-toggle='collapse']").click(function(e) {
     if ($(this).data('collapsed')) {
       $(this)
         .data('collapsed', false)
@@ -51,5 +54,4 @@ $(document).ready(function() {
         .addClass('glyphicon-plus-sign');
     }
   });
-
 });
