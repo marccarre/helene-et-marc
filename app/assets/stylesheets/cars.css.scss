@@ -1,6 +1,10 @@
 // Place all the styles related to the Cars controller here.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-form#form-car .form-group {
+form#form-cars .form-group {
   padding-bottom: 4px;
+}
+
+.table-bordered > tbody > tr.car-details > td {
+  border: 0px;
 }

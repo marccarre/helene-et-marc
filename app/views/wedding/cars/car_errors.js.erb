@@ -27,7 +27,7 @@
 
   var error_fields = <%= raw @car.errors.keys.map { |field| field.to_s.split('.') }.as_json %>;
 
-  $('#form-car :input, #form-car select').each(function() {
+  $('#form-cars :input, #form-cars select').each(function() {
     // Systematically remove wrapping inside error div:
     if ($(this).parent().is('div.has-error')) {
       $(this).unwrap();
