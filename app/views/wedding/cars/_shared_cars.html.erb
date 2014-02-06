@@ -6,7 +6,7 @@
 
 <%= content_tag('div', id: 'shared-cars', class: (num_shared_cars == 0) ? 'hidden' : 'visible') do %>
   <h4><%= t('carpooling.available_cars') %></h4>
-  <table id='table-shared-cars' class='table table-striped table-condensed table-bordered text-center'>
+  <table id="table-shared-cars" class="table table-striped table-condensed table-bordered text-center">
     <thead>
       <tr>
         <th><%= t('carpooling.table.from') %></th>
@@ -15,7 +15,7 @@
         <th><%= t('carpooling.table.available_seats') %></th>
         <th><%= t('carpooling.table.driver') %></th>
         <th><%= t('carpooling.table.contact') %></th>
-        <th class='hidden'><%= t('carpooling.table.details_and_join') %></th>
+        <th class="hidden"><%= t('carpooling.table.details_and_join') %></th>
       </tr>
     </thead>
     
