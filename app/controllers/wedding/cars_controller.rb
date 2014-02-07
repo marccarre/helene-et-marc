@@ -24,6 +24,7 @@ module Wedding
           }
           format.html { redirect_to wedding_cars_url, status: :created, notice: 'Car was successfully added.' }
         else
+          improve_error_message_if_invalid_datetime_format
           logger.info("Failed to save car: #{@car}. #{acceptable_formats}")
           format.js   { render 'wedding/cars/car_errors', status: :unprocessable_entity }
           format.html { 
@@ -47,9 +48,21 @@ module Wedding
             params[key] = DateTime::strptime(params[key], t('datetime.formats.default'))
           rescue ArgumentError
             logger.warn("Failed to parse #{key} '#{params[key]}' using format '#{t('datetime.formats.default')}'.")
+            params.delete(key)
+            @parsing_error = t('errors.messages.invalid_date_format')
           end
         end
         params
+      end
+
+      def improve_error_message_if_invalid_datetime_format
+        if !@parsing_error.blank?
+          before = @car.errors.get(:departure_time).as_json
+          @car.errors.delete(:departure_time)
+          @car.errors.add(:departure_time, @parsing_error)
+          after = @car.errors.get(:departure_time).as_json
+          logger.info("Changed error message from #{before} to #{after}, in order to be more explicit.")
+        end
       end
   end
 end
