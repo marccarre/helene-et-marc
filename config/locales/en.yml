@@ -279,10 +279,14 @@ en:
     save_the_date: "Save the date: June 28th, 2014!"
     photographer: "Photographer: "
   program:
-    instructions: "Add the program to your calendar: "
+    instructions: "Add the program to your calendar!"
     instructions_details: "(Once downloaded, import the file under GMail, Outlook, or any other software with ics files support.)"
     calendar_file: "helene_and_marc_s_wedding.ics"
     map: "Map"
+    no_car: "No car? "
+    no_car_solution: "Find one in the carpooling section!"
+    spare_seats: "Spare seats? "
+    spare_seats_solution: "Share you car and make them available to others!"
   rsvp:
     guest_list: "Who?"
     first_name: "First name"
