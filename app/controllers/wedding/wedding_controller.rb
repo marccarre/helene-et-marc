@@ -16,6 +16,13 @@ module Wedding
       render "wedding/program"
     end
 
+    def calendar
+      send_file("#{Rails.root}/app/assets/files/#{t('program.calendar_file')}",
+              filename: t('program.calendar_file'),
+              type: 'text/calendar',
+              disposition: 'attachment')
+    end
+
     def transports
       render "wedding/transports"
     end

@@ -21,9 +21,9 @@
             <ul class="nav navbar-nav">
               <% prefix = params.has_key?(:locale) ? '/'+params[:locale] : '' %>
               <li class="<%= 'active' if current_page?(prefix+wedding_story_path) %>"><%= link_to t('menu.story'), wedding_story_path %></li>
-              <!--<li class="<%= 'active' if current_page?(prefix+wedding_photos_path) %>"><%= link_to t('menu.photos'), wedding_photos_path %></li>-->
               <li class="<%= 'active' if current_page?(prefix+wedding_program_path) %>"><%= link_to t('menu.program'), wedding_program_path %></li>
               <li class="bold <%= 'active' if current_page?(prefix+wedding_rsvp_path) %>"><%= link_to t('menu.rsvp'), wedding_rsvp_path, "data-no-turbolink" => true %></li>
+              <!--<li class="<%= 'active' if current_page?(prefix+wedding_photos_path) %>"><%= link_to t('menu.photos'), wedding_photos_path %></li>-->
               <li class="<%= 'active' if current_page?(prefix+wedding_transports_path) %>"><%= link_to t('menu.transports'), wedding_transports_path %></li>
               <li class="<%= 'active' if current_page?(prefix+wedding_stay_path) %>"><%= link_to t('menu.stay'), wedding_stay_path %></li>
               <li class="<%= 'active' if current_page?(prefix+wedding_area_path) %>"><%= link_to t('menu.area'), wedding_area_path %></li>

@@ -10,6 +10,7 @@ HeleneEtMarc::Application.routes.draw do
       get "story", to: "wedding#story"
       get "photos", to: "wedding#photos"
       get "program", to: "wedding#program"
+      get "calendar", to: "wedding#calendar"
       get "rsvp", to: "bookings#new"
 
       get "transports", to: "wedding#transports"

@@ -1,6 +1,6 @@
 <ul>
   <% Wedding::Event.all.group_by { |event| event.beginning.to_date }.each do |day, events| %>
-    <li class="wedding-event-day">
+    <li>
       <%= l(day, format: :on_the_long) %><br />
       <% events.each do |event| %>
       <ul>

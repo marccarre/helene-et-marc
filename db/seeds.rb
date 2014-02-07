@@ -13,7 +13,7 @@ events = [
   { locale_entry: "rsvp.event.religious_ceremony", beginning: DateTime.new(2014, 6, 28, 14, 00, 0), end: DateTime.new(2014, 6, 28, 15, 30, 0) },
   { locale_entry: "rsvp.event.cocktail",           beginning: DateTime.new(2014, 6, 28, 17, 30, 0), end: DateTime.new(2014, 6, 28, 19, 30, 0) },
   { locale_entry: "rsvp.event.dinner",             beginning: DateTime.new(2014, 6, 28, 20, 00, 0), end: DateTime.new(2014, 6, 29, 03, 00, 0) },
-  { locale_entry: "rsvp.event.retour",             beginning: DateTime.new(2014, 6, 29, 11, 00, 0), end: DateTime.new(2014, 6, 29, 16, 00, 0) }
+  { locale_entry: "rsvp.event.retour",             beginning: DateTime.new(2014, 6, 29, 11, 00, 0), end: DateTime.new(2014, 6, 29, 15, 00, 0) }
 ]
 
 events.each do |event|

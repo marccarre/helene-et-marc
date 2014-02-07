@@ -1,0 +1,18 @@
+<ul>
+  <% Wedding::Event.all.group_by { |event| event.beginning.to_date }.each do |day, events| %>
+    <li>
+      <%= l(day, format: :long).titleize %><br />
+      <% events.each do |event| %>
+      <ul>
+        <li>
+          <b><%= t(event.locale_entry + ".name").titleize %></b><br />
+          <%= glyphicon('glyphicon-time', ' ' + (l(event.beginning, format: :from_very_short) + ' ' + l(event.end, format: :to_very_short)).capitalize ) %><br />
+          <%= glyphicon('glyphicon-envelope', ' ' + t(event.locale_entry + ".venue") + ' - ' + t(event.locale_entry + ".address") + ', ' + t(event.locale_entry + ".postcode") + ' ' + t(event.locale_entry + ".city")) %><br />
+          <%= glyphicon('glyphicon-map-marker', ' '.html_safe + link_to(t('program.map'), t(event.locale_entry + ".map"), target: '_blank')) %><br />
+          &nbsp;
+        </li>
+      </ul>
+      <% end %>    
+    </li>
+  <% end %>
+</ul>

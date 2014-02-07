@@ -34,7 +34,7 @@ fr:
       default: ! "%d/%m/%Y"
       on_the_long: ! "le %A %e %B %Y :"
       short: ! "%e %b"
-      long: ! "%e %B %Y"
+      long: ! "%A %e %B %Y"
     month_names:
       - ~
       - janvier
@@ -207,6 +207,8 @@ fr:
       short: ! "%d %b %H:%M"
       at_short: ! "à %Hh%M"
       very_short: ! "%Hh%M"
+      from_very_short: ! "de %Hh%M"
+      to_very_short: ! "à %Hh%M"
     pm: 'pm'
   # remove these aliases after 'activemodel' and 'activerecord' namespaces are removed from Rails repository
   activemodel:
@@ -260,6 +262,11 @@ fr:
   home:
     save_the_date: "Retenez votre 28 juin 2014 !"
     photographer: "Photographe : "
+  program:
+    instructions: "Ajouter le programme à votre calendrier : "
+    instructions_details: "(Une fois téléchargé, importer le fichier sous Gmail, Outlook, ou tout autre logiciel supportant les fichiers ics.)"
+    calendar_file: "mariage_d_helene_et_marc.ics"
+    map: "Carte"
   rsvp:
     guest_list: "Qui ?"
     first_name: "Prénom"
@@ -293,18 +300,48 @@ fr:
       civil_ceremony: 
         name: "Mariage civil"
         form: "au mariage civil"
+        optional: "true"
+        venue: "Mairie de Rennes"
+        address: "Place de la Mairie"
+        postcode: "35000"
+        city: "Rennes"
+        map: "http://goo.gl/jyRiqT"
       religious_ceremony: 
         name: "Cérémonie de mariage"
         form: "à la cérémonie de mariage"
+        optional: "false"
+        venue: "Chapelle de Saint-Philibert"
+        address: "1 Rue de la Chapelle"
+        postcode: "56470"
+        city: "Saint-Philibert"
+        map: "http://goo.gl/uzfYWk"
       cocktail: 
         name: "Cocktail"
         form: "au cocktail"
+        optional: "false"
+        venue: "Manoir de Kercadio"
+        address: "Kercadio"
+        postcode: "56410"
+        city: "Erdeven"
+        map: "http://goo.gl/x605Kp"
       dinner: 
         name: "Dîner"
         form: "au diner (selon ce qui est inscrit dans mon invitation)"
+        optional: "false"
+        venue: "Manoir de Kercadio"
+        address: "Kercadio"
+        postcode: "56410"
+        city: "Erdeven"
+        map: "http://goo.gl/x605Kp"
       retour: 
         name: "Retour de noces"
         form: "au retour de noces"
+        optional: "false"
+        venue: "Manoir de Kercadio"
+        address: "Kercadio"
+        postcode: "56410"
+        city: "Erdeven"
+        map: "http://goo.gl/x605Kp"
   rsvp_mailer:
     rsvp_submitted:
       subject: "Hélène & Marc - Confirmation de présence"
