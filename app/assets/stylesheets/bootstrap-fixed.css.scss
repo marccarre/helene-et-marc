@@ -9,7 +9,9 @@
 
 $first-color: #f98972;
 $second-color: #bab7af;
-
+$navbar-font-size-brand: 22px;
+$navbar-font-size: $navbar-font-size-brand - 4px;
+$navbar-height: $navbar-font-size-brand + 1px;
 
 @import url("//fonts.googleapis.com/css?family=Josefin+Sans:300,400,700");
 /*!
@@ -3760,9 +3762,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-brand {
   float: left;
   padding: 11px 15px;
-  font-size: 17px;
-  line-height: 18px;
-  height: 18px;
+  font-size: $navbar-font-size-brand;
+  line-height: $navbar-height;
+  height: $navbar-height;
 }
 .navbar-brand:hover,
 .navbar-brand:focus {
@@ -3809,7 +3811,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-nav > li > a {
   padding-top: 10px;
   padding-bottom: 10px;
-  line-height: 18px;
+  font-size: $navbar-font-size;
+  line-height: $navbar-height;
 }
 @media (max-width: 767px) {
   .navbar-nav .open .dropdown-menu {
@@ -3826,7 +3829,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     padding: 5px 15px 5px 25px;
   }
   .navbar-nav .open .dropdown-menu > li > a {
-    line-height: 18px;
+    line-height: $navbar-height;
   }
   .navbar-nav .open .dropdown-menu > li > a:hover,
   .navbar-nav .open .dropdown-menu > li > a:focus {

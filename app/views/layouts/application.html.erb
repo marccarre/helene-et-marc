@@ -2,10 +2,23 @@
 <html>
   <head>
     <title>H&eacute;l&egrave;ne &amp; Marc</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="homepage, wedding, marc, helene, rsvp, helene-et-marc">
+    <meta name="author" content="Marc Carré">
+
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
     <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
     <%= csrf_meta_tags %>
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
   </head>
   <body>
     <!-- Wrap all page content here -->
@@ -15,6 +28,12 @@
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
           <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
             <%= link_to "Hélène & Marc", wedding_path, class: "navbar-brand" %>
           </div>
           <div class="navbar-collapse collapse">
@@ -24,9 +43,9 @@
               <li class="<%= 'active' if current_page?(prefix+wedding_program_path) %>"><%= link_to t('menu.program'), wedding_program_path %></li>
               <li class="bold <%= 'active' if current_page?(prefix+wedding_rsvp_path) %>"><%= link_to t('menu.rsvp'), wedding_rsvp_path, "data-no-turbolink" => true %></li>
               <!--<li class="<%= 'active' if current_page?(prefix+wedding_photos_path) %>"><%= link_to t('menu.photos'), wedding_photos_path %></li>-->
-              <li class="<%= 'active' if current_page?(prefix+wedding_transports_path) %>"><%= link_to t('menu.transports'), wedding_transports_path %></li>
-              <li class="<%= 'active' if current_page?(prefix+wedding_stay_path) %>"><%= link_to t('menu.stay'), wedding_stay_path %></li>
-              <li class="<%= 'active' if current_page?(prefix+wedding_area_path) %>"><%= link_to t('menu.area'), wedding_area_path %></li>
+              <li class="<%= 'active' if current_page?(prefix+wedding_transports_path) %>"><%= link_to t('menu.transports'), wedding_transports_path, 'data-no-turbolink' => true %></li>
+              <!-- <li class="<%= 'active' if current_page?(prefix+wedding_stay_path) %>"><%= link_to t('menu.stay'), wedding_stay_path %></li>
+              <li class="<%= 'active' if current_page?(prefix+wedding_area_path) %>"><%= link_to t('menu.area'), wedding_area_path %></li> -->
               <li class="<%= 'active' if current_page?(prefix+wedding_gifts_path) %>"><%= link_to t('menu.gifts'), wedding_gifts_path %></li>
               <li class="<%= 'active' if current_page?(prefix+wedding_contact_path) %>"><%= link_to t('menu.contact'), wedding_contact_path %></li>
             </ul>
