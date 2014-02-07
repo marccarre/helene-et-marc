@@ -14,5 +14,11 @@ $('<%= escape_javascript(render "wedding/cars/passenger", car: passenger.car, pa
   .appendTo('#<%= "car-#{passenger.car.id}-passengers-list" %>')
   .effect('highlight');
 
+// Refresh remaining seats count:
+<% remaining_seats = passenger.car.remaining_seats %>
+$('#<%= "car-#{passenger.car.id}-remaining-seats" %>').text("<%= (remaining_seats > 0) ? remaining_seats : t('carpooling.table.full') %>");
+
 // Hide form if car is full:
-// TODO
+$('#<%= "car-#{passenger.car.id}-form" %>')
+  .removeClass('<%= (remaining_seats > 0) ? "hidden" : "visible" %>')
+  .addClass('<%= (remaining_seats > 0) ? "visible" : "hidden" %>');

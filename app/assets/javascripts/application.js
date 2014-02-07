@@ -45,6 +45,23 @@ function is_error_field(name, error_fields) {
   return false;
 }
 
+// Toggle button for collapsibles:
+function toggle_button(self, e) {
+  if (self.data('collapsed')) {
+    self
+      .data('collapsed', false)
+      .find('button > span')
+      .removeClass('glyphicon-plus-sign')
+      .addClass('glyphicon-minus-sign');
+  } else {
+    self
+      .data('collapsed', true)
+      .find('button > span')
+      .removeClass('glyphicon-minus-sign')
+      .addClass('glyphicon-plus-sign');
+  }
+}
+
 $(document).ready(function() {
   // Progressively enhance 'collapsible' UI elements.
 
@@ -57,19 +74,7 @@ $(document).ready(function() {
     .html("<button type='button' class='btn btn-link btn-collapsible'><span class='glyphicon glyphicon-plus-sign'></span></button>");
 
   // On click: change look of toggle and state (collapsed set to true/false):
-  $("a[data-toggle='collapse']").click(function(e) {
-    if ($(this).data('collapsed')) {
-      $(this)
-        .data('collapsed', false)
-        .find('button > span')
-        .removeClass('glyphicon-plus-sign')
-        .addClass('glyphicon-minus-sign');
-    } else {
-      $(this)
-        .data('collapsed', true)
-        .find('button > span')
-        .removeClass('glyphicon-minus-sign')
-        .addClass('glyphicon-plus-sign');
-    }
+  $("a[data-toggle='collapse']").click(function(e) { 
+    toggle_button($(this), e);
   });
 });

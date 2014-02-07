@@ -4,17 +4,17 @@
 <%= content_tag(:tr, id: "car-#{car.id}") do %>
   <td><b><%= car.from %></b></td>
   <td><b><%= car.to %></b></td>
-  <td><%= car.departure_time %></td>
-  <td><%= (remaining_seats > 0) ? remaining_seats : t('carpooling.table.full') %></td>
+  <td><%= l(car.departure_time, format: :default) %></td>
+  <%= content_tag(:td, id: "car-#{car.id}-remaining-seats") do %>
+    <%= (remaining_seats > 0) ? remaining_seats : t('carpooling.table.full') %>
+  <% end %>
 
   <% driver = car.driver %>
   <td><%= "#{driver.first_name} #{driver.family_name}" %></td>
   <td><%= phone_to(driver.phone) + mail_to_or_default(driver.email, default: '', prefix: ' / ') %></td>
-  <td class="td-collapsible hidden">
-    <a href="#<%= car_details_id %>" data-toggle="collapse">
-      <button type='button' class='btn btn-link btn-collapsible'><span class='glyphicon glyphicon-plus-sign'></span></button>
-    </a>
-  </td>
+  <%= content_tag(:td, id: "car-#{car.id}-td-btn-toggle", class: 'hidden') do %>
+    <%= link_to '', "##{car_details_id}", id: "car-#{car.id}-btn-toggle", 'data-toggle' => 'collapse' %>
+  <% end %>
 <% end %>
 
 <%= content_tag(:tr, id: car_details_id, class: "collapsible text-left car-details") do %>

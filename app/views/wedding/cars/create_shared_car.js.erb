@@ -12,7 +12,18 @@ $('#shared-cars').removeClass('hidden').addClass('visible');
 $('table#table-shared-cars > thead > tr > th.hidden').removeClass('hidden').addClass('visible');
 
 // Add new shared car to the DOM:
-var new_shared_car = $("<%= escape_javascript(render 'wedding/cars/shared_car', car: @car) %>");
-new_shared_car.find('.td-collapsible').removeClass('hidden')
-new_shared_car.find('.collapsible').addClass('collapse')
-new_shared_car.appendTo('#table-shared-cars > tbody').effect('highlight');
+$("<%= escape_javascript(render 'wedding/cars/shared_car', car: @car) %>")
+  .appendTo('#table-shared-cars > tbody')
+  .effect('highlight');
+
+// Create toggle buttons in data-toggle links, and initialized as collapsed.
+// On click: change look of toggle and state (collapsed set to true/false):
+$('#<%= "car-#{@car.id}-btn-toggle" %>')
+  .data('collapsed', true)
+  .html("<button type='button' class='btn btn-link btn-collapsible'><span class='glyphicon glyphicon-plus-sign'></span></button>")
+  .click(function(e) { 
+    toggle_button($(this), e);
+  });
+
+$('#<%= "car-#{@car.id}-td-btn-toggle" %>').removeClass('hidden');
+$('#<%= "car-#{@car.id}-details" %>').addClass('collapse');
