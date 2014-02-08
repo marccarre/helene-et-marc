@@ -22,7 +22,7 @@
   <td colspan="5">
 
     <%= content_tag(:div, id: "car-#{car.id}-passengers", class: (car.passengers.count > 0) ? "visible" : "hidden") do %>
-      <b>Passengers:</b>
+      <b><%= t('carpooling.passengers') %></b>
       <%= content_tag(:ol, id: "car-#{car.id}-passengers-list") do %>
         <% car.passengers.select{ |passenger| passenger.is_passenger? }.each do |passenger| %>
           <%= render 'wedding/cars/passenger', car: car, passenger: passenger %>

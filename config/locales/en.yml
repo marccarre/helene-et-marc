@@ -150,6 +150,7 @@ en:
       wrong_length:
         one: is the wrong length (should be 1 character)
         other: is the wrong length (should be %{count} characters)
+      car_is_full: "is full, cannot add any other passenger"
     template:
       body: ! "There were problems with the following fields:"
       header:
@@ -236,6 +237,7 @@ en:
       wedding/car: "Car"
       wedding/car/driver: "Contact"
       wedding/car/passengers: "Passengers"
+      wedding/passenger: "Passenger"
     attributes:
       wedding/car:
         driver: "Contact"
@@ -259,6 +261,13 @@ en:
         phone: "Passenger's phone number"
         category: "Passenger's  category"
         car: "Passenger's car"
+      wedding/passenger:
+        first_name: "First name"
+        family_name: "Family name"
+        email: "Email address"
+        phone: "Phone number"
+        category: "Category"
+        car: "This car"
     errors:
       <<: *errors
   g: # General
@@ -374,6 +383,7 @@ en:
       request: "I need a ride"
     seat: "seat"
     passenger: "passenger"
+    passengers: "Passengers:"
     from: "From"
     to: "To"
     departure_time: "Departure time"

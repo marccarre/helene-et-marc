@@ -134,6 +134,7 @@ fr:
       wrong_length:
         one: "ne fait pas la bonne longueur (doit comporter un seul caractère)"
         other: "ne fait pas la bonne longueur (doit comporter %{count} caractères)"
+      car_is_full: "est complète, impossible de prendre davantage de passagers"
     template: &errors_template
       body: "Veuillez vérifier les champs suivants : "
       header:
@@ -220,6 +221,7 @@ fr:
       wedding/car: "Voiture"
       wedding/car/driver: "Contact"
       wedding/car/passengers: "Passagers"
+      wedding/passenger: "Passager"
     attributes:
       wedding/car:
         driver: "Contact"
@@ -243,6 +245,13 @@ fr:
         phone: "Numéro de téléphone"
         category: "Catégorie"
         car: "Voiture"
+      wedding/passenger:
+        first_name: "Prénom"
+        family_name: "Nom de famille"
+        email: "Addresse email"
+        phone: "Numéro de téléphone"
+        category: "Catégorie"
+        car: "Cette voiture"
     errors:
       <<: *errors
   g: # General
@@ -358,6 +367,7 @@ fr:
       request: "Je recherche une voiture disponible"
     seat: "place"
     passenger: "passager"
+    passengers: "Passagers :"
     from: "Ville de départ"
     to: "Ville d'arrivée"
     departure_time: "Heure de départ"
