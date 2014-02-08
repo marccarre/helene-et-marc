@@ -259,6 +259,7 @@ fr:
     n: "non"
     colon: " :"
     em: " !" # Exclamation mark
+    coming_soon: "En construction..."
   menu: 
     story: "Histoire"
     program: "Déroulement"

@@ -275,6 +275,7 @@ en:
     n: "no"
     colon: ":"
     em: "!" # Exclamation mark
+    coming_soon: "Coming soon..."
   menu: 
     story: "Story"
     program: "Program"
