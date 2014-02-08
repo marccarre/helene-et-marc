@@ -27,3 +27,6 @@ $('#<%= "car-#{@car.id}-btn-toggle" %>')
 
 $('#<%= "car-#{@car.id}-td-btn-toggle" %>').removeClass('hidden');
 $('#<%= "car-#{@car.id}-details" %>').addClass('collapse');
+
+// Empty form to avoid double submission:
+$('#form-cars :input').not('select, :button, :submit, :reset, :hidden').val('');

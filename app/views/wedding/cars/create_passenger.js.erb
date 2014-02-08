@@ -22,3 +22,6 @@ $('#<%= "car-#{passenger.car.id}-remaining-seats" %>').text("<%= (remaining_seat
 $('#<%= "car-#{passenger.car.id}-form" %>')
   .removeClass('<%= (remaining_seats > 0) ? "hidden" : "visible" %>')
   .addClass('<%= (remaining_seats > 0) ? "visible" : "hidden" %>');
+
+// Empty form to avoid double submission:
+$('#<%= "form-car-#{passenger.car.id}" %> :input').not('select, :button, :submit, :reset, :hidden').val('');
