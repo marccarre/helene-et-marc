@@ -22,6 +22,8 @@
 /* -------------------------------------------- Sticky header and footer --- */
 
 $header-height: 46px;
+$header-height-sm-md: 41px;
+$header-space: 4px;
 $footer-height: 40px;
 
 html,
@@ -38,7 +40,12 @@ body {
   padding: 0 0 $footer-height;      // Pad bottom by footer height.
 
   > .container {
-    padding: ($header-height+4px) 15px 0; // Pad top by header height.
+    @media (max-width: 767px) {
+      padding: ($header-height-sm-md + $header-space) 15px 0; // Pad top by header height.
+    }
+    @media (min-width: 768px) {
+      padding: ($header-height + $header-space) 15px 0; // Pad top by header height.
+    }
   }
 }
 
