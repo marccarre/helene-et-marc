@@ -51,7 +51,7 @@ module Wedding
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def passenger_params
-        params.require(:wedding_passenger).permit! # TODO: add whitelist to check parameters.
+        params.require(:wedding_passenger).permit(:car_id, :category, :first_name, :family_name, :email, :phone)
       end
   end
 end
