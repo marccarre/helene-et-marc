@@ -221,7 +221,7 @@ en:
     am: am
     formats:
       default: ! "%m/%d/%Y %l:%M %p" #"%a, %d %b %Y %H:%M:%S %z"
-      long: ! "%d %B, %Y %H:%M"
+      long: ! "%A, %B %dth, %Y, %l:%M %p"
       short: ! "%d %b %H:%M"
       at_short: ! "at %H:%M"
       very_short: ! "%H:%M"
@@ -289,6 +289,9 @@ en:
   home:
     save_the_date: "Save the date: June 28th, 2014!"
     photographer: "Photographer: "
+  story:
+    how_we_met: "How we met"
+    the_proposal: "The proposal"
   program:
     instructions: "Add the program to your calendar!"
     instructions_details: "(Once downloaded, import the file under GMail, Outlook, or any other software with ics files support.)"
@@ -313,6 +316,7 @@ en:
       country: "Country"
       default_country: "United Kingdom"
     attendance: "Will you be attending?"
+    attendance_title: "Attendance"
     y: "Yes, I will be gladly attending."
     n: "No, I regretfully decline."
     i_will_attend: "I will attend:"
@@ -322,17 +326,30 @@ en:
     addAdult: "Adult"
     addChild: "Child"
     menu: 
+      title: "Menu"
       adult: "Adult menu"
       child: "Child menu"
       nothing: "Baby / No meal"
     captcha: "Captcha"
     submit: "Submit"
+    summary: "Summary"
+    coming: "Coming"
+    not_coming: "Not coming"
+    total: "Total"
+    bookings: "Bookings"
+    booking: "Booking"
+    show: "Show"
+    details: "Details"
+    notice: "Please contact us directly, as soon as possible, if you would like to change anything in the booking."
+    date: "Date"
+    time: "Time"
     event:
+      title: "Event"
       civil_ceremony: 
         name: "Civil ceremony"
         form: "the civil ceremony"
         optional: "true"
-        venue: "Rennes City Hall (Mairie de Rennes)"
+        venue: "Rennes' City Hall (Mairie de Rennes)"
         address: "Place de la Mairie"
         postcode: "35000"
         city: "Rennes"

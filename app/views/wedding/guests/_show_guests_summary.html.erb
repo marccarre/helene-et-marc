@@ -1,14 +1,14 @@
 <table class="table table-striped table-condensed table-bordered text-center">
   <thead>
     <tr>
-      <th colspan="<%= Wedding::Guest::MENU.length + 1 %>" class="text-center">Coming</th>
-      <th rowspan="2" class="text-center" style="vertical-align: middle;">Not coming</th>
+      <th colspan="<%= Wedding::Guest::MENU.length + 1 %>" class="text-center"><%= t('rsvp.coming') %></th>
+      <th rowspan="2" class="text-center" style="vertical-align: middle;"><%= t('rsvp.not_coming') %></th>
     </tr>
     <tr>
       <% Wedding::Guest::MENU.keys.each do |menu| %>
         <th class="text-center" style="vertical-align: middle;"><%= t("rsvp.menu."+menu.to_s) %></th>
       <% end %>
-      <th class="text-center" style="vertical-align: middle;">Total</th>
+      <th class="text-center" style="vertical-align: middle;"><%= t('rsvp.total') %></th>
     </tr>
   </thead>
   <tbody>

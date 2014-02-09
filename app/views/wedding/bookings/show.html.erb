@@ -1,26 +1,46 @@
-<p id="notice"><%= notice %></p>
+<% if flash[:notice] %>
+  <div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="alert alert-success" id="notice"><%= notice %></div>
+    </div>
+  </div>
+<% end %>
 
-<p>
-  <strong>Guests:</strong>
-  <%= render "wedding/guests/show_guests_details", guests: @booking.guests %>
-</p>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <div class="alert alert-info">
+      <%= glyphicon('glyphicon-exclamation-sign') %> <%= t("rsvp.notice") %>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>Address:</strong>
-  <div class="wedding-address">
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <h3><%= t("rsvp.guest_list") %></h3>
+    <%= render "wedding/guests/show_guests_details", guests: @booking.guests %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <h3><%= t("rsvp.contact") %></h3>
     <address>
-      <span class="glyphicon glyphicon-earphone"></span> : <%= @booking.phone %><br/>
-      <span class="glyphicon glyphicon-send"></span> : <%= @booking.email.blank? ? "/" : mail_to(@booking.email.downcase, @booking.email.downcase) %>
+      <%= glyphicon('glyphicon-earphone') %> : <%= @booking.phone %><br/>
+      <%= glyphicon('glyphicon-envelope') %> : <%= @booking.email.blank? ? "/" : mail_to(@booking.email.downcase, @booking.email.downcase) %>
     </address>
   </div>
-</p>
+</div>
 
-<p>
-  <strong>Attendance:</strong>
-  <%= render "wedding/events/show_events_table", booked_events: @booking.events %>
-</p>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <h3><%= t("rsvp.attendance_title") %></h3>
+    <%= render "wedding/events/show_events_table", booked_events: @booking.events %>
+  </div>
+</div>
 
-<p>
-  <strong>Comments:</strong><br />
-  <%= @booking.comments %>
-</p>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <h3><%= t("rsvp.comments") %></h3>
+    <%= @booking.comments %>
+  </div>
+</div>

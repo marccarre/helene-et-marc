@@ -3,13 +3,13 @@
   <thead>
     <tr>
       <th>#</th>
-      <th>Booking</th>
-      <th>Family name</th>
-      <th>First name</th>
+      <th><%= t('rsvp.booking') %></th>
+      <th><%= t('rsvp.family_name') %></th>
+      <th><%= t('rsvp.first_name') %></th>
       <% events.each do |event| %>
         <th><%= t(event.locale_entry + ".name") %></th>
       <% end %>
-      <th>Details</th>
+      <th><%= t('rsvp.details') %></th>
     </tr>
   </thead>
   <tbody>
@@ -23,9 +23,9 @@
           <td><%= guest.family_name %></td>
           <td><%= guest.first_name %></td>
           <% events.each do |event| %>
-            <td><%= booking.events.include?(event) ? content_tag(:b, t("g.y").capitalize) : t("g.n").capitalize %></td>
+            <td><%= booking.events.include?(event) ? content_tag(:b, t('g.y').capitalize) : t('g.n').capitalize %></td>
           <% end %>
-          <td><%= link_to 'Show', wedding_booking_path(booking) %></td>
+          <td><%= link_to t('rsvp.show'), wedding_booking_path(booking) %></td>
         </tr>
       <% end %>
     <% end %>

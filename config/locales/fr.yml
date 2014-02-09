@@ -273,6 +273,9 @@ fr:
   home:
     save_the_date: "Retenez votre 28 juin 2014 !"
     photographer: "Photographe : "
+  story:
+    how_we_met: "La rencontre"
+    the_proposal: "La demande en mariage"
   program:
     instructions: "Ajoutez le programme à votre calendrier !"
     instructions_details: "(Une fois téléchargé, importer le fichier sous Gmail, Outlook, ou tout autre logiciel supportant les fichiers ics.)"
@@ -297,6 +300,7 @@ fr:
       country: "Pays"
       default_country: "France"
     attendance: "Pourrez-vous vous joindre à nous ?"
+    attendance_title: "Présence"
     y: "Oui, nous serons heureux de pouvoir être parmi vous."
     n: "Non, nous ne pourrons malheureusement pas être des vôtres."
     i_will_attend: "Je serai présent :"
@@ -306,12 +310,25 @@ fr:
     addAdult: "Adulte"
     addChild: "Enfant"
     menu: 
+      title: "Menu"
       adult: "Menu adulte"
       child: "Menu enfant"
       nothing: "Bébé / Pas de repas"
     captcha: "Anti-spam"
     submit: "Valider"
+    summary: "Sommaire"
+    coming: "Présents"
+    not_coming: "Absents"
+    total: "Total"
+    bookings: "Réservations"
+    booking: "Réservation"
+    show: "Voir"
+    details: "Détails"
+    notice: "Merci de nous contacter directement, et au plus vite, si vous souhaitez changer quoi que ce soit dans votre réservation."
+    date: "Date"
+    time: "Heure"
     event:
+      title: "Evénement"
       civil_ceremony: 
         name: "Mariage civil"
         form: "au mariage civil"
