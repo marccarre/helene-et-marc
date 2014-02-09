@@ -27,6 +27,7 @@
       <!-- Fixed navbar -->
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
         <div class="container">
+          <% prefix = params.has_key?(:locale) ? '/'+params[:locale] : '' %>
           <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
               <span class="sr-only">Toggle navigation</span>
@@ -34,11 +35,11 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <%= link_to "Hélène & Marc", wedding_path, class: "navbar-brand" %>
+            <%= link_to 'Hélène & Marc', wedding_path, class: 'navbar-brand' %>
           </div>
           <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-              <% prefix = params.has_key?(:locale) ? '/'+params[:locale] : '' %>
+              
               <li class="<%= 'active' if current_page?(prefix+wedding_story_path) %>"><%= link_to t('menu.story'), wedding_story_path %></li>
               <li class="<%= 'active' if current_page?(prefix+wedding_program_path) %>"><%= link_to t('menu.program'), wedding_program_path %></li>
               <li class="bold <%= 'active' if current_page?(prefix+wedding_rsvp_path) %>"><%= link_to t('menu.rsvp'), wedding_rsvp_path, "data-no-turbolink" => true %></li>
