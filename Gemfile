@@ -25,7 +25,10 @@ end
 # Use postgresql as the databse for Active Record in production mode
 group :production do
   gem 'pg', '>= 0.17.0'
-  # gem 'rails_12factor', '0.0.2' # Uncomment is Heroku used for hosting (improve static files serving)
+
+  # Deployment to Heroku:
+  gem 'rails_12factor' # Improves static files serving.
+  gem 'unicorn'        # Multi-processed web server, for better scalabity than with Webrick.
 end
 
 
@@ -70,9 +73,6 @@ gem 'http_accept_language', '>= 2.0.1'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the app server
-# gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
