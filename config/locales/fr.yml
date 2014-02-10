@@ -218,11 +218,33 @@ fr:
       <<: *errors
   activerecord:
     models:
+      wedding/booking: "Réservation"
+      wedding/guest: "Invité"
       wedding/car: "Voiture"
       wedding/car/driver: "Contact"
       wedding/car/passengers: "Passagers"
       wedding/passenger: "Passager"
     attributes:
+      wedding/booking: 
+        email: "Adresse email"
+        phone: "Numéro de téléphone"
+        coming: "Présence"
+        comments: "Commentaires & questions"
+      guests: 
+        first_name: "Prénom"
+        family_name: "Nom de famille"
+        category: "Catégorie"
+        menu: "Menu"
+      wedding/guests: 
+        first_name: "Prénom"
+        family_name: "Nom de famille"
+        category: "Catégorie"
+        menu: "Menu"
+      wedding/guest: 
+        first_name: "Prénom"
+        family_name: "Nom de famille"
+        category: "Catégorie"
+        menu: "Menu"
       wedding/car:
         driver: "Contact"
         passengers: "Passagers"
@@ -234,21 +256,21 @@ fr:
       wedding/car/driver:
         first_name: "Prénom"
         family_name: "Nom de famille"
-        email: "Addresse email"
+        email: "Adresse email"
         phone: "Numéro de téléphone"
         category: "Catégorie"
         car: "Voiture"
       wedding/car/passengers:
         first_name: "Prénom"
         family_name: "Nom de famille"
-        email: "Addresse email"
+        email: "Adresse email"
         phone: "Numéro de téléphone"
         category: "Catégorie"
         car: "Voiture"
       wedding/passenger:
         first_name: "Prénom"
         family_name: "Nom de famille"
-        email: "Addresse email"
+        email: "Adresse email"
         phone: "Numéro de téléphone"
         category: "Catégorie"
         car: "Cette voiture"

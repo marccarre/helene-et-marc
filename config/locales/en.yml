@@ -234,11 +234,33 @@ en:
       <<: *errors
   activerecord:
     models:
+      wedding/booking: "Booking"
+      wedding/guest: "Guest"
       wedding/car: "Car"
       wedding/car/driver: "Contact"
       wedding/car/passengers: "Passengers"
       wedding/passenger: "Passenger"
     attributes:
+      wedding/booking: 
+        email: "Email address"
+        phone: "Phone number"
+        coming: "Attendance"
+        comments: "Comments & questions"
+      guests: 
+        first_name: "First name"
+        family_name: "Family name"
+        category: "Category"
+        menu: "Menu"
+      wedding/guests: 
+        first_name: "First name"
+        family_name: "Family name"
+        category: "Category"
+        menu: "Menu"
+      wedding/guest: 
+        first_name: "First name"
+        family_name: "Family name"
+        category: "Category"
+        menu: "Menu"
       wedding/car:
         driver: "Contact"
         passengers: "Passengers"
@@ -248,18 +270,18 @@ en:
         available_seats: "Number of seats"
         category: "Category"
       wedding/car/driver:
-        first_name: "Contact's first name"
-        family_name: "Contact's family name"
-        email: "Contact's email address"
-        phone: "Contact's phone number"
-        category: "Contact's  category"
+        first_name: "First name"
+        family_name: "Family name"
+        email: "Email address"
+        phone: "Phone number"
+        category: "Contact's category"
         car: "Contact's car"
       wedding/car/passengers:
-        first_name: "Passenger's first name"
-        family_name: "Passenger's family name"
-        email: "Passenger's email address"
-        phone: "Passenger's phone number"
-        category: "Passenger's  category"
+        first_name: "First name"
+        family_name: "Family name"
+        email: "Email address"
+        phone: "Phone number"
+        category: "Passenger's category"
         car: "Passenger's car"
       wedding/passenger:
         first_name: "First name"
