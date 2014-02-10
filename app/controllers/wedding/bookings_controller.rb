@@ -23,7 +23,7 @@ module Wedding
         if (@booking.save)
           format.html { redirect_to wedding_booking_url(@booking), notice: 'Booking was successfully created.' }
         else
-          format.html { render action: 'new' }
+          format.html { render action: 'new', status: :unprocessable_entity }
         end
       end
     end

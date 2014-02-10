@@ -1,6 +1,6 @@
 <%= form_for @booking, html: {id: 'form-rsvp', 'role' => 'rsvp'} do |f| %>
 
-  <%= errors_for(@booking, t('rsvp.booking'), id: 'booking-errors') %>
+  <%= errors_for(@booking, t('rsvp.booking').downcase, id: 'booking-errors') %>
   
   <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">

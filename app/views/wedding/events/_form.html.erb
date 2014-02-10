@@ -6,8 +6,8 @@
       <ul>
         <li class="wedding-event"> 
           <div class="checkbox">
-              <% text = t(event.locale_entry + ".form") + ", " + l(event.beginning.to_time.in_time_zone("UTC"), format: :at_short) %>
-              <%= check_box_tag "wedding_booking[event_ids][]", event.id, @booking.events.include?(event), { id: dom_id(event), class: "wedding-event-checkbox", checked: true} %>
+              <% text = t(event.locale_entry + '.form') + ', ' + l(event.beginning.to_time, format: :at_short) %>
+              <%= check_box_tag(name='wedding_booking[event_ids][]', value=event.id, checked=@booking.events.include?(event), id: dom_id(event), class: 'wedding-event-checkbox') %>
               <%= label_tag(dom_id(event), text) %>
           </div>
         </li>
