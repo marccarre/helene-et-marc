@@ -1,10 +1,22 @@
-t("rsvp_mailer.subject")
+t('rsvp_mailer.subject')
 ===============================================================================
+(Ceci est un email automatique, que vous recevez suite à votre confirmation sur www.helene-et-marc.fr)
 
 Nous vous remercions de votre confirmation !
 
-Ce sera un réel plaisir de pouvoir célébrer ce moment ensemble, avec
-<%= @booking.guests %>
+<% if @booking.coming %>
+  Ce sera un réel plaisir de pouvoir célébrer ce moment ensemble, avec
+  <%= @booking.guests %>
+  
+  Vous avez : <%= @booking.events %>
 
-Lors de
-Viendrons: <%= @booking.events %>
+<% else %>
+  <p>
+C'est vraiment dommage que vous ne puissiez pas vous joindre à nous.
+Quoi qu'il en soit, merci beaucoup d'avoir pris le temps de répondre.
+  </p>
+<% end %>
+
+Bises,
+
+Hélène & Marc.
