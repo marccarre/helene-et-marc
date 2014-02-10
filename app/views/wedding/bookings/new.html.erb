@@ -36,9 +36,7 @@
 
       <div id="checkboxes-events-attended">
         <span><%= t('rsvp.i_will_attend') %></span>
-        <%= f.fields_for :events do |events_form| %>
-          <%= render 'wedding/events/form', f: events_form %>
-        <% end %>
+        <%= render 'wedding/events/form' %>
       </div>
     </div>
   </div>
