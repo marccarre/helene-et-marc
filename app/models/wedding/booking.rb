@@ -15,7 +15,7 @@ module Wedding
     scope :coming, -> { where(coming: true) }
     scope :coming_to, -> (event_id) { coming.includes(:events).where("bookings_events.event_id = #{event_id}") }
 
-    after_save :send_rsvp_confirmation
+    # after_save :send_rsvp_confirmation
 
     private
     def send_rsvp_confirmation
