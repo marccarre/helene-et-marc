@@ -1,21 +1,21 @@
 <% @requested_cars = Wedding::Car.requested.includes(:driver).includes(:passengers).load %>
 
-<%= content_tag("div", id: "requested-cars", class: (@requested_cars.count == 0) ? "hidden" : "visible") do -%>
-  <h4>Requests-for-ride:</h4>
+<%= content_tag(:div, id: 'requested-cars', class: (@requested_cars.count == 0) ? 'hidden' : 'visible') do -%>
+  <h4><%= t('carpooling.requested_cars') %></h4>
   <table id="table-requested-cars" class="table table-striped table-condensed table-bordered text-center">
     <thead>
       <tr>
-        <th>From:</th>
-        <th>To:</th>
-        <th>Departure time:</th>
-        <th>Required seats: </th>
-        <th>Requested by: </th>
-        <th>Contact: </th>
+        <th><%= t('carpooling.table.from') %></th>
+        <th><%= t('carpooling.table.to') %></th>
+        <th><%= t('carpooling.table.departure_time') %></th>
+        <th><%= t('carpooling.table.required_seats') %></th>
+        <th><%= t('carpooling.table.who') %></th>
+        <th><%= t('carpooling.table.contact') %></th>
       </tr>
     </thead>
     <tbody>
       <% @requested_cars.sort_by { |car| [car.from, car.departure_time, car.to] }.each do |car| %>
-        <%= render "wedding/cars/requested_car", car: car %>
+        <%= render 'wedding/cars/requested_car', car: car %>
       <% end %>
     </tbody>
   </table>
