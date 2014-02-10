@@ -1,5 +1,31 @@
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <h3><%= t('menu.story') %></h3>
+    <h3><%= t('story.how_we_met') %></h3>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+    <%= render 'wedding/story/how_we_met' %>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+    <%= image_tag 'wedding/story/2005-09-10_marc_and_helene_1st_semester_insa.jpg', class: 'img-responsive img-thumbnail', alt: 'Hélène and Marc, during the very 1st semester at uni -- INSA Lyon, September 2005' %>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+    <%= image_tag 'wedding/story/2006-01-07_marc_at_areches_with_helene.jpg', class: 'img-responsive img-thumbnail', alt: 'Marc snowboarding with Hélène -- Arêches, January 2006' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <h3><%= t('story.the_proposal') %></h3>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-7 col-lg-7 col-md-push-5 col-lg-push-5">
+    <%= render 'wedding/story/the_proposal' %>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-5 col-lg-5 col-md-pull-7 col-lg-pull-7">
+    <%= image_tag 'wedding/story/2011-04-21_172840_helene_and_marc_at_the_preikestolen.jpg', class: 'img-responsive img-thumbnail', alt: 'Marc snowboarding with Hélène -- Arêches, January 2006' %>
   </div>
 </div>
