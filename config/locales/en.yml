@@ -413,8 +413,7 @@ en:
         city: "Erdeven"
         map: "http://goo.gl/LlW5d3"
   rsvp_mailer:
-    rsvp_submitted:
-      subject: "Hélène & Marc - Wedding confirmation"
+    subject: "Hélène & Marc - Confirmation"
   carpooling:
     form_title: "Share your car / Request a ride:"
     journey: "carpooling journey"

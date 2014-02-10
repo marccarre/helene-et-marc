@@ -397,8 +397,7 @@ fr:
         city: "Erdeven"
         map: "http://goo.gl/x605Kp"
   rsvp_mailer:
-    rsvp_submitted:
-      subject: "Hélène & Marc - Confirmation de présence"
+    subject: "Hélène & Marc - Confirmation"
   carpooling:
     form_title: "Partager mon véhicule / Demande de co-voiturage :"
     journey: "trajet"
