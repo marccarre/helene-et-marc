@@ -36,10 +36,11 @@ module Wedding
     end
 
     private
+    
       # Never trust parameters from the scary internet, only allow the white list through.
       def car_params
-        sanitized = params.require(:wedding_car).permit(:category, :available_seats, :from, :to, :departure_time, driver_attributes: [:first_name, :family_name, :email, :phone])
-        try_parse_datetime(sanitized, :departure_time)
+        whitelisted = params.require(:wedding_car).permit(:category, :available_seats, :from, :to, :departure_time, driver_attributes: [:first_name, :family_name, :email, :phone])
+        try_parse_datetime(whitelisted, :departure_time)
       end
 
       def try_parse_datetime(params, key)

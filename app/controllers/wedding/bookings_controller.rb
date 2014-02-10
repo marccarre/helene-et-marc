@@ -29,16 +29,17 @@ module Wedding
     end
 
     private
+    
       # Never trust parameters from the scary internet, only allow the white list through.
       def booking_params
-        params.require(:wedding_booking).permit!
-        # MAKE SURE WE CAN'T UPDATE BY REFUSING "id"
-        # params.require(:wedding_booking).permit(
-        #     :comments, 
-        #     adults_attributes: [:first_name, :family_name, :_destroy], 
-        #     children_attributes: [:first_name, :family_name, :birth_date, :child_menu, :_destroy], 
-        #     address_attributes: [:email, :phone, :address, :postcode, :city, :country]
-        # )
+        params.require(:wedding_booking).permit(
+          :email,
+          :phone,
+          :coming,
+          :comments,
+          { guests_attributes: [:first_name, :family_name, :category, :menu, :_destroy] },
+          event_ids: []
+        )
       end
   end
 end
