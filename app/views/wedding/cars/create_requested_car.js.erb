@@ -1,9 +1,18 @@
-// Remove potential errors from previous faulty submission:
-var id = '#car-errors';
-$(id).empty();
-$(id).removeClass('visible').addClass('hidden');
-
 // Submission for requested car succeeded:
+
+// Remove potential errors from previous faulty submission:
+$('#car-errors')
+  .empty()
+  .removeClass('visible')
+  .addClass('hidden');
+
+// Make requested cars visible:
 $('#requested-cars').removeClass('hidden').addClass('visible');
-$('<%= escape_javascript(render "wedding/cars/requested_car", car: @car) %>').appendTo('#table-requested-cars > tbody');
-$('#table-requested-cars > tbody > tr#<%= dom_id(@car) %>').effect('highlight');
+
+// Add new requested car to the DOM:
+$("<%= escape_javascript(render 'wedding/cars/requested_car', car: @car) %>")
+  .appendTo('#table-requested-cars > tbody')
+  .effect('highlight');
+
+// Empty form to avoid double submission:
+$('#form-cars :input').not('select, :button, :submit, :reset, :hidden').val('');
