@@ -414,6 +414,7 @@ en:
         map: "http://goo.gl/LlW5d3"
   rsvp_mailer:
     subject: "Hélène & Marc - Confirmation"
+    notice: "(This an automated email that you are receiving following a confirmation made by someone on www.helene-et-marc.fr)"
   carpooling:
     form_title: "Share your car / Request a ride:"
     journey: "carpooling journey"

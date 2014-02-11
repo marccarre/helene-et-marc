@@ -398,6 +398,7 @@ fr:
         map: "http://goo.gl/x605Kp"
   rsvp_mailer:
     subject: "Hélène & Marc - Confirmation"
+    notice: "(Ceci est un email automatique que vous recevez suite à une confirmation faite par quelqu'un sur www.helene-et-marc.fr)"
   carpooling:
     form_title: "Partager mon véhicule / Demande de co-voiturage :"
     journey: "trajet"

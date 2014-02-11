@@ -1,25 +1,62 @@
+<!DOCTYPE html>
 <html>
   <head>
-    <title>t("rsvp_mailer.subject")</title>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/simplex/bootstrap.min.css" rel="stylesheet">
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+    <!-- Just for debugging purposes. Don't actually copy this line! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <title><%= t('rsvp_mailer.subject') %></title>
   </head>
   <body>
-(Ceci est un email automatique, que vous recevez suite à votre confirmation sur www.helene-et-marc.fr)
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <small><%= t('rsvp_mailer.notice') %></small>
+        </div>
+      </div>
 
-<% if @booking.coming %>
-  Ce sera un réel plaisir de pouvoir célébrer ce moment ensemble, avec
-  <%= @booking.guests %>
-  
-  Vous avez : <%= @booking.events %>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h3><%= t('rsvp.guest_list') %></h3>
+          <%= render "wedding/guests/show_guests_details", guests: @booking.guests %>
+        </div>
+      </div>
 
-<% else %>
-  <p>
-C'est vraiment dommage que vous ne puissiez pas vous joindre à nous.
-Quoi qu'il en soit, merci beaucoup d'avoir pris le temps de répondre.
-  </p>
-<% end %>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h3><%= t('rsvp.contact') %></h3>
+          <address>
+            <%= t('rsvp.contact_field.phone') + t('g.colon') + @booking.phone %> <br />
+            <%= t('rsvp.contact_field.email') + t('g.colon') %><%= @booking.email.blank? ? "/" : mail_to(@booking.email.downcase, @booking.email.downcase) %>
+          </address>
+        </div>
+      </div>
 
-Bises,
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h3><%= t("rsvp.attendance_title") %></h3>
+          <%= render "wedding/events/show_events_table", booked_events: @booking.events %>
+        </div>
+      </div>
 
-Hélène & Marc.
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h3><%= t("rsvp.comments") %></h3>
+          <%= @booking.comments %>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

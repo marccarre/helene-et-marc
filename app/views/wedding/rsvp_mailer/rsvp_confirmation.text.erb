@@ -1,22 +1,24 @@
-t('rsvp_mailer.subject')
-===============================================================================
-(Ceci est un email automatique, que vous recevez suite à votre confirmation sur www.helene-et-marc.fr)
+<%= t('rsvp_mailer.subject') %>
+================================================================================
+<%= t('rsvp_mailer.notice') %>
 
-Nous vous remercions de votre confirmation !
 
-<% if @booking.coming %>
-  Ce sera un réel plaisir de pouvoir célébrer ce moment ensemble, avec
-  <%= @booking.guests %>
-  
-  Vous avez : <%= @booking.events %>
-
-<% else %>
-  <p>
-C'est vraiment dommage que vous ne puissiez pas vous joindre à nous.
-Quoi qu'il en soit, merci beaucoup d'avoir pris le temps de répondre.
-  </p>
+* <%= t("rsvp.guest_list") %>
+<% @booking.guests.each do |guest| %>
+  - <%= guest.first_name %> <%= guest.family_name %></td> (<%= t('rsvp.menu.' + Wedding::Guest::MENU.select { |k, v| v == guest.menu }.map { |k,v| k.to_s }.first ) %>)
 <% end %>
 
-Bises,
 
-Hélène & Marc.
+* <%= t("rsvp.contact") %>
+  - <%= @booking.phone %>
+  - <%= @booking.email.blank? ? "/" : @booking.email.downcase %>
+
+
+* <%= t("rsvp.attendance_title") %>
+<% Wedding::Event.all.each do |event| %>
+  - <%= t(event.locale_entry + '.name') + t('g.colon') + (@booking.events.include?(event) ? t('g.y').capitalize : t('g.n').capitalize) %>
+<% end %>
+
+
+* <%= t("rsvp.comments") %>
+<%= @booking.comments %>

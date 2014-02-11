@@ -4,7 +4,7 @@ ruby '2.1.0'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
-group :development do
+group :development, :test, :production do
   # Use sqlite3 as the database for Active Record in development mode
   # gem 'sqlite3', '>= 1.3.8'
   gem 'pg', '>= 0.17.1'
@@ -23,10 +23,7 @@ group :development, :test do
   gem 'simplecov'
 end
 
-# Use postgresql as the databse for Active Record in production mode
 group :production do
-  gem 'pg', '>= 0.17.1'
-
   # Deployment to Heroku:
   gem 'rails_12factor' # Improves static files serving.
   gem 'unicorn'        # Multi-processed web server, for better scalabity than with Webrick.
@@ -71,6 +68,10 @@ group :doc do
 end
 
 gem 'http_accept_language', '>= 2.0.1'
+
+# Nice-looking emails:
+gem 'premailer-rails'
+gem 'hpricot'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
