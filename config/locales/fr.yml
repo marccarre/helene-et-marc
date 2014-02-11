@@ -399,6 +399,22 @@ fr:
   rsvp_mailer:
     subject: "Hélène & Marc - Confirmation"
     notice: "(Ceci est un email automatique que vous recevez suite à une confirmation faite par quelqu'un sur www.helene-et-marc.fr)"
+  cars_mailer: 
+    subject: "Hélène & Marc - Co-voiturage ajouté avec succès !"
+    notice: "(Ceci est un email automatique que vous recevez suite à la recherche ou l'ajout d'une voiture dans la rubrique co-voiturage de www.helene-et-marc.fr)"
+    details: "Détails du trajet"
+    unsubscribe: 
+      title: "Se désinscrire ?"
+      text: "Pour enlever ma recherche ou ma voiture de la rubrique co-voiturage, veuillez cliquer sur le lien suivant :"
+      link: "Me désinscrire !"
+  passengers_mailer:
+    subject: "Hélène & Marc - Passager enregistré avec succès !"
+    notice: "(Ceci est un email automatique que vous recevez suite à votre enregistrement en tant que passager d'une voiture, dans la rubrique co-voiturage de www.helene-et-marc.fr)"
+    details: "Détails du trajet"
+    unsubscribe: 
+      title: "Se désinscrire ?"
+      text: "Pour vous supprimer de la liste des passagers, veuillez cliquer sur le lien suivant :"
+      link: "Me désinscrire !"
   carpooling:
     form_title: "Partager mon véhicule / Demande de co-voiturage :"
     journey: "trajet"
@@ -412,11 +428,16 @@ fr:
     to: "Ville d'arrivée"
     departure_time: "Heure de départ"
     departure_time_format: "fr-FR" #"dd/MM/yyyy hh:mm:ss"
+    contact: "Contact"
     first_name: "Prénom"
     family_name: "Nom de famille"
     email: "Email"
     phone: "Téléphone"
     submit: "Ajouter"
+    car_successfully_added: "Voiture ajoutée avec succès."
+    car_successfully_deleted: "Voiture supprimée avec succès."
+    passenger_successfully_added: "Passager ajouté avec succès."
+    passenger_successfully_deleted: "Passager supprimé avec succès."
     no_shared_car: "Pas de voiture disponible en co-voiturage."
     available_cars: "Voitures disponibles :"
     requested_cars: "Nous recherchons une voiture :"

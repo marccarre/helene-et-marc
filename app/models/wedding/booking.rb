@@ -19,7 +19,7 @@ module Wedding
 
     private
       def send_rsvp_confirmation
-        Wedding::RsvpMailer.rsvp_confirmation(self).deliver
+        RsvpMailer.delay.rsvp_confirmation(self)
       end
   end
 end

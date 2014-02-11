@@ -44,5 +44,12 @@ module Wedding
     def to_s
       return to_json(include: :driver).to_s
     end
+
+    # after_save :send_confirmation
+
+    private
+      def send_confirmation
+        CarsMailer.delay.car_confirmation(self)
+      end
   end
 end

@@ -415,6 +415,22 @@ en:
   rsvp_mailer:
     subject: "Hélène & Marc - Confirmation"
     notice: "(This an automated email that you are receiving following a confirmation made by someone on www.helene-et-marc.fr)"
+  cars_mailer: 
+    subject: "Hélène & Marc - Successfully registered carpooling journey!"
+    notice: "(This an automated email that you are receiving following the request or sharing of a car on www.helene-et-marc.fr)"
+    details: "Journey details"
+    unsubscribe: 
+      title: "Want to unregister ?"
+      text: "To remove your request or car from the carpooling section, please click on the following link:"
+      link: "Unregister!"
+  passengers_mailer:
+    subject: "Hélène & Marc - Successfully registered as passenger!"
+    notice: "(This an automated email that you are receiving following your registration as a passenger of a car on www.helene-et-marc.fr)"
+    details: "Journey details"
+    unsubscribe: 
+      title: "Want to unregister ?"
+      text: "To remove yourself from the list of passengers, please click on the following link:"
+      link: "Unregister!"
   carpooling:
     form_title: "Share your car / Request a ride:"
     journey: "carpooling journey"
@@ -428,11 +444,16 @@ en:
     to: "To"
     departure_time: "Departure time"
     departure_time_format: "en-UK" # "yyyy/MM/dd HH:mm:ss PP"
+    contact: "Contact"
     first_name: "First name"
     family_name: "Family name"
     email: "Email"
     phone: "Phone"
     submit: "Submit"
+    car_successfully_added: "Car successfully added."
+    car_successfully_deleted: "Car successfully deleted."
+    passenger_successfully_added: "Passenger successfully added."
+    passenger_successfully_deleted: "Passenger successfully deleted."
     no_shared_car: "No car available for carpooling."
     available_cars: "Available cars:"
     requested_cars: "We are looking for a car:"

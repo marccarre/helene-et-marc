@@ -73,6 +73,9 @@ gem 'http_accept_language', '>= 2.0.1'
 gem 'premailer-rails'
 gem 'hpricot'
 
+# Emails sent asynchronously:
+gem 'delayed_job_active_record'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'
 

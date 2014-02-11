@@ -13,7 +13,7 @@ module Wedding
         if passenger.is_passenger? && passenger.save
           logger.info("Successfully saved passenger: #{passenger}. #{acceptable_formats}")
           format.js   { render 'wedding/cars/create_passenger', locals: { passenger: passenger }, status: :created }
-          format.html { redirect_to wedding_cars_url, status: :created, notice: 'Passenger was successfully added.' }
+          format.html { redirect_to wedding_cars_url, status: :created, notice: t('carpooling.passenger_successfully_added') }
         else
           logger.info("Failed to save passenger: #{passenger}. #{acceptable_formats}")
           format.js   { render 'wedding/cars/create_passenger_error', locals: { passenger: passenger }, status: :unprocessable_entity }
@@ -22,6 +22,14 @@ module Wedding
             render template: 'wedding/cars/index', status: :unprocessable_entity 
           }
         end
+      end
+    end
+
+    def destroy
+      passenger.destroy
+      respond_to do |format|
+        format.html { redirect_to wedding_cars_url, notice: t('carpooling.passenger_successfully_deleted') }
+        format.js   { render 'wedding/cars/destroy_passenger', locals: { passenger: passenger } }
       end
     end
 
@@ -51,7 +59,7 @@ module Wedding
 
       # Never trust parameters from the scary internet, only allow the white list through.
       def passenger_params
-        params.require(:wedding_passenger).permit(:car_id, :category, :first_name, :family_name, :email, :phone)
+        params.require(:wedding_passenger).permit(:_destroy, :car_id, :category, :first_name, :family_name, :email, :phone)
       end
   end
 end

@@ -22,7 +22,7 @@ module Wedding
               render 'wedding/cars/car_errors', status: :bad_request
             end
           }
-          format.html { redirect_to wedding_cars_url, status: :created, notice: 'Car was successfully added.' }
+          format.html { redirect_to wedding_cars_url, status: :created, notice: t('carpooling.car_successfully_added') }
         else
           improve_error_message_if_invalid_datetime_format
           logger.info("Failed to save car: #{@car}. #{acceptable_formats}")
@@ -35,11 +35,20 @@ module Wedding
       end
     end
 
+    def destroy
+      @car = Car.find(params[:car_id])
+      @car.destroy
+      respond_to do |format|
+        format.html { redirect_to wedding_cars_url, notice: t('carpooling.car_successfully_deleted') }
+        format.js   { render 'wedding/cars/destroy_car' }
+      end
+    end
+
     private
     
       # Never trust parameters from the scary internet, only allow the white list through.
       def car_params
-        whitelisted = params.require(:wedding_car).permit(:category, :available_seats, :from, :to, :departure_time, driver_attributes: [:first_name, :family_name, :email, :phone])
+        whitelisted = params.require(:wedding_car).permit(:_destroy, :category, :available_seats, :from, :to, :departure_time, driver_attributes: [:first_name, :family_name, :email, :phone])
         try_parse_datetime(whitelisted, :departure_time)
       end
 

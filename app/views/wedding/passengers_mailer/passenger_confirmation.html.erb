@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/simplex/bootstrap.min.css" rel="stylesheet">
+    <title><%= t('passengers_mailer.subject') %></title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <small><%= t('passengers_mailer.notice') %></small>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h3><%= t('passengers_mailer.details') %></h3>
+          <ul>
+            <li><%= t('carpooling.from') + t('g.colon') + ' ' + @passenger.car.from %></li>
+            <li><%= t('carpooling.to') + t('g.colon') + ' ' + @passenger.car.to %></li>
+            <li><%= t('carpooling.departure_time') + t('g.colon') + ' ' + l(@passenger.car.departure_time, format: :default) %></li>
+            <li><%= t('carpooling.contact') + t('g.colon') %><br />
+              <ul>
+                <li><%= "#{@passenger.car.driver.first_name} #{@passenger.car.driver.family_name}" %></li>
+                <li><%= t('carpooling.email') + t('g.colon') + ' ' + @passenger.car.driver.email %></li>
+                <li><%= t('carpooling.phone') + t('g.colon') + ' ' + @passenger.car.driver.phone %></li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h3><%= t('passengers_mailer.unsubscribe.title') %></h3>
+          <%= t('passengers_mailer.unsubscribe.text') %><br />
+          <%= link_to t('passengers_mailer.unsubscribe.link'), wedding_car_passenger_path(I18n.locale, @passenger.car.id, @passenger.id), method: :delete %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

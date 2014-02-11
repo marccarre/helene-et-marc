@@ -28,10 +28,18 @@ module Wedding
       return to_json.to_s
     end
 
+    # after_save :send_confirmation
+
     private
       def validate_car_passengers_count_is_within_limits
         return if car.blank?
         errors.add(:car, I18n.t('errors.messages.car_is_full')) if car.passengers.size >= car.available_seats
+      end
+
+      def send_confirmation
+        if is_passenger?
+          PassengersMailer.passenger_confirmation(self)
+        end
       end
   end
 end

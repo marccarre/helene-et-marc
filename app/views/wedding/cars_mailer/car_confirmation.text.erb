@@ -1,0 +1,16 @@
+<%= t('cars_mailer.subject') %>
+================================================================================
+<%= t('cars_mailer.notice') %>
+
+* <%= t('cars_mailer.details') %>
+  - <%= t('carpooling.from') + t('g.colon') + ' ' + @car.from %>
+  - <%= t('carpooling.to') + t('g.colon') + ' ' + @car.to %>
+  - <%= t('carpooling.departure_time') + t('g.colon') + ' ' + l(@car.departure_time, format: :default) %>
+  - <%= t('carpooling.contact') + t('g.colon') %>
+    - <%= "#{@car.driver.first_name} #{@car.driver.family_name}" %>
+    - <%= t('carpooling.email') + t('g.colon') + ' ' + @car.driver.email %>
+    - <%= t('carpooling.phone') + t('g.colon') + ' ' + @car.driver.phone %>
+
+* <%= t('cars_mailer.unsubscribe.title') %>
+<%= t('cars_mailer.unsubscribe.text') %>
+<%= link_to t('cars_mailer.unsubscribe.link'), wedding_car_path(I18n.locale, @car), method: :delete %>
