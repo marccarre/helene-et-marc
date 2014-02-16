@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/simplex/bootstrap.min.css" rel="stylesheet">
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <title><%= t('rsvp_mailer.subject') %></title>
   </head>
   <body>
@@ -19,7 +19,7 @@
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <h3><%= t('rsvp.guest_list') %></h3>
-          <%= render "wedding/guests/show_guests_details", guests: @booking.guests %>
+          <%= render 'wedding/guests/show_guests_details', guests: @booking.guests %>
         </div>
       </div>
 
@@ -35,14 +35,14 @@
 
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h3><%= t("rsvp.attendance_title") %></h3>
-          <%= render "wedding/events/show_events_table", booked_events: @booking.events %>
+          <h3><%= t('rsvp.attendance_title') %></h3>
+          <%= render 'wedding/events/show_events_table', booked_events: @booking.events %>
         </div>
       </div>
 
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h3><%= t("rsvp.comments") %></h3>
+          <h3><%= t('rsvp.comments') %></h3>
           <%= @booking.comments %>
         </div>
       </div>
