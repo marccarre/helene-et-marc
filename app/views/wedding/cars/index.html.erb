@@ -1,6 +1,6 @@
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <%= content_tag(:div, id: 'notice', class: flash[:notice] ? 'visible' : 'hidden') do %>
+    <%= content_tag(:div, id: 'notice', class: 'alert alert-success'+(flash[:notice] ? ' visible' : ' hidden')) do %>
       <%= notice %>
     <% end %>
   </div>

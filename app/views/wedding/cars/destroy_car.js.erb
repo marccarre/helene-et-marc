@@ -1,1 +1,7 @@
+$('#notice')
+  .empty()
+  .removeClass('hidden')
+  .addClass('visible')
+  .text("<%= t('carpooling.car_successfully_deleted') %>");
+
 $('#<%= "car-#{@car.id}" %>').fadeOut();

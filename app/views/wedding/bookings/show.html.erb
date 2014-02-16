@@ -1,10 +1,10 @@
-<% if flash[:notice] %>
-  <div class="row">
-    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="alert alert-success" id="notice"><%= notice %></div>
-    </div>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= content_tag(:div, id: 'notice', class: 'alert alert-success'+(flash[:notice] ? ' visible' : ' hidden')) do %>
+      <%= notice %>
+    <% end %>
   </div>
-<% end %>
+</div>
 
 <div class="row">
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
