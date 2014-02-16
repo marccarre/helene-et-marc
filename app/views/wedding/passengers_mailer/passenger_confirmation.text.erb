@@ -13,6 +13,6 @@
 
 * <%= t('passengers_mailer.unsubscribe.title') %>
 <%= t('passengers_mailer.unsubscribe.text') %>
-<%= form_for([@passenger.car, @passenger], url: wedding_car_passenger_path(car_id: @passenger.car, id: @passenger), authenticity_token: false, method: :delete) do  %>
+<%= form_for([@passenger.car, @passenger], url: wedding_car_passenger_path(car_id: @passenger.car, id: @passenger, only_path: false), authenticity_token: false, method: :delete) do  %>
   <%= submit_tag t('passengers_mailer.unsubscribe.link'), class: 'btn btn-link' %>
 <% end %>
