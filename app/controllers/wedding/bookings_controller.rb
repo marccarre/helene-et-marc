@@ -21,7 +21,7 @@ module Wedding
       respond_to do |format|
         #if verify_recaptcha(:model => @booking, :message => "Oh! It's an error with reCAPTCHA!") && @booking.save
         if (@booking.save)
-          format.html { redirect_to wedding_booking_url(@booking), notice: 'Booking was successfully created.' }
+          format.html { redirect_to wedding_booking_url(id: @booking.id), notice: 'Booking was successfully created.' }
         else
           format.html { render action: 'new', status: :unprocessable_entity }
         end
