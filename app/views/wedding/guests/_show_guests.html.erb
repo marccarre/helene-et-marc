@@ -25,7 +25,7 @@
           <% events.each do |event| %>
             <td><%= booking.events.include?(event) ? content_tag(:b, t('g.y').capitalize) : t('g.n').capitalize %></td>
           <% end %>
-          <td><%= link_to t('rsvp.show'), wedding_booking_path(booking) %></td>
+          <td><%= link_to t('rsvp.show'), wedding_booking_path(id: booking.id) %></td>
         </tr>
       <% end %>
     <% end %>
