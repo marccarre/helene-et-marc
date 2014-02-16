@@ -2,7 +2,7 @@
 # and New Relic for monitoring.
 
 worker_processes Integer(ENV['WEB_CONCURRENCY'] || 3)
-timeout 15
+# timeout 15
 preload_app true
 
 before_fork do |server, worker|
@@ -13,6 +13,8 @@ before_fork do |server, worker|
 
   defined?(ActiveRecord::Base) and
     ActiveRecord::Base.connection.disconnect!
+
+  @sidekiq_pid ||= spawn('bundle exec sidekiq -c 1')
 end
 
 after_fork do |server, worker|
