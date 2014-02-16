@@ -1,5 +1,7 @@
 module Wedding
   class CarsController < CarpoolingController
+    protect_from_forgery except: [:delete]
+
     def index
       get_or_load_all
     end
@@ -36,7 +38,7 @@ module Wedding
     end
 
     def destroy
-      @car = Car.find(params[:car_id])
+      @car = Car.find(params[:id])
       @car.destroy
       respond_to do |format|
         format.html { redirect_to wedding_cars_url, notice: t('carpooling.car_successfully_deleted') }

@@ -32,7 +32,7 @@
 
     <% passenger = instance_variable_get("@passenger_#{car.id}") %>
     <%= content_tag(:div, id: "car-#{car.id}-form", class: (remaining_seats > 0) ? "visible" : "hidden") do %>
-      <%= form_for([car, passenger], url: wedding_car_passengers_path(car), remote: true, authenticity_token: true, html: {id: "form-car-#{car.id}", 'role' => 'form'}) do |f| %>
+      <%= form_for([car, passenger], url: wedding_car_passengers_path(car_id: car.id), remote: true, authenticity_token: true, html: {id: "form-car-#{car.id}", 'role' => 'form'}) do |f| %>
         <%= errors_for(passenger, t('carpooling.passenger'), id: "car-#{car.id}-errors") %>
         <div class='form-group form-inline'>
           <%= f.hidden_field :car_id, value: car.id %>

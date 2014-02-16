@@ -1,5 +1,7 @@
 module Wedding
   class PassengersController < CarpoolingController
+    protect_from_forgery except: [:delete]
+    
     def index
       get_or_load_all
       render template: 'wedding/cars/index'

@@ -79,13 +79,14 @@ HeleneEtMarc::Application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # Settings to send emails via Gmail servers:
+  host = 'helene-et-marc.fr'
+  config.action_mailer.default_url_options = { host: host }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { host: "www.helene-et-marc.fr" }
   config.action_mailer.smtp_settings = {
     address:              'smtp.gmail.com',
     port:                 587,
-    domain:               'www.helene-et-marc.fr',
+    domain:               host,
     user_name:            'les.carreguiners',
     password:             ENV['SMTP_PASSWORD'],
     authentication:       'plain',

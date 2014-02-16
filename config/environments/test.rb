@@ -33,4 +33,10 @@ HeleneEtMarc::Application.configure do
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
+
+  # Settings to send emails:
+  host = 'localhost'
+  port = 3000
+  Rails.application.routes.default_url_options[:host] = "#{host}:#{port}"
+  config.action_mailer.default_url_options = { host: host, port: port }
 end

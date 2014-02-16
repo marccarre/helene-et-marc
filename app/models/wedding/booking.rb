@@ -5,7 +5,7 @@ module Wedding
 
     validates :guests, presence: true, length: { minimum: 1 }
     validates :coming, inclusion: { in: [true, false] }
-    validates :email, allow_blank: true, format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, message: "should be a valid email address" }
+    validates :email, allow_blank: true, format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, message: 'should be a valid email address' }
     validates :phone, presence: true
     
     accepts_nested_attributes_for :guests
@@ -19,7 +19,7 @@ module Wedding
 
     private
       def send_rsvp_confirmation
-        RsvpMailer.delay.rsvp_confirmation(self)
+        RsvpMailer.delay.rsvp_confirmation(self.id)
       end
   end
 end

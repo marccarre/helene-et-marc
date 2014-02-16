@@ -1,0 +1,3 @@
+# Client side Sidekiq concurrency level:
+# See also: http://manuel.manuelles.nl/sidekiq-heroku-redis-calc/
+:concurrency: 5

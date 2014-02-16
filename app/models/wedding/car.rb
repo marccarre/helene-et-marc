@@ -1,7 +1,7 @@
 module Wedding
   class Car < ActiveRecord::Base
-    has_one :driver, -> { where(category: Passenger::CATEGORY[:driver]) }, class_name: "Passenger", inverse_of: :car, dependent: :destroy
-    has_many :passengers, -> { where(category: Passenger::CATEGORY[:passenger]) }, class_name: "Passenger", inverse_of: :car, dependent: :destroy
+    has_one :driver, -> { where(category: Passenger::CATEGORY[:driver]) }, class_name: 'Passenger', inverse_of: :car, dependent: :destroy
+    has_many :passengers, -> { where(category: Passenger::CATEGORY[:passenger]) }, class_name: 'Passenger', inverse_of: :car, dependent: :destroy
 
     accepts_nested_attributes_for :driver
     accepts_nested_attributes_for :passengers
@@ -45,11 +45,11 @@ module Wedding
       return to_json(include: :driver).to_s
     end
 
-    # after_save :send_confirmation
+    after_save :send_confirmation
 
     private
       def send_confirmation
-        CarsMailer.delay.car_confirmation(self)
+        CarsMailer.delay.car_confirmation(self.id)
       end
   end
 end

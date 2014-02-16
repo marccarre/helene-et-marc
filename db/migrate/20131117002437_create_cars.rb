@@ -4,7 +4,6 @@ class CreateCars < ActiveRecord::Migration
       t.string :from
       t.string :to
       t.datetime :departure_time
-      t.datetime :arrival_time
       t.integer :available_seats
       t.integer :category
 

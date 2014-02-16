@@ -74,7 +74,10 @@ gem 'premailer-rails'
 gem 'hpricot'
 
 # Emails sent asynchronously:
-gem 'delayed_job_active_record'
+gem 'sidekiq'
+# Uncomment the below if you want access to the Sidekiq dashboard:
+# gem 'sinatra', require: false
+# gem 'slim'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

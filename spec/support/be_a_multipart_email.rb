@@ -4,7 +4,7 @@ module BeAMultipartEmail
 
     def matches?(mail)
       mail.body.should have(2).parts
-      mail.body.parts.collect(&:content_type).should include("text/html; charset=UTF-8", "text/plain; charset=UTF-8")
+      mail.body.parts.collect(&:content_type).should include('text/html; charset=UTF-8', 'text/plain; charset=UTF-8')
     end
 
     def description 

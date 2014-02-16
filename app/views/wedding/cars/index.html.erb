@@ -1,8 +1,15 @@
-<div class='col-md-12 col-xs-12'>
-  <% if notice %>
-    <div id='notice' class='alert alert-info' style='margin-top: 5px;'><%= notice %></div>
-  <% end %>
-  <%= render 'wedding/cars/form_shared_or_requested_car' %>
-  <%= render 'wedding/cars/shared_cars' %>
-  <%= render 'wedding/cars/requested_cars' %>
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= content_tag(:div, id: 'notice', class: flash[:notice] ? 'visible' : 'hidden') do %>
+      <%= notice %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+    <%= render 'wedding/cars/form_shared_or_requested_car' %>
+    <%= render 'wedding/cars/shared_cars' %>
+    <%= render 'wedding/cars/requested_cars' %>
+  </div>
 </div>

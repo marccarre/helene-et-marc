@@ -249,17 +249,17 @@ en:
       guests: 
         first_name: "First name"
         family_name: "Family name"
-        category: "Category"
+        category: "Guest's category"
         menu: "Menu"
       wedding/guests: 
         first_name: "First name"
         family_name: "Family name"
-        category: "Category"
+        category: "Guest's category"
         menu: "Menu"
       wedding/guest: 
         first_name: "First name"
         family_name: "Family name"
-        category: "Category"
+        category: "Guest's category"
         menu: "Menu"
       wedding/car:
         driver: "Contact"
@@ -268,7 +268,7 @@ en:
         to: "Arrival city ('To')"
         departure_time: "Departure time"
         available_seats: "Number of seats"
-        category: "Category"
+        category: "Carpooling category"
       wedding/car/driver:
         first_name: "First name"
         family_name: "Family name"
@@ -288,7 +288,7 @@ en:
         family_name: "Family name"
         email: "Email address"
         phone: "Phone number"
-        category: "Category"
+        category: "Passenger's category"
         car: "This car"
     errors:
       <<: *errors

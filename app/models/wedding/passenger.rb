@@ -12,7 +12,7 @@ module Wedding
 
     validates :first_name, presence: true
     validates :family_name, presence: true
-    validates :email, allow_blank: true, format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, message: "should be a valid email address" }
+    validates :email, allow_blank: true, format: { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/, message: 'should be a valid email address' }
     validates :phone, presence: true
     validates :category, presence: true, inclusion: { in: CATEGORY.values }
 
@@ -28,7 +28,7 @@ module Wedding
       return to_json.to_s
     end
 
-    # after_save :send_confirmation
+    after_save :send_confirmation
 
     private
       def validate_car_passengers_count_is_within_limits
@@ -38,7 +38,7 @@ module Wedding
 
       def send_confirmation
         if is_passenger?
-          PassengersMailer.passenger_confirmation(self)
+          PassengersMailer.delay.passenger_confirmation(self.id)
         end
       end
   end

@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="http://netdna.bootstrapcdn.com/bootswatch/3.1.0/simplex/bootstrap.min.css" rel="stylesheet">
+    <%= stylesheet_link_tag 'application', media: 'all' %>
     <title><%= t('cars_mailer.subject') %></title>
   </head>
   <body>
@@ -38,7 +38,9 @@
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
           <h3><%= t('cars_mailer.unsubscribe.title') %></h3>
           <%= t('cars_mailer.unsubscribe.text') %><br />
-          <%= link_to t('cars_mailer.unsubscribe.link'), wedding_car_path(I18n.locale, @car), method: :delete %>
+          <%= form_for(@car, url: wedding_car_path(id: @car, only_path: false), authenticity_token: false, method: :delete) do  %>
+            <%= submit_tag t('cars_mailer.unsubscribe.link'), class: 'btn btn-link' %>
+          <% end %>
         </div>
       </div>
     </div>
