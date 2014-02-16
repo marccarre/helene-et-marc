@@ -1,28 +1,6 @@
 // Place all the styles related to the Wedding controller here.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.pre-wed-carousel {
-  margin: 0 auto;
-  max-width: 900px;
-  max-height: 900px;
-}
-
-.carousel-inner > .item > img.pre-wed-landscape,
-.carousel-inner > .item > a > img.pre-wed-landscape {
-  width: 900px;
-  height: 600px;
-  max-width: 900px;
-  max-height: 600px;
-}
-
-.carousel-inner > .item > img.pre-wed-portrait,
-.carousel-inner > .item > a > img.pre-wed-portrait {
-  width: 600px;
-  height: 900px;
-  max-width: 600px;
-  max-height: 900px;
-}
-
 .carousel-inner > .item > img.pre-wed-center,
 .carousel-inner > .item > a > img.pre-wed-center {
   margin: 0 auto;
