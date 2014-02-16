@@ -1,7 +1,7 @@
 module Wedding
   class PassengersMailer < ActionMailer::Base
     FROM = ['les.carreguiners@gmail.com']
-    CC = ['carre.marc+wedding@gmail.com'] #, 'queguiner.helene+wedding@gmail.com']
+    CC = ['carre.marc+wedding@gmail.com', 'queguiner.helene+wedding@gmail.com']
     private_constant :FROM, :CC
 
     default from: FROM

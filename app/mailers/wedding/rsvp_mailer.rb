@@ -1,7 +1,7 @@
 module Wedding
   class RsvpMailer < ActionMailer::Base
     FROM = ['les.carreguiners@gmail.com']
-    TO = ['carre.marc+wedding@gmail.com'] #, 'queguiner.helene+wedding@gmail.com']
+    TO = ['carre.marc+wedding@gmail.com', 'queguiner.helene+wedding@gmail.com']
     private_constant :FROM, :TO
 
     default from: FROM
