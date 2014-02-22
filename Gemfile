@@ -27,6 +27,7 @@ group :production do
   # Deployment to Heroku:
   gem 'rails_12factor' # Improves static files serving.
   gem 'unicorn'        # Multi-processed web server, for better scalabity than with Webrick.
+  gem 'newrelic_rpm'
 end
 
 
