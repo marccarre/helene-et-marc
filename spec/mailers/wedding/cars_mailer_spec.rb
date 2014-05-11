@@ -31,7 +31,7 @@ describe CarsMailer, sidekiq: :acceptance do
       let(:html)     { get_part(mail, /html/) }
 
       its(:from) { should eq(['les.carreguiners@gmail.com']) }
-      its(:cc)   { should eq(['carre.marc+wedding@gmail.com']) } 
+      its(:cc)   { should eq(['carre.marc+wedding@gmail.com', 'queguiner.helene+wedding@gmail.com']) } 
       it         { should be_a_multipart_email }
 
 

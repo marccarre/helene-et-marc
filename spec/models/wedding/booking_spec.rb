@@ -1,89 +1,70 @@
-require "spec_helper"
-require "wedding/rsvp_mailer"
-require "wedding/booking"
-require "wedding/guest"
-require "wedding/address"
-require "wedding/event"
+require 'spec_helper'
+require 'wedding/rsvp_mailer'
+require 'wedding/booking'
+require 'wedding/guest'
+require 'wedding/event'
 include Wedding
 
 describe Booking do 
   subject(:booking) { FactoryGirl.build(:booking) }
 
-  it { should_not validate_presence_of(:email) }
-  it { should validate_presence_of(:phone) }
-  it { should be_valid }
 
-  context "with an email address" do
-    its(:phone) { should == "+44 789 0123 456" }
-    its(:email) { should == "john.smith@hotmail.com" }
+  context 'public members' do
+    it { should respond_to(:guests) }
+    it { should respond_to(:events) }
+    it { should respond_to(:coming) }
+    it { should respond_to(:email) }
+    it { should respond_to(:phone) }
   end
 
-  context "without an email address" do
-    subject(:address) { FactoryGirl.build(:address, email: nil) }
-    its(:phone) { should == "+44 789 0123 456" }
-    its(:email) { should be_nil }
-  end
+  context 'private members' do 
+    it { should_not respond_to(:send_rsvp_confirmation) }
+  end      
 
-
-  context "associations" do
-    it { should have_many(:adults).class_name(AdultGuest).dependent(:destroy) }
-    it { should validate_presence_of(:adults) }
-    
-    it { should have_many(:children).class_name(ChildGuest).dependent(:destroy) }
-    
-    it { should have_one(:address).class_name(Address).dependent(:destroy) }
-    it { should validate_presence_of(:address) }
-
+  context 'associations' do
+    it { should have_many(:guests).class_name(Guest).dependent(:destroy) }
     it { should have_and_belong_to_many(:events).class_name(Event) }
   end
 
-  context "by default" do
-    subject(:booking) { Booking.new }
-    it { should respond_to(:adults) }
-    it { should respond_to(:children) }
-    it { should respond_to(:guests) }
-    it { should respond_to(:address) }
-    it { should respond_to(:events) }
-    it { should have(0).adults }
-    it { should have(0).children }
-    it { should have(0).guests }
-    its(:address) { should be_nil }
-    it { should have(0).events }
-    it { should_not be_valid }
-    it { should_not respond_to(:send_rsvp_confirmation) }
+  context 'validations' do
+    it { should validate_presence_of(:guests) }
+    it { should validate_presence_of(:phone) }
+    it { should_not validate_presence_of(:email) }
   end
 
-  context "with an adult guest" do
-    subject(:booking) { 
-      booking = FactoryGirl.build(:booking)
-      booking.adults = [adult]
-      return booking 
-    }
-    let(:adult) { AdultGuest.new }
+  context 'coming' do
+    subject(:booking) { FactoryGirl.build(:booking, :coming) }
 
-    it { should have(1).adults }
-    it { should have(0).children }
-    it { should have(0).guests }
     it { should be_valid }
+    its(:phone) { should_not be_nil }  
+    its(:email) { should     be_nil }
+    its(:comments) { should  eq('Allergies to sesame.') }
+    it { should have(1).guests }
+    it { should have(3).events }
 
-    context "after save" do
-      let(:mail) { double(:mail, deliver: true) }
+    context 'with an email address' do
+      subject(:booking) { FactoryGirl.build(:booking, :coming, :with_email) }
+      its(:email) { should_not be_nil }
+    end
 
-      it { 
-        booking.save
-        booking.should have(1).guests 
-      }
+    context 'with comment longer than 255 characters' do
+      subject(:booking) { FactoryGirl.build(:booking, :coming, :with_comments_longer_than_255_chars) }
+      comments_longer_than_255_chars = 'This is a great website which allows me to write overly long comments, in which I tell you everything about my life, how I think I will come to this wedding, all the ingredients I am allergic to, what the kids like and dislike in terms of food, and the fact we would be interested in the nanny service.'
 
-      it "calls 'rsvp_confirmation' on the RsvpMailer" do
-        RsvpMailer.should_receive(:rsvp_confirmation).with(booking).and_return(mail)
-        booking.save
+      its(:comments) { should eq(comments_longer_than_255_chars) }
+
+      it 'can be saved successfully, with all of the comments' do
+        # booking.save should_not raise_error(Exception)
+        expect { booking.save }.to_not raise_error(Exception)
+
+        # its(:errors) { should be_empty }
+        # expect { booking.errors }.to be_empty
+        assert booking.errors.empty?
+        
+        # its(:comments) { should eq(comments_longer_than_255_chars) }
+        #expect { booking.comments }.to eq(comments_longer_than_255_chars)
+        assert_equal comments_longer_than_255_chars, booking.comments
       end
-
-      it "calls 'deliver' on the mail object" do
-        RsvpMailer.stub(rsvp_confirmation: mail)
-        mail.should_receive(:deliver).and_return(true)
-        booking.save
-      end
-    end 
+    end
   end
 end
