@@ -67,4 +67,24 @@ describe Booking do
       end
     end
   end
+
+  # context 'after save' do
+  #   let(:mail) { double(:mail, deliver: true) }
+
+  #   it { 
+  #     booking.save should be_true
+  #     booking.should have(1).guests 
+  #   }
+
+  #   it "calls 'rsvp_confirmation' on the RsvpMailer" do
+  #     RsvpMailer.should_receive(:rsvp_confirmation).with(booking).and_return(mail)
+  #     booking.save should be_true
+  #   end
+
+  #   it "calls 'deliver' on the mail object" do
+  #     RsvpMailer.stub(rsvp_confirmation: mail)
+  #     mail.should_receive(:deliver).and_return(true)
+  #     booking.save should be_true
+  #   end
+  # end
 end
