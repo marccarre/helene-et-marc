@@ -24,23 +24,30 @@ module ApplicationHelper
   end
 
 
+  def link_to_external(url, html_options={})
+    html_options[:target] = '_blank'
+    link_to(url, 'http://'+url, html_options)
+  end
+
+
   def phone_to(text)
     if text.include? '+'
       link_to text, "tel:#{text}"
 
     else
-      sets_of_numbers = text.scan(/[0-9]+/)
-      length = sets_of_numbers.join.length
+      grouped_numbers = text.scan(/[0-9]+/)
+      numbers = grouped_numbers.join
 
-      if length == 10 # French number
-        number = "+33-#{sets_of_numbers.join("-")}"
+      if numbers.length == 10  # French number, e.g. 06.12.34.56.78
+        paired_numbers = numbers.slice(2..9).split('').in_groups_of(2).map { |pair| pair.join('') }.join('.')
+        number = "+33(#{numbers[0]})#{numbers[1]}.#{paired_numbers}"  # e.g. +33(0)6.12.34.56.78
         link_to text, "tel:#{number}"
 
-      elsif length == 11 # British number
-        number = "+44-#{sets_of_numbers.join("-")}"
+      elsif numbers.length == 11  # British number, e.g. 0777-1234-567
+        number = "+44(#{numbers[0]})#{numbers.slice(1..3)}-#{numbers.slice(4..7)}-#{numbers.slice(8..10)}"  # e.g. +44(0)777-1234-567
         link_to text, "tel:#{number}"
 
-      else # Unknown, print as it is
+      else  # Unknown, print as it is
         link_to text, "tel:#{text}"
       end
     end
