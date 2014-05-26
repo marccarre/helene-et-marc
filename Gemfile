@@ -31,7 +31,7 @@ group :production do
 end
 
 
-gem "recaptcha", "~> 0.3.6"
+gem 'recaptcha', '~> 0.3.6'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.1'
