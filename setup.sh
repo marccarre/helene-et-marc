@@ -1,21 +1,23 @@
 #!/bin/bash
 if ! [[ $(git remote) =~ "heroku" ]]; then
 
-	project="helene-et-marc"
-	git remote add heroku git@heroku.com:$project.git
-	heroku git:remote -a $project
-	echo "[success] Configured project for deployment to Heroku."
+  project=$(basename $PWD)
+  git remote add heroku git@heroku.com:$project.git
+  heroku git:remote -a $project
+  echo "[SUCCESS] Configured project for deployment to Heroku."
 
-	if ! [[ -f .env ]]; then
-		touch .env
-	fi
-	echo "[warning] Please configure .env with the required variable among:"
-	heroku config
-
-	echo # newline
-	return 0
+  if ! [[ -f .env ]]; then
+    touch .env
+  fi
+  echo "[WARNING] Please configure .env with the required variable among:"
+  heroku config
+  echo # newline
 fi
 
-source .env
+if [[ -f .env ]]; then
+  source .env
+fi
+
 rake db:drop && rake db:create:all && rake db:migrate && rake db:seed
 bundle exec sidekiq
+rails server
