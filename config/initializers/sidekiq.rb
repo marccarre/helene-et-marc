@@ -10,4 +10,4 @@ Sidekiq.configure_client do |config|
 end
 
 # Server configuration done using app/config/sidekiq.yml
-# See also: http://manuel.manuelles.nl/sidekiq-heroku-redis-calc/
+# See also: http://manuelvanrijn.nl/sidekiq-heroku-redis-calc/
