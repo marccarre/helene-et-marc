@@ -7,7 +7,7 @@ gem 'rails', '4.0.2'
 group :development, :test, :production do
   # Use sqlite3 as the database for Active Record in development mode
   # gem 'sqlite3', '>= 1.3.8'
-  gem 'pg', '>= 0.17.1'
+  gem 'pg', '0.18.1'
 end
 
 group :test do
@@ -75,7 +75,7 @@ gem 'premailer-rails'
 gem 'hpricot'
 
 # Emails sent asynchronously:
-gem 'sidekiq'
+gem 'sidekiq', '3.3.0'
 # Uncomment the below if you want access to the Sidekiq dashboard:
 # gem 'sinatra', require: false
 # gem 'slim'
