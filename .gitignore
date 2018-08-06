@@ -26,4 +26,5 @@ pickle-email-*.html
 /vendor/bundle
 .ruby-version
 .env
+.envrc
 *.dump
